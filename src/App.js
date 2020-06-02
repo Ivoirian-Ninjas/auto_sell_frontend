@@ -14,13 +14,15 @@ import CarPartIndex from './views/car_part/CarPartIndex'
 import CarPartNew from './views/car_part/CarPartIndex'
 import LogIn from './views/user/LogIn'
 import SignUp from './views/user/SignUp'
+import { createBrowserHistory } from 'history';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-   <Router>    
+   <Router history={createBrowserHistory()}>    
       <Switch>
           <React.Fragment>
-            
+            <Navbar/>
               {/**The intial page will be the car index*/}
               <Route exact path='/' render={renderProps => <CarIndex {...renderProps} /> } />
 
@@ -33,16 +35,16 @@ function App() {
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
               <Route path='/users/:id/favorites' render={renderProps => <Favorite/>} />
-              {/*These routes are the routes for the booking process */}          
+              {/* These routes are the routes for the booking process */}          
               <Route exact path='/bookings' render={renderProps => <BookingCalendar {...renderProps}/>}  />
               {/**Display analytics for the admin only */}
               <Route path='/analytics' render={renderProps => <Analytics/>} />
-              <Route exact path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
-              <Route exact path='/signup' render={renderProps => <SignUp {...renderProps}/>}  />
+              <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
+              <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  />
 
 
               {/**Cart routes */}
-              <Route path='/cart' render={renderProps => <Cart/>} />
+              {/* <Route path='/cart' render={renderProps => <Cart/>} /> */}
 
               {/**Car Parts routes */}
               <Route path='/parts/new' render={renderProps => <CarPartNew/>} />
