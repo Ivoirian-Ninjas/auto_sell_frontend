@@ -1,0 +1,33 @@
+try:
+
+git fetch origin master
+git merge origin master
+After to wrote this code I received other error: (non-fast-forward)
+
+I write this code:
+
+git fetch origin master:tmp
+git rebase tmp
+git push origin HEAD:master
+git branch -D tmp
+
+And resolved my problem
+
+
+Your error might be because of the merge branch.
+Just follow this:
+
+step 1 : git pull origin master (in case if you get any message then ignore it)
+step 2 : git add .
+step 3 : git commit -m 'your commit message'
+step 4 : git push origin master
+
+
+
+git fetch origin master
+Then follow these steps to merge:
+
+git pull origin master
+git add .
+git commit -m 'your commit message'
+git push origin master

@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+/*Rockness*/
+@font-face {
+  font-family: 'Rockness';
+  src: url('./assets/fonts/rockness/Rockness.otf');
+  src: url('./assets/fonts/rockness/Rockness.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Thundergood*/
+@font-face {
+  font-family: 'Thundergood';
+  src: url('./assets/fonts/thundergood/Thundergood.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*Candara*/
+@font-face {
+  font-family: 'Candara';
+  src: url('./assets/fonts/candara/Candara.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Signature of the ancient*/
+@font-face {
+  font-family: 'Signature of the Ancient';
+  src: url('./assets/fonts/signature-of-the-ancient/Signature of the Ancient.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-link {
-  color: #61dafb;
+/* Prestige signature script*/
+@font-face {
+  font-family: 'Prestige Signature Script';
+  src: url('./assets/fonts/prestige-signature-script--demo/Prestige Signature Script - Demo.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: 'Edwardian Script ITC';
+  src: url('./assets/fonts/Edwardian Script ITC/EdwardianScriptITC.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gabriola';
+  src: url('./assets/fonts/gabriola-font/Gabriola.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }

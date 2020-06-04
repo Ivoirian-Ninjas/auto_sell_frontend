@@ -16,7 +16,9 @@ import LogIn from './views/user/LogIn'
 import SignUp from './views/user/SignUp'
 import { createBrowserHistory } from 'history';
 import Navbar from './components/Navbar';
-
+import './App.css';
+import './assets/bootstrap-4.3.1-dist/css/bootstrap.min.css'
+import './assets/fontawesome-free-5.11.2-web/css/all.css'
 function App() {
   return (
    <Router history={createBrowserHistory()}>    
