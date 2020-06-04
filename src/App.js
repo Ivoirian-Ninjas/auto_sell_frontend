@@ -19,26 +19,29 @@ import Navbar from './components/Navbar';
 import './App.css';
 import './assets/bootstrap-4.3.1-dist/css/bootstrap.min.css'
 import './assets/fontawesome-free-5.11.2-web/css/all.css'
+import Home from './views/car/Home';
 function App() {
   return (
    <Router history={createBrowserHistory()}>    
       <Switch>
           <React.Fragment>
             <Navbar/>
-              {/**The intial page will be the car index*/}
-              <Route exact path='/' render={renderProps => <CarIndex {...renderProps} /> } />
+              
+              <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
+              
 
               {/*These routes are the routes for the cart */}
-              <Route  exact path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} />
-              <Route   exact path='/cars/new' render={renderProps => <CarNew {...renderProps} />} />            
-              <Route exact path = "/cars/:id" render={renderProps => <CarShow {...renderProps}/>} />
+              <Route exact path='/cars' render={renderProps => <CarIndex {...renderProps} /> } />
+              <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} />
+              <Route  path='/cars/new' render={renderProps => <CarNew {...renderProps} />} />            
+              <Route  path = "/cars/:id/show" render={renderProps => <CarShow {...renderProps}/>} />
 
 
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
               <Route path='/users/:id/favorites' render={renderProps => <Favorite/>} />
               {/* These routes are the routes for the booking process */}          
-              <Route exact path='/bookings' render={renderProps => <BookingCalendar {...renderProps}/>}  />
+              <Route path='/bookings' render={renderProps => <BookingCalendar {...renderProps}/>}  />
               {/**Display analytics for the admin only */}
               <Route path='/analytics' render={renderProps => <Analytics/>} />
               <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
