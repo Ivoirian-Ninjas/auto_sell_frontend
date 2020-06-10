@@ -1,36 +1,64 @@
 import React, { Component } from 'react'
+import { API_ROOT, HEADERS, ROOT } from '../../helpers/constant';
 
 export default class CarNew extends Component {
 
     state={
-        model: '',
-        transmission: '',
-        images: '',
-        description: '',
-        condition: '',
-        mileage: '',
-        year: '',
-        price: '',
-        mpg: '',
-        style: '',
-        maximum_seats: '',
-        engine: '',
-        fuel: '',
-        driveTrain: '',
-        exteriorColor: '',
-        interiorColor: '',
-        stock: '',
-        vin: ''
+        images: [],
+       car: { model: '',
+            make: '',
+            transmission: '',
+            description: '',
+            condition: '',
+            mileage: '',
+            year: '',
+            price: '',
+            mpg: '',
+            style: '',
+            maximum_seats: '',
+            engine: '',
+            fuel: '',
+            driveTrain: '',
+            exteriorColor: '',
+            interiorColor: '',
+            stock: '',
+            vin: ''
+       }
+       
 
     }
-    handlChange = (event) => this.setState({[event.target.name]: event.target.value })
+    handlChange = (event) => this.setState({ car:{ ...this.state.car, [event.target.name]: event.target.value} }) 
+    hansleFileChange = (event) => this.setState({images: event.target.files})
     handleSubmit = () =>{
-       const check_empty_val = Object.keys(this.state).map(key => this.state[key] === '')
-       if(check_empty_val.length !== 0){
-           console.log('complete the form')
+        //Check if there is any input that is an empty string
+       const check_empty_val = Object.keys(this.state.car).filter(key => this.state.car[key] === '')
+       console.log(check_empty_val)
+
+       if(check_empty_val.length !== 0 && this.state.images.length === 0){
+           console.log('please complete the form')
        }else{
-           console.log('yeahhhhh')
-       }
+           console.log("completed")
+
+            const fd = new FormData()
+
+            for( const e in this.state.car ){
+            fd.append(  `car[${e}]`, this.state.car[e] )
+            }
+            
+            for(const e of this.state.images){
+                console.log(e)
+                fd.append('images[]',e)
+            }
+
+
+            const options = {
+                method: 'POST',
+                body: fd      
+            }
+            fetch(API_ROOT + '/cars',options)
+            .then(resp => resp.json())
+            .then(json => window.location.href = `${ROOT}/cars/${json.car_id}`)
+        }
     }
     render() {
         return (
@@ -41,18 +69,20 @@ export default class CarNew extends Component {
                   
                     <div>
                         <label>Make</label>
-                        <input name='model' value={this.state.model} onChange={this.handlChange}/>
+                        <input name='make' value={this.state.car.make} onChange={this.handlChange}/>
+
                     </div>
 
                     <div>
                         <label>Model</label>
-                        <input name='model' value={this.state.model} onChange={this.handlChange}/>
+                        <input name='model' value={this.state.car.model} onChange={this.handlChange}/>
                     </div>
 
 
                    <div>
                        <label>Transmission</label>
-                       <select name='Transmission' value={this.state.transmission} onChange={this.handlChange}>
+                       <select name='transmission' value={this.state.car.transmission} onChange={this.handlChange}>
+                             <option disabled selected value=''> -- select an option -- </option>
                             <option value="Automatic">Automatic</option>
                             <option value="Semi-auto">Semi Auto</option>
                             <option value="Continuously variable transmission">Continuously variable transmission</option>
@@ -62,16 +92,17 @@ export default class CarNew extends Component {
 
                    <div>
                         <label>Select Images</label>
-                        <input type='file' />
+                        <input type='file' multiple onChange={this.hansleFileChange} files={this.state.images}/>
                     </div>
 
                     <div>
                         <label>Description</label>
-                        <textarea name='description' value={this.state.description} onChange={this.handlChange}/>
+                        <textarea name='description' value={this.state.car.description} onChange={this.handlChange}/>
                     </div>   
                     <div>
                        <label>Condition</label>
-                       <select name='condition' value={this.state.condition} onChange={this.handlChange}>
+                       <select name='condition' value={this.state.car.condition} onChange={this.handlChange}>
+                            <option disabled selected value=''> -- select an option -- </option>
                             <option value="Excellent">Excellent</option>
                             <option value="Good">Good</option>
                             <option value="Poor">Poor</option>
@@ -79,70 +110,76 @@ export default class CarNew extends Component {
                    </div>  
                     <div>
                         <label>Mileage</label>
-                        <input name='mileage' type='number' value={this.state.mileage} onChange={this.handlChange}/>
+                        <input name='mileage' type='number' value={this.state.car.mileage} onChange={this.handlChange}/>
                     </div>
                     <div>
                         <label>Year</label>
-                        <input name='year' type='number' value={this.state.year} onChange={this.handlChange}/>
+                        <input name='year' type='number' value={this.state.car.year} onChange={this.handlChange}/>
                     </div>
 
                     <div>
                         <label>Price</label>
-                        <input name='price' type='number'  step='0.01' value={this.state.price} onChange={this.handlChange}/>
+                        <input name='price' type='number'  step='0.01' value={this.state.car.price} onChange={this.handlChange}/>
                     </div>
 
                     <h3>Other Info</h3>
 
                     <div>
                         <label>Mileage Per Gallon</label>
-                        <input name='mpg' type='number' value={this.state.mpg} onChange={this.handlChange}/>
+                        <input name='mpg' type='number' value={this.state.car.mpg} onChange={this.handlChange}/>
                     </div>
 
                    <div>
                        <label>Style</label>
-                       <input name='style' value={this.state.style} onChange={this.handlChange}/>
+                       <input name='style' value={this.state.car.style} onChange={this.handlChange}/>
                    </div>
 
                    <div>
                        <label>Maximum Seat</label>
-                       <input name='maximum_seats' value={this.state.maximum_seats} onChange={this.handlChange}/>
+                       <input type='number' name='maximum_seats' value={this.state.car.maximum_seats} onChange={this.handlChange}/>
                    </div>
 
                     <div>
                        <label>Engine</label>
-                       <input name='engine' value={this.state.engine} onChange={this.handlChange}/>
+                       <input name='engine' value={this.state.car.engine} onChange={this.handlChange}/>
                    </div>
                    <div>
                        <label>Fuel</label>
-                       <input name='fuel' value={this.state.fuel} onChange={this.handlChange}/>
+                       <input name='fuel' value={this.state.car.fuel} onChange={this.handlChange}/>
                    </div>
 
                    <div>
                        <label>Drive Train</label>
-                       <input name='driveTrain' value={this.state.driveTrain} onChange={this.handlChange}/>
+                       <select name='driveTrain' value={this.state.car.driveTrain} onChange={this.handlChange}>
+                            <option disabled selected value=''> -- select an option -- </option>
+                            <option value="AWD">AWD</option>
+                            <option value="FWD">FWD</option>
+                            <option value="RWD">RWD</option>
+                            <option value="4WD">4WD</option>
+                       </select>
                    </div>
 
 
                    <div>
                        <label>Exterior Color</label>
-                       <input name='exteriorColor' value={this.state.exteriorColor} onChange={this.handlChange}/>
+                       <input name='exteriorColor' value={this.state.car.exteriorColor} onChange={this.handlChange}/>
                    </div>
 
                   
                    <div>
                        <label>Interior Color</label>
-                       <input name='interiorColor' value={this.state.interiorColor} onChange={this.handlChange}/>
+                       <input name='interiorColor' value={this.state.car.interiorColor} onChange={this.handlChange}/>
                    </div>
 
                    
                    <div>
                        <label>Stock</label>
-                       <input name='stock' value={this.state.stock} onChange={this.handlChange}/>
+                       <input name='stock' value={this.state.car.stock} onChange={this.handlChange}/>
                    </div>
 
                    <div>
                        <label>Vin</label>
-                       <input name='vin' value={this.state.vin} onChange={this.handlChange}/>
+                       <input name='vin' value={this.state.car.vin} onChange={this.handlChange}/>
                    </div>
 
                     <button onClick={this.handleSubmit}>Submit</button>
@@ -151,7 +188,3 @@ export default class CarNew extends Component {
         )
     }
 }
-//     t.string "interiorColor"
-//     t.string "interiorFabric"
-//     t.string "stock"
-//     t.string "vin"
