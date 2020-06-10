@@ -1,6 +1,6 @@
 import React from 'react'
 import loggedIn from '../helpers/loggedIn'
-import '../App.css'
+import current_user from '../helpers/current_user'
 export default function Navbar() {
     return (
         <div style={{flexDirection: "row", flex: 1}}> 
@@ -28,7 +28,26 @@ export default function Navbar() {
                             </ul>
                             <span className="navbar-text">
                                 {
-                                    loggedIn() ? <button onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}}>Log Out</button>: (
+                                    loggedIn() ? <div>
+                                        {current_user().admin && 
+                                            <ul class="navbar-nav mr-auto">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/cars/new">New Car</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/analytics">Analytics</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/bookings">View Calendar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/">New Car Parts</a>
+                                                </li>
+                                            </ul>
+                                        }
+                                        <button onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}}>Log Out</button>
+                                        </div>: 
+                                        (
                                         <div style={{justifyContent: 'between'}}>
                                             <ul className="navbar-nav mr-auto">
                                                 <li className="nav-item">
@@ -37,16 +56,7 @@ export default function Navbar() {
                                                 <li className="nav-item">
                                                     <a className="nav-link" href="/signup">Sign Up</a>
                                                 </li>
-
                                             </ul>
-                                            {/* <li className="nav-item">
-                                                <a href="/signup" className="nav-link" href="#">Sign Up</a>
-                                            </li>
-                                            <li className="nav-item">
-                                                <a href="/login" className="nav-link" href="#">Login</a>
-                                            </li> */}
-                                            {/* <a href='/signup'>Sign Up</a>
-                                            <a href='/login'>Log In</a> */}
                                         </div>
                                     )
                                 }
