@@ -52,10 +52,52 @@
   font-weight: normal;
   font-style: normal;
 }
+/*Poppins*/
+@font-face {
+  font-family: 'Poppins-light';
+  src: url('./assets/fonts/poppins/Poppins-Light.otf');
+}
+/*Poppins*/
+@font-face {
+  font-family: 'Poppins-medium';
+  src: url('./assets/fonts/poppins/Poppins-Medium.otf');
+}
+/*Poppins*/
+@font-face {
+  font-family: 'Poppins-regular';
+  src: url('./assets/fonts/poppins/Poppins-Regular.otf');
+}
+/*Poppins*/
+@font-face {
+  font-family: 'Poppins-bold';
+  src: url('./assets/fonts/poppins/Poppins-Thin.otf');
+}
+/*Poppins*/
+@font-face {
+  font-family: 'Helvetica';
+  src: url('./assets/fonts/Helvetica/Helvetica 400.ttf');
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+}
+.nav_bar{
+  background: #f5a142;
+  color: #fff;
+}
+.text_white{
+  color: #fff;
+}
+.navbar-light .navbar-brand {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
 }

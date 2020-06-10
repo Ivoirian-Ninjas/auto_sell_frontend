@@ -20,6 +20,9 @@ import './App.css';
 import './assets/bootstrap-4.3.1-dist/css/bootstrap.min.css'
 import './assets/fontawesome-free-5.11.2-web/css/all.css'
 import Home from './views/car/Home';
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 function App() {
   return (
    <Router history={createBrowserHistory()}>    
@@ -29,7 +32,6 @@ function App() {
               
               <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
               
-
               {/*These routes are the routes for the cart */}
               <Route exact path='/cars' render={renderProps => <CarIndex {...renderProps} /> } />
               <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} />
