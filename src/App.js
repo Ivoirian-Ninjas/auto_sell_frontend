@@ -20,10 +20,12 @@ import './App.css';
 import './assets/bootstrap-4.3.1-dist/css/bootstrap.min.css'
 import './assets/fontawesome-free-5.11.2-web/css/all.css'
 import Home from './views/car/Home';
+import Carousel, { Dots } from '@brainhubeu/react-carousel'
+import '@brainhubeu/react-carousel/lib/style.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
-AOS.init();
 function App() {
+  AOS.init();
   return (
    <Router history={createBrowserHistory()}>    
       <Switch>
