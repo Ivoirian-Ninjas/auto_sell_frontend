@@ -37,7 +37,6 @@ export default class SignUp extends Component {
                         <div className="form_box">
                             <form className="form_login">
                                 <h2 className="log_title">Sign Up</h2>
-                                <input className="input_log" onChange={this.handleChange} name='name' type="mail" placeholder="Username"/>
                                 <input className="input_log" onChange={this.handleChange} name='email' value={this.state.email} type="mail" placeholder="user@gmail.com"/>
                                 <input className="input_log" onChange={this.handleChange} name='password' value={this.state.password} type="password" placeholder="Password"/>
                                 <input className="input_log" onChange={this.handleChange} name='password_confirm' value={this.state.password_confirm} type="password" placeholder="Confirm password"/>

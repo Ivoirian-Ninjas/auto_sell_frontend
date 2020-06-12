@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { API_ROOT, HEADERS, ROOT } from '../../helpers/constant';
+import Creatable from 'react-select/creatable';
+import CarList from './CarList';
 
 export default class CarNew extends Component {
 
@@ -23,18 +25,44 @@ export default class CarNew extends Component {
             interiorColor: '',
             stock: '',
             vin: ''
-       }
+       },
+       features: [],
        
-
+       options: []
     }
+
+
+    customStyles = {
+        option: (provided, state) => ({
+          ...provided,
+          width: "100%",
+       
+        }),
+        control: (provided,state) => ({
+            ...provided,
+          width: "100%",
+          height: "50px",
+          border: "1px solid  #343840"
+        })
+    }
+
     handlChange = (event) => this.setState({ car:{ ...this.state.car, [event.target.name]: event.target.value} }) 
+    handleFeature = (newValue, actionMeta) => {
+        if( actionMeta.action !== 'remove-value' ){
+             newValue && this.setState(state => ({features: [...state.features,...newValue]}) , () => console.log(this.state.features) )
+        }else{
+            
+            this.setState(state => ({features: [...state.features].filter(e => e !== actionMeta.removedValue)}) , () => console.log(this.state.features) )
+        }
+    }
+
     hansleFileChange = (event) => this.setState({images: event.target.files})
     handleSubmit = () =>{
         //Check if there is any input that is an empty string
        const check_empty_val = Object.keys(this.state.car).filter(key => this.state.car[key] === '')
        console.log(check_empty_val)
 
-       if(check_empty_val.length !== 0 && this.state.images.length === 0){
+       if(check_empty_val.length !== 0 || this.state.images.length === 0 || this.state.features.length === 0 ){
            console.log('please complete the form')
        }else{
            console.log("completed")
@@ -46,8 +74,10 @@ export default class CarNew extends Component {
             }
             
             for(const e of this.state.images){
-                console.log(e)
                 fd.append('images[]',e)
+            }
+            for(const e of this.state.features){
+                fd.append('features[]',e.value)
             }
 
 
@@ -57,7 +87,7 @@ export default class CarNew extends Component {
             }
             fetch(API_ROOT + '/cars',options)
             .then(resp => resp.json())
-            .then(json => window.location.href = `${ROOT}/cars/${json.car_id}`)
+            .then(json => !json.error ? window.location.href = `${ROOT}/cars/${json.car_id}/show`: console.log(json.error))
         }
     }
     render() {
@@ -69,7 +99,9 @@ export default class CarNew extends Component {
                   
                     <div>
                         <label>Make</label>
-                        <input name='make' value={this.state.car.make} onChange={this.handlChange}/>
+                        <select name = 'make' value={this.state.car.make} onChange={this.handlChange}>
+                            <CarList/>
+                        </select>
 
                     </div>
 
@@ -123,10 +155,33 @@ export default class CarNew extends Component {
                     </div>
 
                     <h3>Other Info</h3>
+                    <div>
+                        <label>Add Features</label>
+                          {/* https://react-select.com/styles */}
+                      <Creatable
+                        isMulti
+                        styles={this.customStyles}
+                        name="form-field-name"
+                        options={this.state.options}
+                        onChange={this.handleFeature}
+                        theme={theme => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                                ...theme.colors,
+                                primary25:  "#9400d3", //the hover color
+                                primary: "#9400d3", //the main color 
+                                neutral10: "#9400d3", //the color of the block when the option has been selected
+                                neutral20: "#9400d3", //the color of the block when the option has been selected
+                                primary50: "#9400d3" //the color when the user click on an option
+                            },
+                            })}
+                        />
+                    </div>
 
                     <div>
                         <label>Mileage Per Gallon</label>
-                        <input name='mpg' type='number' value={this.state.car.mpg} onChange={this.handlChange}/>
+                        <input name='mpg' value={this.state.car.mpg} onChange={this.handlChange}/>
                     </div>
 
                    <div>
