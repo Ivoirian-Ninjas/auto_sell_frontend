@@ -29,8 +29,10 @@ export default function Navbar() {
                             <span className="navbar-text">
                                 {
                                     loggedIn() ? <div>
-                                        {current_user().admin && 
+                                     
                                             <ul className="navbar-nav mr-auto">
+                                            {current_user().admin && 
+                                            <React.Fragment>
                                                 <li className="nav-item">
                                                     <a className="nav-link" href="/cars/new">New Car</a>
                                                 </li>
@@ -43,14 +45,14 @@ export default function Navbar() {
                                                 <li className="nav-item">
                                                     <a className="nav-link" href="/">New Car Parts</a>
                                                 </li>
+                                            </React.Fragment>
+                                            }
                                                 <li className="nav-item">
                                                     <a className="nav-link" onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}} >Log Out</a>
                                                 </li>
                                             </ul>
-                                        }
-                                        <li className="nav-item">
-                                                    <a className="nav-link" onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}} >Log Out</a>
-                                                </li>
+                                      
+                                    
                                         </div>: 
                                         (
                                         <div style={{justifyContent: 'between'}}>

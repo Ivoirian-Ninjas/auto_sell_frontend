@@ -1,4 +1,6 @@
 import React from 'react'
+import Iframe from 'react-iframe'
+
 
 export default function CalendarModal() {
     return (
@@ -11,9 +13,18 @@ export default function CalendarModal() {
         "background-color": '#fff',
         "flex-direction": 'column',
         "box-shadow": '0px 0px 0px 400px rgba(0, 0, 0, 0.40)'}}>
-        
+
+
 
         <h1>Let's Schedule</h1>
+        {/* <iframe  style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> */}
+        <Iframe url="https://calendar.google.com/calendar/embed?src=hilaire.auto.sell%40gmail.com&ctz=America%2FChicago"
+        width="600px"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"/>
             
         </div>
     )

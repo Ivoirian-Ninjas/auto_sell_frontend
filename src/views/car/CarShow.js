@@ -7,9 +7,12 @@ export default class CarShow extends Component {
     componentDidMount(){
         // find the id of the car
         const id = window.location.pathname.match(/\d/g).join('')
-        fetch(API_ROOT + `/cars/${id}`)
-        .then(resp => resp.json())
-        .then(json => this.setState({car: json.car.data.attributes, features: json.car.data.attributes.features}))
+        if(id){
+            fetch(API_ROOT + `/cars/${id}`)
+            .then(resp => resp.json())
+            .then(json => this.setState({car: json.car.data.attributes, features: json.car.data.attributes.features}))
+        }
+      
         // 
     }
     state={

@@ -135,7 +135,7 @@ export default class CarNew extends Component {
                         </div>
                     </div>
                     <div className="div_contain_form2">
-                        <label htmlFor="img_new" className="label_select_img">Select Images <i className="far fa-images icon_add_car"></i> </label>
+                        <label htmlFor="img_new" className="label_select_img">Select Images <i className="far fa-images icon_add_car"></i>  <span>{this.state.images.length} Files</span></label> 
                         <input type='file' multiple onChange={this.hansleFileChange} files={this.state.images} id="img_new" className="img_add_car" accept="image/x-png,image/gif,image/jpeg"/>
                     </div>   
                     <div className="div_contain_form2">
@@ -145,11 +145,11 @@ export default class CarNew extends Component {
                         </div>
                         <div className="div_of_select2">
                             <label className="label_form_car">Year</label>
-                            <input name='year' className="input_form_car" placeholder="e.g : 2018" type='number' value={this.state.car.year} onChange={this.handlChange}/>
+                            <input name='year' className="input_form_car" placeholder="e.g : 2018" value={this.state.car.year} type= 'number' onChange={this.handlChange}/>
                         </div>
                         <div className="div_of_select2">
                             <label className="label_form_car">Price</label>
-                            <input name='price' className="input_form_car" placeholder="e.g : 14000$" type='number'  step='0.01' value={this.state.car.price} onChange={this.handlChange}/>
+                            <input name='price' className="input_form_car" placeholder="e.g : 14000$"   step='0.01' value={this.state.car.price} type = 'number' onChange={this.handlChange}/>
                         </div>
                     </div>
                     <div className="div_contain_form2">
