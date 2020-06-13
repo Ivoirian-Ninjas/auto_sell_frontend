@@ -39,7 +39,18 @@
     height: 10px;
     outline: none;
 }
-button:hover, button:active, button:focus{
+button:hover,
+button:active,
+button:focus,
+input:hover,
+input:active,
+input:focus,
+select:hover,
+select:active,
+select:focus,
+textarea:hover,
+textarea:active,
+textarea:focus {
     outline: none !important;
 }
 .info_slide{

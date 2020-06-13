@@ -59,8 +59,6 @@ function App() {
               <Route path='/parts/new' render={renderProps => <CarPartNew/>} />
               <Route path='/parts' render={renderProps => <CarPartIndex/>} />
               <Route path='/parts/:id/edit' render={renderProps => <CarPartEdit/>} />
-
-              
             </React.Fragment>
          
        </Switch>
