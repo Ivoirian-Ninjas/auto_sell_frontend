@@ -364,7 +364,7 @@ export default class Home extends Component {
                                 <div className="border-top pt-5">
                                     <p>
                                         Copyright &copy; All rights reserved | Designed by &nbsp;
-                                        <a href="#" target="_blank" className="text_black">Graphix</a>
+                                        <a href="mailto:michel8cloe@gmail.com" target="_blank" className="text_black">michel8cloe</a>
                                     </p>
                                 </div>
                             </div>

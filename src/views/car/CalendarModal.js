@@ -18,7 +18,7 @@ export default function CalendarModal() {
 
         <h1>Let's Schedule</h1>
         {/* <iframe  style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> */}
-        <Iframe url="https://calendar.google.com/calendar/embed?src=hilaire.auto.sell%40gmail.com&ctz=America%2FChicago"
+        <Iframe url="https://calendly.com/hilaire-auto-sell/60min"
         width="600px"
         height="450px"
         id="myId"

@@ -7,14 +7,14 @@ export default function Navbar() {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav_bar">
                     <div className="container">
-                        <a className="navbar-brand" href="/">Car for sale</a>
+                        <a className="navbar-brand" href="/">Home</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarText">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Cars for sale</a>
+                                    <a className="nav-link" href="/cars">Cars for sale</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">About us</a>
@@ -22,9 +22,7 @@ export default function Navbar() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Staff</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">Contact & Hours</a>
-                                </li>
+                             
                             </ul>
                             <span className="navbar-text">
                                 {
@@ -36,12 +34,7 @@ export default function Navbar() {
                                                 <li className="nav-item">
                                                     <a className="nav-link" href="/cars/new">New Car</a>
                                                 </li>
-                                                <li className="nav-item">
-                                                    <a className="nav-link" href="/analytics">Analytics</a>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <a className="nav-link" href="/bookings">View Calendar</a>
-                                                </li>
+                                             
                                                 <li className="nav-item">
                                                     <a className="nav-link" href="/">New Car Parts</a>
                                                 </li>
