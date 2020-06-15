@@ -1,0 +1,3 @@
+export default function array_car(){
+    return ["Acura","Alfa Romeo","Aston Martin","Audi","Bentley","BMW","Bugatti","Buick","Cadillac", "Chevrolet","Chrysler", "Dodge", "Ferrari","FIAT","Ford","Genesis","GMC","Honda","Hyundai","INFINITI","Jaguar","Jeep","Karma","Kia","Lamborghini","Land Rover","Lexus","Lincoln","Lotus","Maserati","Mazda","McLaren","Mercedes-Ben","MINI", "Mitsubishi","Nissan", "Pagani","Porsche","RAM","Rolls-Royce","Smart","Subaru","Tesla","Toyota","Volkswagen","Volvo"]
+}
