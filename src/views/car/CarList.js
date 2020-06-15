@@ -44,7 +44,7 @@ export default function CarList() {
          <option label="Porsche" value="Porsche">Porsche</option>
          <option label="RAM" value="RAM">RAM</option>
          <option label="Rolls-Royce" value="Rolls-Royce">Rolls-Royce</option>
-         <option label="smart" value="Smart">Smart</option>
+         <option label="Smart" value="Smart">Smart</option>
          <option label="Subaru" value="Subary">Subaru</option>
          <option label="Tesla" value="Tesla">Tesla</option>
          <option label="Toyota" value="Toyota">Toyota</option>

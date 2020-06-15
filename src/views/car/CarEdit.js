@@ -4,7 +4,9 @@ import Creatable from 'react-select/creatable';
 import CarList from './CarList';
 import '../../assets/css/car_new.css'
 import img_Top from '../../assets/img/icon/icons8-traffic-jam-100-4.png'
+import ModelList from './ModelList';
 export default class CarEdit extends Component {
+
 
     state={
         images: [],
@@ -131,7 +133,9 @@ export default class CarEdit extends Component {
                         </div>
                         <div className="div_of_select">
                             <label className="label_form_car">Model</label>
-                            <input name='model' value={this.state.car.model} onChange={this.handlChange} placeholder="e.g : Peugeot 308" className="input_form_car"/>
+                            <select name='model' value={this.state.car.model} onChange={this.handlChange} className="select_form_car">
+                                <ModelList make={this.state.car.make}/>
+                            </select>
                         </div>
                     </div>
                     <div className="div_contain_form2">
