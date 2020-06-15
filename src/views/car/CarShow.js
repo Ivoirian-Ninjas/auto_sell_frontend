@@ -21,7 +21,7 @@ export default class CarShow extends Component {
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
-    display_images = images => images.map(e => <div key={e.url} style={{height: 500, height: 300}}><img style={{width: '20%', height: '100%'}} src={e.url}/></div>)
+    display_images = images => images.map(e => <div key={e.url} style={{width: 500, height: 300}}><img style={{width: '20%', height: '100%'}} src={e.url}/></div>)
     render() {
         let car = this.state.car.status &&  this.state.car
         let modal = this.state.openModal ? <CalendarModal /> : null

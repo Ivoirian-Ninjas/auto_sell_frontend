@@ -291,5 +291,166 @@
     align-items: center;
     margin: 5% 0;
     font-weight: 300;
-
+}
+.all_type_btn{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #ffffff;
+    width: 96%;
+    background: rgb(85, 84, 84);
+    border: none;
+    margin: 0px auto;
+    margin-bottom: 5px;
+    padding: 7px 0;
+}
+.body_type_bloc{
+    width: 50%;
+    display: inline-block;
+    margin: 1% 0;
+    /* background: rgb(85, 84, 84); */
+}
+.body_img{
+    width: 100px;
+    height: 70px;
+    background-size: cover;
+    margin: 0px auto;
+    display: flex;
+    /* border: 1px solid rgb(139, 139, 139); */
+}
+.body_name{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+.div_color{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 5% 0;
+    cursor: pointer;
+    font-weight: 300;
+}
+.colorW{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(139, 139, 139);
+    background: #ffffff;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorB{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: black;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorG{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: grey;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorS{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: silver;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorR{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: red;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorO{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: orange;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorBr{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: brown;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorGo{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: gold;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorY{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: yellow;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorGr{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: green;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorBl{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: blue;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorP{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: purple;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.colorPi{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    background: pink;
+    margin-right: 3%;
+    cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react'
+import React, { Component } from 'react'
 import '../../assets/css/car_search.css'
 import img1 from '../../assets/img/cars-img/one.jpg'
 import {
@@ -6,15 +6,14 @@ import {
 } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-})
-function valuetext(value) {
-  return `${value}°C`;
-}
+import img_SUV from '../../assets/img/car-model/SUV.png'
+import img_Sedan from '../../assets/img/car-model/Sedan.png'
+import img_truck from '../../assets/img/car-model/Pickup-Truck-PNG-Clipart.png'
+import img_coupe from '../../assets/img/car-model/2016-jaguar-f-type.png'
+import img_convert from '../../assets/img/car-model/949-9491261_car-side-view-convertible-png-m6-convertible-side.png'
+import img_wagon from '../../assets/img/car-model/png-transparent-fiat-500l-wagon-car-fiat.png'
+import img_hatch from '../../assets/img/car-model/12670_cc0640_001_qak.png'
+import img_mini from '../../assets/img/car-model/6837754_preview.png'
 export default class CarIndex extends Component {
   state = {
     makeOpen : false,
@@ -27,12 +26,6 @@ export default class CarIndex extends Component {
     showFilter : false,
     value:"2000",
   }
-  classes = useStyles()
-  handleChange = () => {
-    this.setState({
-      value : this.value
-    });
-  };
   makeToggle = () => {
     this.setState({
       makeOpen : !this.state.makeOpen
@@ -130,6 +123,42 @@ export default class CarIndex extends Component {
                               </button>
                               <i className="fa fa-chevron-up icon_state"></i>
                             </div>
+                            <div className="invisible_div">
+                              <button className="all_type_btn">All Body Types</button>
+                              <div className="body_type_bloc">
+                                <img src={img_SUV} alt="" className="body_img" />
+                                <p className="body_name">SUV</p>
+                              </div>
+                              <div className="body_type_bloc">
+                                <img src={img_Sedan} alt="" className="body_img" />
+                                <p className="body_name">Sedan</p>
+                              </div>
+                              <div className="body_type_bloc">
+                                <img src={img_truck} alt="" className="body_img" />
+                                <p className="body_name">Truck</p>
+                              </div>
+                              <div className="body_type_bloc">
+                                <img src={img_coupe} alt="" className="body_img" />
+                                <p className="body_name">Coupe</p>
+                              </div>
+                              {/*<div className="body_type_bloc">
+                                <img src={img_convert} alt="" className="body_img" />
+                                <p className="body_name">Convertible</p>
+                              </div>
+                              <div className="body_type_bloc">
+                                <img src={img_wagon} alt="" className="body_img" />
+                                <p className="body_name">Wagon</p>
+                              </div>
+                            */}
+                              <div className="body_type_bloc">
+                                <img src={img_hatch} alt="" className="body_img" />
+                                <p className="body_name">Hatchback</p>
+                              </div>
+                              <div className="body_type_bloc">
+                                <img src={img_mini} alt="" className="body_img" />
+                                <p className="body_name">Minivan</p>
+                              </div>
+                            </div>
                           </div>
                         )
                     }
@@ -149,6 +178,47 @@ export default class CarIndex extends Component {
                               COLOR
                             </button>
                             <i className="fa fa-chevron-up icon_state"></i>
+                          </div>
+                          <div className="invisible_div">
+                            <div className="div_color" role="button">
+                              <span className="colorW"></span> White
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorB"></span> Black
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorG"></span> Grey
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorS"></span> Silver
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorR"></span> Red
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorO"></span> Orange
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorBr"></span> Brown
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorGo"></span> Gold
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorY"></span> Yellow
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorGr"></span> Green
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorBl"></span> Blue
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorP"></span> Purple
+                            </div>
+                            <div className="div_color" role="button">
+                              <span className="colorPi"></span> Pink
+                            </div>
                           </div>
                         </div>
                       )
@@ -171,13 +241,6 @@ export default class CarIndex extends Component {
                             <i className="fa fa-chevron-up icon_state"></i>
                           </div>
                           <div className="invisible_div">
-                            <Slider
-                              value={this.state.value}
-                              onChange={this.handleChange}
-                              valueLabelDisplay="auto"
-                              aria-labelledby="range-slider"
-                              getAriaValueText={valuetext}
-                            />
                           </div>
                         </div>
                       )
@@ -192,12 +255,15 @@ export default class CarIndex extends Component {
                         <i className="fa fa-chevron-down icon_state"></i>
                       </div>
                       ):(
-                        <div className="part_visible" role="button" onClick={this.priceToggle} onKeyPress={this.priceToggle}>
-                          <button className="title_each_filter_open">
-                            PRICE
-                          </button>
-                          <i className="fa fa-chevron-up icon_state_open"></i>
-                      </div>
+                        <div>
+                          <div className="part_visible" role="button" onClick={this.priceToggle} onKeyPress={this.priceToggle}>
+                            <button className="title_each_filter_open">
+                              PRICE
+                            </button>
+                            <i className="fa fa-chevron-up icon_state"></i>
+                          </div>
+                          <div className="invisible_div"></div>
+                        </div>
                       )
                     }
                   </div>
@@ -210,11 +276,14 @@ export default class CarIndex extends Component {
                         <i className="fa fa-chevron-down icon_state"></i>
                       </div>
                       ):(
-                        <div className="part_visible" role="button" onClick={this.mileToggle} onKeyPress={this.mileToggle}>
-                          <button className="title_each_filter_open">
-                            MILES
-                          </button>
-                          <i className="fa fa-chevron-up icon_state_open"></i>
+                        <div>
+                          <div className="part_visible" role="button" onClick={this.mileToggle} onKeyPress={this.mileToggle}>
+                            <button className="title_each_filter_open">
+                              MILES
+                            </button>
+                            <i className="fa fa-chevron-up icon_state"></i>
+                          </div>
+                          <div className="invisible_div"></div>
                         </div>
                       )
                     }
