@@ -1,0 +1,295 @@
+.index_car_contain{
+    width: 100%;
+    display: flex;
+    background: #fcfcfc;
+}
+.index_part_right{
+    width: 80%;
+    display: block;
+    /* border: 1px solid red; */
+}
+.index_part_left{
+    width: 20%;
+    display: block;
+    /* border: 1px solid red; */
+    min-height:89vh;
+    padding: 2% 1%;
+    box-shadow: 0 0 5px 2px rgba(20, 20, 20, 0.075);
+}
+.filter_part{
+    width: 100%;
+    display: flex;
+    padding: 2% 1%;
+    /* position: relative; 
+    justify-content: right;*/
+    /* border: 1px solid red; */
+}
+.btn_filters{
+    display: flex;
+    font-size: 1rem;
+    color: rgb(243, 146, 0);
+    background:transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: none;
+    transition: ease-in-out 0.3s;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    font-weight: 400;
+    width: 10%;
+    padding: 7px 0;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+
+}
+.btn_filters:hover{
+    color: rgb(44, 44, 44);
+    transition: ease-in-out 0.3s;
+}
+.icon_filters{
+    margin: 0 2% 0 0;
+}
+.btn_filters:hover .icon_filters{
+    color: rgb(243, 146, 0);
+    transition: ease-in-out 0.3s;
+}
+.filter_choose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1% 5px 1% 0 ;
+    font-weight:400;
+    font-size: 1rem;
+    color: rgb(243, 146, 0);
+    /* border: 1px solid red; */
+}
+.btn_clear_filters{
+    font-size: 1rem;
+    color: rgb(44, 44, 44);
+    background:transparent;
+    cursor: pointer;
+    border: none;
+    transition: ease-in-out 0.3s;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    font-weight: 400;
+    justify-content: center;
+}
+.display_filters{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2%;
+}
+.clear_display{
+    display: none;
+}
+.display_car_bloc{
+    width: 100%;
+    display: inline-block;
+    /* border: 1px solid rgb(42, 14, 167); */
+    padding-left: 1%;
+}
+.display_car_info{
+    width: 24%;
+    display: inline-block;
+    /* border: 1px solid rgb(19, 167, 14); */
+    margin: 1% 1% 1% 0;
+    box-shadow: 0 0 5px 2px rgba(20, 20, 20, 0.075);
+}
+.car_img_bloc{
+    width: 100%;
+    height: 150px;
+    /* border: 1px solid rgb(167, 131, 14); */
+    display: flex;
+}
+.car_img{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+.car_info_bloc{
+    width: 100%;
+    /* border: 1px solid rgb(67, 211, 9); */
+    display: inline-block;
+    padding: 1% 3%;
+}
+.car_name_years{
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 100%;
+    margin: 7px auto;
+}
+.car_model{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    display: inline-block;
+    margin: 0px;
+}
+.car_mileage{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    display: inline-block;
+    margin: 0px;
+    margin-left: 5%;
+    padding-left: 5%;
+    border-left: 1px solid rgb(32, 32, 32);
+}
+.car_price{
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 100%;
+    margin: 4% auto 2% auto;
+}
+.bloc_filter_close {
+    width: 100%;
+    display: flex;
+    /* position: relative; 
+    justify-content: right;*/
+    /* border: 1px solid rgb(0, 4, 255); */
+}
+.p_filters_close{
+    font-size: 1rem;
+    color: rgb(44, 44, 44);
+    font-weight: 400;
+    width: 85%;
+    /* border: 1px solid rgb(0, 4, 255); */
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: vertical-text;
+    padding: 7px 0;
+}
+.icon_filters_close{
+    margin: 0 2%;
+}
+.btn_close_filters {
+    font-size: 1rem;
+    color: rgb(44, 44, 44);
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    transition: ease-in-out 0.3s;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    font-weight: 400;
+    width: 15%;
+    padding: 7px 0;
+}
+.title_each_filter{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 90%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 7px 0;
+}
+.title_each_filter_open{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #f3a91f;
+    width: 90%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 7px 0;
+}
+.each_filter{
+    width: 100%;
+    display: block;
+}
+.part_visible{
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    padding: 2px 0;
+}
+.icon_state{
+    font-weight: 300;
+    width: 10%;
+    padding: 7px 0;
+    cursor: pointer;
+}
+.icon_state_open {
+    font-weight: 300;
+    width: 10%;
+    padding: 7px 0;
+    cursor: pointer;
+    color: #f39200;
+}
+.invisible_div{
+    width: 100%;
+    display: block;
+    margin: 1% 0;
+    border-bottom: 1px solid #eee;
+}
+.make_btn{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #fda500;
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.make_name{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 100%;
+    margin: 5% 0;
+}
+.I_part_title{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 22px;
+    color: #1f1f1f;
+    width: 100%;
+    margin-bottom: 5px
+}
+.radio_transmission{
+    margin: 5% 0;
+    text-align: left;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 19px;
+    height: 19px;
+    border: 1px solid rgb(139, 139, 139);
+    transition: 0.2s all linear;
+    margin-right: 3%;
+    cursor: pointer;
+}
+.radio_transmission:checked {
+    background: #fc8d0f;
+    outline: none;
+    transition: 0.2s all linear;
+    border: 1px solid #fc8d0f;
+}
+.p_radio{
+    width: 100%;
+    display: flex;
+    line-height: 30px;
+    /* border: 1px solid rgb(139, 139, 139); */
+    align-items: center;
+    margin: 5% 0;
+    font-weight: 300;
+
+}
