@@ -26,7 +26,7 @@ export default class CarEdit extends Component {
             driveTrain: '',
             exteriorColor: '',
             interiorColor: '',
-            stock: '',
+            interiorFabric: '',
             vin: ''
        },
        features: [],
@@ -256,8 +256,8 @@ export default class CarEdit extends Component {
                    </div>
                    <div className="div_contain_form2">
                         <div className="div_of_select">
-                            <label className="label_form_car">Stock</label>
-                            <input name='stock' placeholder="e.g : Good" className="input_form_car" value={this.state.car.stock} onChange={this.handlChange}/>
+                            <label className="label_form_car">Interior Fabric</label>
+                            <input name='interiorFabric' placeholder="e.g : Clothe" className="input_form_car" value={this.state.car.interiorFabric} onChange={this.handlChange}/>
                         </div>
                         <div className="div_of_select">
                             <label className="label_form_car">Vin</label>
