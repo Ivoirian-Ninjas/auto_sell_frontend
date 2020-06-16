@@ -2,6 +2,10 @@
 import React, { Component } from 'react'
 import { API_ROOT } from '../../helpers/constant';
 import CalendarModal from './CalendarModal'
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+
+
 
 export default class CarShow extends Component {
     componentDidMount(){
@@ -25,12 +29,21 @@ export default class CarShow extends Component {
     render() {
         let car = this.state.car.status &&  this.state.car
         let modal = this.state.openModal ? <CalendarModal /> : null
+        let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url, sizes: {height:200 ,width: 200}}) )
 
         return (
             <div>
                 <div>{modal && modal}</div>
-                <div style={{flexDirection: 'row', height: 500, margin: 30, width: '100%'}}>
-                    {car && this.display_images(car.images)}
+                <div style={{width: '100%', height: '50%'}}>
+                    {images && <ImageGallery 
+                                            items={images} 
+                                            showThumbnails
+                                            showIndex
+                                            thumbnailPosition="right"
+                                            showFullscreenButton
+                                            showBullets
+                                            showPlayButton={false}
+                                />}
                 </div>
 
                 <div style={{margin: 30}}>
