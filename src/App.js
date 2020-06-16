@@ -24,6 +24,7 @@ import Carousel, { Dots } from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import About from './views/car/About';
 function App() {
   AOS.init();
   return (
@@ -49,7 +50,8 @@ function App() {
               {/**Display analytics for the admin only */}
               <Route path='/analytics' render={renderProps => <Analytics/>} />
               <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
-              <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  />
+              <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  /> 
+              <Route  path='/about' render={renderProps => <About {...renderProps}/>}  />
 
 
               {/**Cart routes */}
