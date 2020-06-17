@@ -59,6 +59,7 @@ export default class CarNew extends Component {
     }
 
     hansleFileChange = (event) => this.setState({images: event.target.files})
+    
     handleSubmit = () =>{
         //Check if there is any input that is an empty string
        const check_empty_val = Object.keys(this.state.car).filter(key => this.state.car[key] === '')
@@ -188,7 +189,7 @@ export default class CarNew extends Component {
                     <div className="div_contain_form2">
                         <div className="div_of_select">
                             <label className="label_form_car">Mileage Per Gallon</label>
-                            <input name='mpg' placeholder="e.g : 20 km" className="input_form_car" value={this.state.car.mpg} onChange={this.handlChange}/>
+                            <input name='mpg' placeholder="e.g : 25 City / 34 Hwy" className="input_form_car" value={this.state.car.mpg} onChange={this.handlChange}/>
                         </div>
                         <div className="div_of_select">
                             <label className="label_form_car">Style</label>

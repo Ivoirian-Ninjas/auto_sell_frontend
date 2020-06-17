@@ -40,7 +40,8 @@ export default class CarIndex extends Component {
         value: 100,
         label: (new Date).getFullYear() + 1,
       },
-    ]
+    ],
+    filters: []
   }
   makeToggle = () => {
     this.setState({
@@ -90,6 +91,8 @@ export default class CarIndex extends Component {
     }
 
     display_cars = (cars) => {
+      cars.length === 0 && (cars = this.state.cars)
+
        return cars.map(e => ( <div className="display_car_info" key={e.data.attributes.id} onClick={() => window.location.href = `${ROOT}/cars/${e.data.attributes.id}/show`}>
                                 <div className="car_img_bloc">
                                     <img src={e.data.attributes.images[0] && e.data.attributes.images[0].url} alt="" className="car_img" />
@@ -108,19 +111,69 @@ export default class CarIndex extends Component {
       this.setState({
         priceRange:[5000, 1000000]
       })
+    
     }
 
     handlePriceChange = (event,value) =>{
        const range = this.state.priceRange
-       this.setState({priceRange: value, modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
+       this.setState({priceRange: value}, () =>  this.addFilter({type: 'price', value: value}))
+       //, modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
+      
+
     }
     handleMileChange = (event,value) =>{
-        this.setState({mileMax: value, modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.mileage <= value)})
+        this.setState({mileMax: value}, () =>  this.addFilter({type: 'mileage', value: value}) )
+          // modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.mileage <= value)})
+       
      }
 
     handleYearChange = (event, value) => {
         const range = this.state.yearRange
-        this.setState({yearRange: value, modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
+        this.setState({yearRange: value}, () => this.addFilter({type: 'year', value: value}) )
+        // modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
+       
+
+    }
+    addFilter = (data) => {
+      this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type), data]}, () => { //this call back will iterate through all the elements in the filter array and apply each filter.
+      
+        let copy_of_array =  [...this.state.cars ] 
+        console.log(this.state.filters)
+
+        this.state.filters.forEach(e => {
+          if(e.type === 'year'){
+            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]) : this.state.cars
+
+          }else if (e.type === 'mileage'){
+            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value) : this.state.cars
+
+          }else if (e.type === 'price'){
+            console.log(e.value[0])
+            copy_of_array = copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ).length !== 0 ? copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ) : this.state.cars
+
+          }else{
+            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] === e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] === e.value) : this.state.cars
+
+          }
+
+          
+        })
+        this.setState({modifiable_cars: copy_of_array })
+
+
+      })
+      
+      
+  
+      
+     
+    }
+    removeFilter = (data) => {
+      this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type)]},() =>{ //this call back will iterate through all the elements in the filter array and apply each filter.
+        let copy_of_array =  [...this.state.cars ] 
+        this.state.filters.forEach(e => copy_of_array = copy_of_array.filter(car =>car.data.attributes[e.type] === e.value))
+        this.setState({modifiable_cars: copy_of_array })
+      } )
     }
     render() {
         let cars = this.state.modifiable_cars
@@ -152,7 +205,7 @@ export default class CarIndex extends Component {
                             </div>
                             <div className="invisible_div">
                             <button className="make_btn" onClick={() => this.setState({modifiable_cars: this.state.cars})}>All Makes</button>
-                                {this.state.makes.map(e => <p onClick ={() =>this.setState(state => ({modifiable_cars: [...state.cars].filter(car => car.data.attributes.make === e)}))}  className="make_name" key={e}>{e}</p>)}
+                                {this.state.makes.map(e => <p onClick ={() => this.addFilter({type: 'make',value: e }) }  className="make_name" key={e}>{e}</p>)}
                             <button className="make_btn"  onClick={() =>this.setState(this.state.showing_less ? {makes: array_car(), showing_less: false}: {makes: array_car().slice(0,5), showing_less: true} )}>Show {this.state.showing_less ? 'more' : 'less'}</button>
                             </div>
                           </div>
@@ -177,29 +230,29 @@ export default class CarIndex extends Component {
                             </div>
                             <div className="invisible_div">
                               <button className="all_type_btn" onClick={() => this.setState({modifiable_cars: this.state.cars})}>All Body Types</button>
-                              <div className="body_type_bloc" onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "SUV")})}>
+                              <div className="body_type_bloc"onClick ={() => this.addFilter({type: 'style',value: 'SUV' }) }  >
                                 <img src={img_SUV} alt="" className="body_img" />
                                 <p className="body_name">SUV</p>
                               </div>
-                              <div className="body_type_bloc"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "Sedan")})}>
+                              <div className="body_type_bloc"  onClick ={() => this.addFilter({type: 'style',value: 'Sedan' }) } >
                                 <img src={img_Sedan} alt="" className="body_img" />
                                 <p className="body_name">Sedan</p>
                               </div>
-                              <div className="body_type_bloc"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "Truck")})}>
+                              <div className="body_type_bloc" onClick ={() => this.addFilter({type: 'style',value: 'Truck' }) } >
                                 <img src={img_truck} alt="" className="body_img" />
                                 <p className="body_name">Truck</p>
                               </div>
-                              <div className="body_type_bloc"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "Coupe")})}>
+                              <div className="body_type_bloc"  onClick ={() => this.addFilter({type: 'style',value: 'Coupe' }) } >
                                 <img src={img_coupe} alt="" className="body_img" />
                                 <p className="body_name">Coupe</p>
                               </div>
                           
-                              <div className="body_type_bloc"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "Hatchback")})}>
+                              <div className="body_type_bloc" onClick ={() => this.addFilter({type: 'style',value: 'Hatchback' }) }>
                                 <img src={img_hatch} alt="" className="body_img" />
                                 <p className="body_name">Hatchback</p>
                               </div>
-                              <div className="body_type_bloc">
-                                <img src={img_mini} alt="" className="body_img"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.style === "Minivan")})}/>
+                              <div className="body_type_bloc"  onClick ={() => this.addFilter({type: 'style',value: 'Minivan' }) } >
+                                <img src={img_mini} alt="" className="body_img" />
                                 <p className="body_name">Minivan</p>
                               </div>
                             </div>
@@ -227,43 +280,43 @@ export default class CarIndex extends Component {
                           <div className="div_color" role="button" onClick={() => this.setState({modifiable_cars: this.state.cars})} >
                               <span className="colorW"></span> All
                             </div>
-                            <div className="div_color" role="button" onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "White")})} >
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'White' }) }  >
                               <span className="colorW"></span> White
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Black")})}>
+                            <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Black' }) }>
                               <span className="colorB"></span> Black
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Grey")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Greye' }) } >
                               <span className="colorG"></span> Grey
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Silver")})}>
+                            <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Silver' }) }>
                               <span className="colorS"></span> Silver
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Red")})}>
+                            <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Red' }) }>
                               <span className="colorR"></span> Red
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Orange")})}>
+                            <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Orange' }) }>
                               <span className="colorO"></span> Orange
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Brown")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Brown' }) }>
                               <span className="colorBr"></span> Brown
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Gold")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Gold' }) } >
                               <span className="colorGo"></span> Gold
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Yellow")})}>
+                            <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Yellow' }) }>
                               <span className="colorY"></span> Yellow
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Green")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Green' }) } >
                               <span className="colorGr"></span> Green
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Blue")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Blue' }) } >
                               <span className="colorBl"></span> Blue
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Purple")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Purple' }) } >
                               <span className="colorP"></span> Purple
                             </div>
-                            <div className="div_color" role="button"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.exteriorColor === "Pink")})}>
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Pink' }) } >
                               <span className="colorPi"></span> Pink
                             </div>
                           </div>
@@ -402,17 +455,17 @@ export default class CarIndex extends Component {
                           </div>
                           <div className="invisible_div">
                             <h3 className="I_part_title">Transmission</h3>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1" onClick={()=> this.setState({modifiable_cars: this.state.cars})}/> All</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.transmission === "Automatic")})}/> Automatic Only</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.transmission === "Manual")})}/> Manual Only</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.transmission === "Semi Auto")})}/>Semi Auto</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.transmission ===  "Continuously variable transmission")})}/> Continuously variable transmission</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1" onClick ={() => this.removeFilter({type: 'transmission' }) } /> All</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Automatic' }) } /> Automatic Only</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Manual' }) }  /> Manual Only</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Semi Auto' }) } />Semi Auto</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Continuously variable transmission"' }) }/> Continuously variable transmission</p>
                             <h3 className="I_part_title">Drive Type</h3>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2" onClick={()=> this.setState({modifiable_cars: this.state.cars})}/> All</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.driveTrain === "4WD")})} /> 4WD</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.driveTrain === "AWD")})}/> AWD</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.driveTrain === "FWD")})}/> FWD</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"  onClick={() => this.setState({modifiable_cars: [...this.state.cars].filter(car => car.data.attributes.driveTrain === "RWD")})}/> RWD</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.removeFilter({type: 'driveTrain' }) } /> All</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.addFilter({type: 'driveTrain',value: '4WD' }) } /> 4WD</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.addFilter({type: 'driveTrain',value: 'AWD' }) } /> AWD</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.addFilter({type: 'driveTrain',value: 'FWD' }) } /> FWD</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.addFilter({type: 'driveTrain',value: 'RWD' }) } /> RWD</p>
                             <button className="btn_reset">RESET</button>
                           </div>
                         </div>
@@ -430,15 +483,26 @@ export default class CarIndex extends Component {
                       <i className="fa fa-sliders-h icon_filters"></i> Filters
                     </button> : null
                   }
-                    <div className="display_filters">
-                      <p className="filter_choose">
-                        Up to 100,000 miles 
-                      </p>
-                      <button className="btn_clear_filters"> X </button>
-                    </div>
-                    <button className="btn_filters clear_display"> Clear filters </button>
-                  </div>
+                    {this.state.filters.length !== 0 && <React.Fragment>
+                                                          <div className="display_filters">
+                                                               { this.state.filters.map(e => <React.Fragment>
+                                                                    <p className="filter_choose">
+                                                                    {(e.type !== 'price' && e.type !== 'mileage' && e.type !== 'year') && e.value}
+                                                                    {e.type === 'price' && `$${e.value[0]} - $${e.value[1]}` }
+                                                                    {e.type === 'year' &&  `${e.value[0]}  - ${e.value[1]}` }
+                                                                    {e.type === 'mileage' &&  `UP to ${e.value} miles` }
+                                                                    <span className="btn_clear_filters" onClick={() => this.removeFilter(e)}> X </span>
+                                                                  </p>
+                                                                  </React.Fragment>)
+                                                               }
+                                                            </div>
+                                                            <button className="btn_filters clear_display"> Clear filters </button>
+                                                        </React.Fragment>
+                  }
+                  </div> 
+                  
                   <div className="part_search">
+
                   <input type="text" className="search_input" placeholder="e.g : Lamborghini"/>
                   <button className="btn_search"> <i className="fas fa-search icon_search"></i> </button>
                   </div>

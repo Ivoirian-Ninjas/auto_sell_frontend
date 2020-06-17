@@ -213,7 +213,7 @@ export default class CarEdit extends Component {
                     <div className="div_contain_form2">
                         <div className="div_of_select">
                             <label className="label_form_car">Mileage Per Gallon</label>
-                            <input name='mpg' placeholder="e.g : 20 km" className="input_form_car" value={this.state.car.mpg} onChange={this.handlChange}/>
+                            <input name='mpg' placeholder="e.g : 25 City / 34 Hwy" className="input_form_car" value={this.state.car.mpg} onChange={this.handlChange}/>
                         </div>
                         <div className="div_of_select">
                             <label className="label_form_car">Style</label>

@@ -33,9 +33,9 @@ export default function Navbar() {
                                                     <a className="nav-link" href="/cars/new">New Car</a>
                                                 </li>
                                              
-                                                <li className="nav-item">
+                                                {/* <li className="nav-item">
                                                     <a className="nav-link" href="/">New Car Parts</a>
-                                                </li>
+                                                </li> */}
                                             </React.Fragment>
                                             }
                                                 <li className="nav-item">
