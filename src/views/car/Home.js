@@ -289,7 +289,8 @@ export default class Home extends Component {
                         <h2 className="h2_offers"> RECEIVE OFFERS </h2>
                         <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
                         <div className="form_offers">
-                            <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button>
+                            {console.log(current_user())}
+                           {(current_user() && current_user().email_subscription) ? <button className="btn_offers">Subscribed</button> : <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button> }
                         </div>
                     </div>
                     <div className="offers_img" data-aos="fade-up">
@@ -373,10 +374,10 @@ export default class Home extends Component {
                                     </div>
                                     <div className="col-md-3">
                                         <h2 className="footer-heading mb-4">Follow Us</h2>
-                                        <a href="#" className="pl-0 pr-3"><span className="fab fa-facebook-f"></span></a>
-                                        <a href="#" className="pl-3 pr-3"><span className="fab fa-twitter"></span></a>
-                                        <a href="#" className="pl-3 pr-3"><span className="fab fa-linkedin"></span></a>
-                                        <a href="#" className="pl-3 pr-3"><span className="fab fa-instagram"></span></a>
+                                        <a href="https://www.facebook.com/Auto-Sale-102363378195261/?modal=admin_todo_tour" className="pl-0 pr-3"><span className="fab fa-facebook-f"></span></a>
+                                        <a href="https://twitter.com/CK_Auto_Sale" className="pl-3 pr-3"><span className="fab fa-twitter"></span></a>
+                                        <a href="https://www.linkedin.com/company/54332336" className="pl-3 pr-3"><span className="fab fa-linkedin"></span></a>
+                                        <a href="https://www.instagram.com/ck_autosale/" className="pl-3 pr-3"><span className="fab fa-instagram"></span></a>
                                     </div>
                                 </div>
                             </div>
