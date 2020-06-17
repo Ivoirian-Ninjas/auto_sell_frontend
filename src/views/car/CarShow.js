@@ -6,7 +6,9 @@ import '../../assets/css/car_show.css'
 import Gallery from 'react-grid-gallery'
 import GalleryRange from "react-photo-gallery"
 import Lightbox from 'react-images'
-import ImageGallery from 'react-image-gallery'
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+
 export default class CarShow extends Component {
     componentDidMount(){
         // find the id of the car
@@ -29,12 +31,29 @@ export default class CarShow extends Component {
     render() {
         let car = this.state.car.status &&  this.state.car
         let modal = this.state.openModal ? <CalendarModal /> : null
+        let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url, sizes: {height:200 ,width: 200}}) )
 
         return (
             <div>
                 <div>{modal && modal}</div>
                 <div className="show_images">
-                   {car && this.display_images(car.images)}
+                {/*<ImageGallery 
+                                            items={images} 
+                                            showThumbnails
+                                            showIndex
+                                            thumbnailPosition="right"
+                                            showFullscreenButton
+                                            showBullets
+                                            showPlayButton={false}
+                    />
+                   car && this.display_images(car.images)*/}
+                    {images && 
+                    <Gallery
+                        images={images}
+                        showLightboxThumbnails={true}
+                        enableLightbox={true}
+                        enableImageSelection={false}
+                    />}
                 </div>
 
                 <div className="show_infos">
