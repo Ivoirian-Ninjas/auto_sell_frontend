@@ -24,6 +24,8 @@ import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import current_user from '../../helpers/current_user';
+import { ROOT, API_ROOT, HEADERS } from '../../helpers/constant';
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 export default class Home extends Component {
 
@@ -59,6 +61,24 @@ export default class Home extends Component {
     //     }
     // }
 
+    handleSubmit = () => {
+        if(current_user()){
+            const options = {
+                method: 'PATCH',
+                headers: HEADERS,
+               body: JSON.stringify({user: {email_subscription: true} } )
+    
+            }
+            fetch(API_ROOT + `/users/${current_user().id}`,options)
+            .then(resp => resp.json)
+            .then(json => console.log(json.message))
+        }else{
+            console.log('Please log in to proceed')
+        }
+      
+    }
+
+
     render() {
         return (
           <div>
@@ -79,7 +99,7 @@ export default class Home extends Component {
                                 Our mission is to provide the ultimate
                                 car buying experience.
                             </p>
-                            <button className="btn_rm_slider">Read more</button>
+                            <button className="btn_rm_slider" onClick={() => window.location.href = ROOT + '/about'}>Read more</button>
                         </div>
                     </div>
                     <img src={image1} alt="" className="img_slide" />
@@ -94,7 +114,7 @@ export default class Home extends Component {
                                 We've a good relation client seller and you can <br/>
                                 call back us if you've some problems.
                             </p>
-                            <button className="btn_rm_slider">Contact us</button>
+                            <button className="btn_rm_slider" onClick={() => window.location.href = ROOT + '/about'}>Contact us</button>
                         </div>
                     </div>
                     <img src={image2} alt="" className="img_slide" />
@@ -109,7 +129,7 @@ export default class Home extends Component {
                                 We've a large choice of vehicles which is <br/>
                                 like new, find yours.
                             </p>
-                                <button className="btn_rm_slider">Search</button>
+                                <button className="btn_rm_slider" onClick={() => window.location.href = ROOT + '/cars'}>Search</button>
                         </div>
                     </div>
                     <img src={image3} alt="" className="img_slide" />
@@ -141,7 +161,7 @@ export default class Home extends Component {
                             incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis 
                             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <button className="talk_btn" data-aos="fade-up">See details</button>
+                        <button className="talk_btn" data-aos="fade-up" onClick={() => window.location.href = ROOT + '/about'}>See details</button>
                     </div>
                     <div className="work_div">
                         <div className="work_part" data-aos="fade-left">
@@ -152,7 +172,7 @@ export default class Home extends Component {
                                 <h2 className="title_work">Inventory</h2>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             </p>
-                            <button className="work_btn">See more</button>
+                            <button className="work_btn" onClick={() => window.location.href = ROOT + '/cars'}>See more</button>
                         </div>
                         <div className="work_part" data-aos="fade-left" data-aos-delay="200">
                             <p className="work_icon_part">
@@ -162,7 +182,7 @@ export default class Home extends Component {
                                 <h2 className="title_work">Services</h2>
                                 incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam
                             </p>
-                            <button className="work_btn">See more</button>
+                            <button className="work_btn" onClick={() => window.location.href = ROOT + '/about'}>See more</button>
                         </div>
                         <div className="work_part" data-aos="fade-left" data-aos-delay="400">
                             <p className="work_icon_part">
@@ -172,7 +192,7 @@ export default class Home extends Component {
                                 <h2 className="title_work">Reviews</h2>
                                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             </p>
-                            <button className="work_btn">See more</button>
+                            <button className="work_btn" onClick={() => window.location.href = ROOT + '/about'}>See more</button>
                         </div>
                     </div>
                 </div>
@@ -253,7 +273,7 @@ export default class Home extends Component {
                         
                     </div>
                     <div className="view_more_slideC">
-                        <button className="btn_more_slideC">View more</button>
+                        <button className="btn_more_slideC" onClick={() => window.location.href = ROOT + '/cars'}>View more</button>
                     </div>
                 </div>
                 <div className="part_create">
@@ -261,17 +281,16 @@ export default class Home extends Component {
                         <p className="part_text_c">
                             Use our Car Finder request form below and we 'll help you find the vehicle you want.
                         </p>
-                        <button className="btn_c"> Search <i className="fas fa-chevron-right icon_create"></i> </button>
+                        <button className="btn_c" onClick={() => window.location.href = ROOT + '/cars'}> Search <i className="fas fa-chevron-right icon_create"></i> </button>
                     </div>
                 </div>
                 <div className="part_offers">
                     <div className="offers_form" data-aos="fade-up" data-aos-delay="100">
                         <h2 className="h2_offers"> RECEIVE OFFERS </h2>
                         <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
-                        <form className="form_offers">
-                            <input type="mail" className="input_offers" placeholder="username@yahoo.fr" />
-                            <button className="btn_offers">Keep me updated</button>
-                        </form>
+                        <div className="form_offers">
+                            <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button>
+                        </div>
                     </div>
                     <div className="offers_img" data-aos="fade-up">
                         <img src={receiveOfferImg} className="img_offer" alt="" />
@@ -336,17 +355,20 @@ export default class Home extends Component {
                                     <div className="col-md-5 ml-auto">
                                         <h2 className="footer-heading mb-4">Subscribe</h2>
                                         <ul className="list-unstyled">
-                                            <li><a href="#">Login</a></li>
-                                            <li><a href="#">Sign Up</a></li>
+                                            {!current_user() ? <React.Fragment>
+                                                <li><a href="/login">Login</a></li>
+                                                <li><a href="/signup">Sign Up</a></li>
+                                            </React.Fragment> :
+
+                                            <li><a href='#'>You are signed in as {current_user().email}</a></li>
+                                            }
                                         </ul>
                                     </div>
                                     <div className="col-md-4 ml-auto">
                                         <h2 className="footer-heading mb-4">Features</h2>
                                         <ul className="list-unstyled">
-                                            <li><a href="#">Cars for sale</a></li>
-                                            <li><a href="#">About us</a></li>
-                                            <li><a href="#">Staff</a></li>
-                                            <li><a href="#">Contact & Hours </a></li>
+                                            <li><a href="/cars">Cars for sale</a></li>
+                                            <li><a href="/about">About us</a></li>
                                         </ul>
                                     </div>
                                     <div className="col-md-3">

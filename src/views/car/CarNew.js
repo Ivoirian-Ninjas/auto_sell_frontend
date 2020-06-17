@@ -192,7 +192,16 @@ export default class CarNew extends Component {
                         </div>
                         <div className="div_of_select">
                             <label className="label_form_car">Style</label>
-                            <input name='style' placeholder="e.g : Pick up" className="input_form_car" value={this.state.car.style} onChange={this.handlChange}/>
+                            <select className="select_form_car" name='style' value={this.state.car.style} onChange={this.handlChange}>
+                                <option disabled selected value=''> -- select an option -- </option>
+                                <option value="Convertible">Convertible</option>
+                                <option value="Coupe">Coupe</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="MiniVan">MiniVan</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Truck">Truck</option>
+                            </select>
                         </div>
                    </div>
                    <div className="div_contain_form2">
