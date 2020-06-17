@@ -179,7 +179,9 @@ export default class CarEdit extends Component {
                     </div>
                     <div className="div_contain_form2">
                         <label className="label_form_car">Description</label>
-                        <textarea name='description' className="text_form_car" value={this.state.car.description} onChange={this.handlChange}/>
+                        <textarea name='description' className="text_form_car" 
+                        value={this.state.car.description} onChange={this.handlChange}
+                        placeholder="FORD KUGA II 2.0 TDCI 150 S&S 4X2 TITANIUM"/>
                     </div>
 
                     <h3 className="title_form">Other Info</h3>

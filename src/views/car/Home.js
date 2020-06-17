@@ -270,7 +270,6 @@ export default class Home extends Component {
                                 </div>
                             </div>
                         </Carousel>
-                        
                     </div>
                     <div className="view_more_slideC">
                         <button className="btn_more_slideC" onClick={() => window.location.href = ROOT + '/cars'}>View more</button>
