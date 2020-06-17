@@ -2,10 +2,12 @@
 import React, { Component } from 'react'
 import { API_ROOT } from '../../helpers/constant';
 import CalendarModal from './CalendarModal'
+import '../../assets/css/car_show.css'
+import Gallery from 'react-grid-gallery'
+import GalleryRange from "react-photo-gallery"
+import Lightbox from 'react-images'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
-
-
 
 export default class CarShow extends Component {
     componentDidMount(){
@@ -25,7 +27,7 @@ export default class CarShow extends Component {
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
-    display_images = images => images.map(e => <div key={e.url} style={{width: 500, height: 300}}><img style={{width: '20%', height: '100%'}} src={e.url}/></div>)
+    display_images = images => images.map(e => <div key={e.url} className="showImage_bloc"><img src={e.url} className="showImage_img" /></div>)
     render() {
         let car = this.state.car.status &&  this.state.car
         let modal = this.state.openModal ? <CalendarModal /> : null
@@ -34,8 +36,8 @@ export default class CarShow extends Component {
         return (
             <div>
                 <div>{modal && modal}</div>
-                <div style={{width: '100%', height: '50%'}}>
-                    {images && <ImageGallery 
+                <div className="show_images">
+                {/*<ImageGallery 
                                             items={images} 
                                             showThumbnails
                                             showIndex
@@ -43,27 +45,31 @@ export default class CarShow extends Component {
                                             showFullscreenButton
                                             showBullets
                                             showPlayButton={false}
-                                />}
+                    />
+                   car && this.display_images(car.images)*/}
+                    {images && 
+                    <Gallery
+                        images={images}
+                        showLightboxThumbnails={true}
+                        enableLightbox={true}
+                        enableImageSelection={false}
+                    />}
                 </div>
 
-                <div style={{margin: 30}}>
-                    <div>
+                <div className="show_infos">
+                    <div className="show_details">
                         <h3>Car History</h3>
                         <p>Description: {car && car.description}</p>
-                    <p>Status: {car && car.status} </p>
-
+                        <p>Status: {car && car.status} </p>
                     </div>
-
-                    <div>
+                    <div className="show_details">
                         <h3>Basics</h3>
                         <p>Body Type: {car && car.style}</p>
                         <p>Interior: {car && car.interiorColor }</p>
                         <p>Exterior: {car && car.exteriorColor}</p>
                         <p>VIN: {car && car.vin }</p>
-
                     </div>
-
-                    <div>
+                    <div className="show_details">
                         <h3>Performance</h3>
                         <p>Engine: {car && car.engine}</p>
                         <p>Transmission: {car && car.transmission}</p>
@@ -71,19 +77,16 @@ export default class CarShow extends Component {
                         <p>Fuel Type: {car && car.fuel}</p>
                         <p>MPG: {car && car.mpg}</p>
                     </div>
-
-                    <div>
+                    <div className="show_details">
                         <h3>Features</h3>
                         <ul>
                             {car && this.display_features(car.features)}
                         </ul>
                     </div>
-
-                    <div>
+                    <div className="show_details">
                         <h3>Schedule a test drive </h3>
                         <button onClick={() => this.setState({openModal: true})}>Calendar</button>
                     </div>
-
                     <div>
                         <h3>Any Questions? </h3>
                         <p>Name: Hilaire Kadjo</p>
@@ -91,8 +94,6 @@ export default class CarShow extends Component {
                         <p>Phone: <a href='tel: +1 (817) 937-3306' target="_blank">+1 (817) 937-3306</a></p>
                     </div>
                 </div>
-
-               
             </div>
         )
     }
