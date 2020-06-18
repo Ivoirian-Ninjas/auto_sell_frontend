@@ -102,13 +102,8 @@ export default class CarIndex extends Component {
     }
 
     handleScroll = () => {
-      const pageHeight = this.refs.index_part_right.scrollHeight
-      const scrollHeight = window.scrollY;
-      
-
-      console.log(pageHeight, scrollHeight)
-
-            if( ( pageHeight- (scrollHeight + 398) <= 400) && !this.state.no_more){// 398 is the difference of the pageheight and the scollheight when the scroll hit the bottom of the page
+      const div_cars = this.refs.index_part_right
+            if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more){// check if the user reached the bottom of the page
               this.setState({more: true, offset: this.state.offset + this.state.cars.length }, () =>{
                  fetch(API_ROOT + `/cars?offset=${this.state.offset}`)
                  .then(resp => resp.json())
