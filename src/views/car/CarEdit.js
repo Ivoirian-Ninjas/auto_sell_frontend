@@ -5,6 +5,9 @@ import CarList from './CarList';
 import '../../assets/css/car_new.css'
 import img_Top from '../../assets/img/icon/icons8-traffic-jam-100-4.png'
 import ModelList from './ModelList';
+import { ToastContainer, toast } from 'react-toastify';
+import Loader from '../../components/Loader';
+
 export default class CarEdit extends Component {
 
 
@@ -31,13 +34,15 @@ export default class CarEdit extends Component {
        },
        features: [],
        
-       options: []
+       options: [],
+       loading: false
     }
 
     componentDidMount() {
                // find the id of the car
                const id = window.location.pathname.match(/\d/g).join('')
                if(id){
+                   this.setState({loading: true})
                    fetch(API_ROOT + `/cars/${id}`)
                    .then(resp => resp.json())
                    .then(json => {
@@ -47,7 +52,7 @@ export default class CarEdit extends Component {
                        delete car.features
                       
                         console.log(car)
-                        this.setState({car: car,images: data.images.map(e => JSON.stringify(e)),  features: data.features.map(e =>  ({label: e.title, value: e.title})  )})
+                        this.setState({car: car,images: data.images.map(e => JSON.stringify(e)), loading: false, features: data.features.map(e =>  ({label: e.title, value: e.title}))})
                    }) 
                }
              
@@ -87,6 +92,17 @@ export default class CarEdit extends Component {
 
        if(check_empty_val.length !== 0 || this.state.images.length === 0 || this.state.features.length === 0 ){
            console.log('please complete the form')
+           const message = `You have ${check_empty_val.length} icomplete fields:  \n${check_empty_val.map(e => `${e} \n`).join('')} `
+           //    console.log(message)
+           toast.error(message, {
+               position: "top-center",
+               autoClose: 10000,
+               hideProgressBar: false,
+               closeOnClick: true,
+               pauseOnHover: true,
+               draggable: true,
+               progress: undefined,
+               }) 
        }else{
            console.log("completed")
 
@@ -108,10 +124,35 @@ export default class CarEdit extends Component {
                 method: 'PATCH',
                 body: fd      
             }
-            console.log(options.body)
-            fetch(API_ROOT + `/cars/${this.state.car.id}`,options)
+            this.setState({loading: true})
+            fetch(API_ROOT + `/cars/${this.state.car && this.state.car.id}`,options)
             .then(resp => resp.json())
-            .then(json => !json.error ? window.location.href = `${ROOT}/cars/${json.car_id}/show`: console.log(json.error))
+            .then(json => {if(!json.error){
+                this.setState({loading: false})
+                toast.success('Your car has been succefully updated!', {
+                    position: "top-right",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                    setTimeout(() => {window.location.href = `/cars/${json.car_id}/show` }, 1000);
+
+              
+            }else{
+                toast.error(json.error, {
+                    position: "top-center",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    }) 
+            }  
+         })
         }
     }
     render() {
@@ -119,6 +160,8 @@ export default class CarEdit extends Component {
             <div>
                 {/**The following div will be the form to add new cars */}
                 <div className="form_div">
+                <Loader loading={this.state.loading}/>
+
                     <div className="div_img_top">
                         <img src={img_Top} className="img_top" alt=""/>
                     </div>
