@@ -45,7 +45,8 @@ export default class Home extends Component {
         }
     }
     state = {
-        loading: false
+        loading: false,
+        cars: []
     }
     // responsive={this.responsive} dotsDisabled={true} buttonsDisabled={false}
     // slidesPerPage={3} arrows infinite dots
@@ -68,6 +69,11 @@ export default class Home extends Component {
     //     }
     // }
 
+    componentDidMount(){
+        fetch(API_ROOT + '/cars?limit=5')
+        .then(resp => resp.json())
+        .then(json => this.setState({cars: json.cars}))
+    }
     handleSubmit = () => {
         if(current_user()){
             this.setState({loading: true})
@@ -80,9 +86,10 @@ export default class Home extends Component {
             fetch(API_ROOT + `/users/${current_user().id}`,options)
             .then(resp => resp.json)
             .then(json => {
-                console.log(json.message) 
-                 this.setState({loading: false})
-                 toast.success('You succefully joined our email list. Thanks for trustin us!', {
+                JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user) )
+
+                this.setState({loading: false})
+                 toast.success('You succefully joined our email list. Thanks for trusting us!', {
                     position: "top-right",
                     autoClose: 10000,
                     hideProgressBar: false,
@@ -120,8 +127,8 @@ handleUnsuscribe   = () => {
         fetch(API_ROOT + `/users/${current_user().id}`,options)
         .then(resp => resp.json)
         .then(json =>{
-                     console.log(json.message);  
-                     this.setState({loading: false})
+            JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user) )
+            this.setState({loading: false})
                      toast.success('We are sorry to see you go. You can always come back!', {
                         position: "top-right",
                         autoClose: 10000,
@@ -149,8 +156,8 @@ handleUnsuscribe   = () => {
 
 }
 
-
     render() {
+        let cars = this.state.cars
         return (
           <div>
             <div className="slide_part">
@@ -263,7 +270,7 @@ handleUnsuscribe   = () => {
                                 <h2 className="title_work">Reviews</h2>
                                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             </p>
-                            <button className="work_btn" onClick={() => window.location.href = ROOT + '/about'}>See more</button>
+                            <button className="work_btn" onClick={() => window.location.href = ROOT + '/reviews'}>See more</button>
                         </div>
                     </div>
                 </div>
@@ -289,57 +296,27 @@ handleUnsuscribe   = () => {
                                     }
                                 }
                             }>
-                            <div className="div_cars">
-                                <div className="div_img_cars">
-                                    <img src={slideImg1} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_cars">Peugeot 308 </p>
-                                        <p className="title_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_details_cars">View details</button>
-                                </div>
-                            </div>
-                            <div className="div_cars">
-                                <div className="div_img_cars">
-                                    <img src={slideImg2} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_cars">Peugeot 307 </p>
-                                        <p className="title_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_details_cars">View details</button>
-                                </div>
-                            </div>
-                            <div className="div_cars">
-                                <div className="div_img_cars">
-                                    <img src={slideImg3} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_cars">Peugeot 306 </p>
-                                        <p className="title_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_details_cars">View details</button>
-                                </div>
-                            </div>
+                            {(cars && cars.length !== 0 )&& cars.map(e=> <div className="div_cars">
+                                                                
+                                                                <div className="div_img_cars">
+                                                                    <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
+                                                                </div>
+                                                                <div className="div_info_cars">
+                                                                    <p className="cars_mark_name">
+                                                                        <p className="mark_cars">{e.data.attributes.make} {e.data.attributes.model} </p>
+                                                                        <p className="title_cars">{e.data.attributes.year} {e.data.attributes.make} {e.data.attributes.model}</p>
+                                                                    </p>
+                                                                    <p className="cars_priceS">
+                                                                        ${e.data.attributes.price}
+                                                                    </p>
+                                                                </div>
+                                                                <div className="btn_slide_carP">
+                                                                    <button className="view_details_cars" onClick={() => window.location.href = `cars/${e.data.attributes.id}/show`}>View details</button>
+                                                                </div>
+                                                            </div>)
+
+                            }
+                       
                         </Carousel>
                     </div>
                     <div className="view_more_slideC">
@@ -359,7 +336,6 @@ handleUnsuscribe   = () => {
                         <h2 className="h2_offers"> RECEIVE OFFERS </h2>
                         <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
                         <div className="form_offers">
-                            {console.log(current_user())}
                            {(current_user() && current_user().email_subscription) ? <button className="btn_offers" onClick={this.handleUnsuscribe} >Unsubscribe</button> : <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button> }
                         </div>
                     </div>

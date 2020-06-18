@@ -33,7 +33,7 @@ export default class CarShow extends Component {
         if(id){
             fetch(API_ROOT + `/cars/${id}`)
             .then(resp => resp.json())
-            .then(json => this.setState({car: json.car.data.attributes, features: json.car.data.attributes.features, loading: false}))
+            .then(json => this.setState({car: json.car.data.attributes,similars: json.similars, features: json.car.data.attributes.features, loading: false} ))
         }
       
         // 
@@ -42,6 +42,7 @@ export default class CarShow extends Component {
         car: {},
         openModal: false,
         Position:"absolute",
+        similars: [],
         Top: "95%",
         loading: false
     }
@@ -73,6 +74,7 @@ export default class CarShow extends Component {
     
     render() {
         let car = this.state.car.status &&  this.state.car
+        let similars = this.state.similars
         let modal = this.state.openModal ? <CalendarModal close_modal={this.close_modal} /> : null
         let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
 
@@ -236,74 +238,26 @@ export default class CarShow extends Component {
                                     }
                                 }
                             }>
-                            <div className="div_similar_cars">
-                                <div className="div_similar_img_cars">
-                                    <img src={slideImg1} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_similar_cars">Peugeot 308 </p>
-                                        <p className="title_similar_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_similar_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_similar_details_cars">View details</button>
-                                </div>
-                            </div>
-                            <div className="div_similar_cars">
-                                <div className="div_similar_img_cars">
-                                    <img src={slideImg2} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_similar_cars">Peugeot 307 </p>
-                                        <p className="title_similar_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_similar_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_similar_details_cars">View details</button>
-                                </div>
-                            </div>
-                            <div className="div_similar_cars">
-                                <div className="div_similar_img_cars">
-                                    <img src={slideImg3} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_similar_cars">Peugeot 306 </p>
-                                        <p className="title_similar_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_similar_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_similar_details_cars">View details</button>
-                                </div>
-                            </div>
-                            <div className="div_similar_cars">
-                                <div className="div_similar_img_cars">
-                                    <img src={slideImg4} className="img_cars_slide" alt="" />
-                                </div>
-                                <div className="div_info_cars">
-                                    <p className="cars_mark_name">
-                                        <p className="mark_similar_cars">Peugeot 306 </p>
-                                        <p className="title_similar_cars">1.2 PureTech S&S 130 EAT8 GT Linei</p>
-                                    </p>
-                                    <p className="cars_similar_priceS">
-                                        15 000$
-                                    </p>
-                                </div>
-                                <div className="btn_slide_carP">
-                                    <button className="view_similar_details_cars">View details</button>
-                                </div>
-                            </div>
+
+                            {similars.length !== 0 && similars.map(e => <div className="div_similar_cars">
+                                                    <div className="div_similar_img_cars">
+                                                        <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
+                                                    </div>
+                                                    <div className="div_info_cars">
+                                                        <p className="cars_mark_name">
+                                                            <p className="mark_similar_cars">{e.data.attributes.make} {e.data.attributes.model}</p>
+                                                            <p className="title_similar_cars">{e.data.attributes.year} {e.data.attributes.make} {e.data.attributes.model}</p>
+                                                        </p>
+                                                        <p className="cars_similar_priceS">
+                                                           ${e.data.attributes.price}
+                                                        </p>
+                                                    </div>
+                                                    <div className="btn_slide_carP">
+                                                        <button className="view_similar_details_cars" onClick = {() => window.location.href = `/cars/${e.data.attributes.id}/show`}>View details</button>
+                                                    </div>
+                                                </div>
+                                                )}
+
                         </Carousel>
                     </div>
                 </div>
