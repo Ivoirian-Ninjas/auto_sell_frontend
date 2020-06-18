@@ -14,6 +14,7 @@ import array_car from './carArrayMake'
 import RangeSlider from '@material-ui/core/Slider';
 import RangeTypography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import CarList from './CarList';
 export default class CarIndex extends Component {
   state = {
     makeOpen : false,
@@ -41,7 +42,10 @@ export default class CarIndex extends Component {
         label: (new Date).getFullYear() + 1,
       },
     ],
-    filters: []
+    filters: [],
+    search: '' , 
+    not_found: ''
+
   }
   makeToggle = () => {
     this.setState({
@@ -92,6 +96,8 @@ export default class CarIndex extends Component {
 
     display_cars = (cars) => {
       cars.length === 0 && (cars = this.state.cars)
+       
+      
 
        return cars.map(e => ( <div className="display_car_info" key={e.data.attributes.id} onClick={() => window.location.href = `${ROOT}/cars/${e.data.attributes.id}/show`}>
                                 <div className="car_img_bloc">
@@ -132,42 +138,54 @@ export default class CarIndex extends Component {
         this.setState({yearRange: value}, () => this.addFilter({type: 'year', value: value}) )
         // modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
        
-
     }
+    handleChange = (event) => this.setState({search: event.target.value})
+
     addFilter = (data) => {
-      this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type), data]}, () => { //this call back will iterate through all the elements in the filter array and apply each filter.
+      if(data.type ==='search'){
+        this.setState({filters: [data], modifiable_cars: [...this.state.cars].filter(e => ((`${e.data.attributes.year} ${e.data.attributes.make} ${e.data.attributes.model} ${e.data.attributes.style}`).toLowerCase() ).includes(data.value.toLowerCase()) ), saerch: '' }, () =>{ this.setState(this.state.modifiable_cars.length === 0 ? {not_found: "Sorry we couldn't find what you were looking for"}: {not_found: ''})})
+        
+      }else{
+          this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type), data]}, () => { //this call back will iterate through all the elements in the filter array and apply each filter.
+        
+            let copy_of_array =  [...this.state.cars ] 
+            console.log(this.state.filters)
+    
+            this.state.filters.forEach(e => {
+              if(e.type === 'year'){
+                copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]) : this.state.cars
+    
+              }else if (e.type === 'mileage'){
+                copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value) : this.state.cars
+    
+              }else if (e.type === 'price'){
+                console.log(e.value[0])
+                copy_of_array = copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ).length !== 0 ? copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ) : this.state.cars
+    
+              }else{
+                copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] === e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] === e.value) : this.state.cars
+    
+              }
+    
+              
+            })
+            console.log(copy_of_array.length)
+            this.setState(copy_of_array.length !== 0 ? {modifiable_cars: copy_of_array } : {not_found: "Sorry, we couldn't find what you were looking for", modifiable_cars: copy_of_array})
+    
+    
+          })
+      }
+     
       
-        let copy_of_array =  [...this.state.cars ] 
-        console.log(this.state.filters)
-
-        this.state.filters.forEach(e => {
-          if(e.type === 'year'){
-            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]) : this.state.cars
-
-          }else if (e.type === 'mileage'){
-            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value) : this.state.cars
-
-          }else if (e.type === 'price'){
-            console.log(e.value[0])
-            copy_of_array = copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ).length !== 0 ? copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ) : this.state.cars
-
-          }else{
-            copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] === e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] === e.value) : this.state.cars
-
-          }
-
-          
-        })
-        this.setState({modifiable_cars: copy_of_array })
-
-
-      })
-      
-      
-  
       
      
     }
+
+    handleSearch = () =>{
+      this.state.search !== '' && this.addFilter({type: 'search', value: this.state.search})
+      this.state.search !== '' && this.setState({search: ''})
+    } 
+
     removeFilter = (data) => {
       this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type)]},() =>{ //this call back will iterate through all the elements in the filter array and apply each filter.
         let copy_of_array =  [...this.state.cars ] 
@@ -485,12 +503,14 @@ export default class CarIndex extends Component {
                   }
                     {this.state.filters.length !== 0 && <React.Fragment>
                                                           <div className="display_filters">
-                                                               { this.state.filters.map(e => <React.Fragment>
+                                                               { this.state.filters.map(e => <React.Fragment key={e.type}>
                                                                     <p className="filter_choose">
-                                                                    {(e.type !== 'price' && e.type !== 'mileage' && e.type !== 'year') && e.value}
+                                                                    {(e.type !== 'price' && e.type !== 'mileage' && e.type !== 'year' && e.type !== 'search') && e.value}
                                                                     {e.type === 'price' && `$${e.value[0]} - $${e.value[1]}` }
                                                                     {e.type === 'year' &&  `${e.value[0]}  - ${e.value[1]}` }
                                                                     {e.type === 'mileage' &&  `UP to ${e.value} miles` }
+                                                                    {e.type === 'search' &&  `Search: '${e.value}'` }
+
                                                                     <span className="btn_clear_filters" onClick={() => this.removeFilter(e)}> X </span>
                                                                   </p>
                                                                   </React.Fragment>)
@@ -503,11 +523,12 @@ export default class CarIndex extends Component {
                   
                   <div className="part_search">
 
-                  <input type="text" className="search_input" placeholder="e.g : Lamborghini"/>
-                  <button className="btn_search"> <i className="fas fa-search icon_search"></i> </button>
+                  <input className="search_input" value ={this.state.search} placeholder="Enter make, model,year or body style" onChange={this.handleChange} />
+                  <button className="btn_search" onClick={this.handleSearch}> <i className="fas fa-search icon_search"></i> </button>
                   </div>
                 </div>
                 <div className="display_car_bloc">
+                  <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3>
                   {cars && this.display_cars(cars)}
                 </div>
               </div>
