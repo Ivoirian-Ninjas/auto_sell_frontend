@@ -27,7 +27,10 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import current_user from '../../helpers/current_user';
 import { ROOT, API_ROOT, HEADERS } from '../../helpers/constant';
 import Footer from '../../components/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+
 const AutoplaySlider = withAutoplay(AwesomeSlider);
+
 export default class Home extends Component {
 
     responsive = {
@@ -40,6 +43,9 @@ export default class Home extends Component {
         1024: {
           items: 3
         }
+    }
+    state = {
+        loading: false
     }
     // responsive={this.responsive} dotsDisabled={true} buttonsDisabled={false}
     // slidesPerPage={3} arrows infinite dots
@@ -64,6 +70,7 @@ export default class Home extends Component {
 
     handleSubmit = () => {
         if(current_user()){
+            this.setState({loading: true})
             const options = {
                 method: 'PATCH',
                 headers: HEADERS,
@@ -72,12 +79,75 @@ export default class Home extends Component {
             }
             fetch(API_ROOT + `/users/${current_user().id}`,options)
             .then(resp => resp.json)
-            .then(json => console.log(json.message))
+            .then(json => {
+                console.log(json.message) 
+                 this.setState({loading: false})
+                 toast.success('You succefully joined our email list. Thanks for trustin us!', {
+                    position: "top-right",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+                }
+              
+            )
         }else{
-            console.log('Please log in to proceed')
+            toast.warning('Please log in to proceed', {
+                position: "top-right",
+                limit: 3,
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }
       
     }
+handleUnsuscribe   = () => {
+    if(current_user()){
+        this.setState({loading: true})
+        const options = {
+            method: 'PATCH',
+            headers: HEADERS,
+           body: JSON.stringify({user: {email_subscription: false} } )
+
+        }
+        fetch(API_ROOT + `/users/${current_user().id}`,options)
+        .then(resp => resp.json)
+        .then(json =>{
+                     console.log(json.message);  
+                     this.setState({loading: false})
+                     toast.success('We are sorry to see you go. You can always come back!', {
+                        position: "top-right",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        })
+                    
+                    
+                    } )
+    }else{
+        toast.warning('Please log in to proceed', {
+            position: "top-right",
+            limit: 3,
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+
+}
 
 
     render() {
@@ -290,7 +360,7 @@ export default class Home extends Component {
                         <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
                         <div className="form_offers">
                             {console.log(current_user())}
-                           {(current_user() && current_user().email_subscription) ? <button className="btn_offers">Subscribed</button> : <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button> }
+                           {(current_user() && current_user().email_subscription) ? <button className="btn_offers" onClick={this.handleUnsuscribe} >Unsubscribe</button> : <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button> }
                         </div>
                     </div>
                     <div className="offers_img" data-aos="fade-up">

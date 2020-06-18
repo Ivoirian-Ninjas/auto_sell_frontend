@@ -15,8 +15,10 @@ import RangeSlider from '@material-ui/core/Slider';
 import RangeTypography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import CarList from './CarList';
+import Loader from '../../components/Loader';
 export default class CarIndex extends Component {
   state = {
+    loading: false,
     makeOpen : false,
     bodyOpen : false,
     colorOpen : false,
@@ -89,9 +91,10 @@ export default class CarIndex extends Component {
   }
 
     componentDidMount(){
-        fetch(API_ROOT + '/cars')
+      this.setState({loading: true})
+        fetch(API_ROOT + '/cars' )
         .then(resp => resp.json())
-        .then(json => this.setState({cars: json.cars, modifiable_cars: json.cars}) )
+        .then(json => this.setState({cars: json.cars, modifiable_cars: json.cars, loading: false}) )
     }
 
     display_cars = (cars) => {
@@ -222,7 +225,7 @@ export default class CarIndex extends Component {
                               <i className="fa fa-chevron-up icon_state"></i>
                             </div>
                             <div className="invisible_div">
-                            <button className="make_btn" onClick={() => this.setState({modifiable_cars: this.state.cars})}>All Makes</button>
+                            <button className="make_btn" onClick={() => this.removeFilter({type: 'make'})}>All Makes</button>
                                 {this.state.makes.map(e => <p onClick ={() => this.addFilter({type: 'make',value: e }) }  className="make_name" key={e}>{e}</p>)}
                             <button className="make_btn"  onClick={() =>this.setState(this.state.showing_less ? {makes: array_car(), showing_less: false}: {makes: array_car().slice(0,5), showing_less: true} )}>Show {this.state.showing_less ? 'more' : 'less'}</button>
                             </div>
@@ -247,7 +250,7 @@ export default class CarIndex extends Component {
                               <i className="fa fa-chevron-up icon_state"></i>
                             </div>
                             <div className="invisible_div">
-                              <button className="all_type_btn" onClick={() => this.setState({modifiable_cars: this.state.cars})}>All Body Types</button>
+                              <button className="all_type_btn" onClick={() => this.removeFilter({type:'style'})}>All Body Types</button>
                               <div className="body_type_bloc"onClick ={() => this.addFilter({type: 'style',value: 'SUV' }) }  >
                                 <img src={img_SUV} alt="" className="body_img" />
                                 <p className="body_name">SUV</p>
@@ -295,7 +298,7 @@ export default class CarIndex extends Component {
                             <i className="fa fa-chevron-up icon_state"></i>
                           </div>
                           <div className="invisible_div">
-                          <div className="div_color" role="button" onClick={() => this.setState({modifiable_cars: this.state.cars})} >
+                          <div className="div_color" role="button" onClick={() => this.removeFilter({type: 'exteriorColor'})} >
                               <span className="colorW"></span> All
                             </div>
                             <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'White' }) }  >
@@ -304,7 +307,7 @@ export default class CarIndex extends Component {
                             <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Black' }) }>
                               <span className="colorB"></span> Black
                             </div>
-                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Greye' }) } >
+                            <div className="div_color" role="button"  onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Grey' }) } >
                               <span className="colorG"></span> Grey
                             </div>
                             <div className="div_color" role="button"   onClick ={() => this.addFilter({type: 'exteriorColor',value: 'Silver' }) }>
@@ -374,7 +377,7 @@ export default class CarIndex extends Component {
                                 valueLabelDisplay="on"
                                 marks={this.state.dataYear}
                                  />
-                                 <button className="btn_reset">RESET</button>
+                                 <button className="btn_reset" onClick={()=>{ this.removeFilter({type: 'year'}); this.setState({yearRange: ['1998',(new Date).getFullYear()+1] })}}>RESET</button>
                           </div>
                         </div>
                       )
@@ -411,7 +414,7 @@ export default class CarIndex extends Component {
                                 onChange={this.handlePriceChange}
                                 valueLabelDisplay="off"
                                  />
-                                <button className="btn_reset">RESET</button>
+                                <button className="btn_reset"  onClick={()=>{ this.removeFilter({type: 'price'}); this.setState({priceRange:[5000,1000000] }) }}>RESET</button>
                           </div>
                         </div>
                       )
@@ -449,7 +452,7 @@ export default class CarIndex extends Component {
                                 onChange={this.handleMileChange}
                                 valueLabelDisplay="off"
                                  />
-                            <button className="btn_reset">RESET</button>
+                            <button className="btn_reset" onClick={()=>{ this.removeFilter({type: 'mileage'}); this.setState({mileMax: 1 }) }}>RESET</button>
                           </div>
                         </div>
                       )
@@ -514,7 +517,7 @@ export default class CarIndex extends Component {
                           </React.Fragment>)
                         }
                       </div>
-                      <button className="btn_filters clear_display"> Clear filters </button>
+                      <button className="btn_filters clear_display" onClick={() => this.setState({filters: [], modifiable_cars: this.state.cars})} > Clear filters </button>
                   </React.Fragment>
                   }
                   </div> 
@@ -526,7 +529,8 @@ export default class CarIndex extends Component {
                   </div>
                 </div>
                 <div className="display_car_bloc">
-                  <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3>
+                 { this.state.filters.length !==0 && <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3> }
+                  <Loader loading={this.state.loading}/>
                   {cars && this.display_cars(cars)}
                 </div>
               </div>

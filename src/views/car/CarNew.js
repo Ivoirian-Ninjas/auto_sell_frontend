@@ -5,6 +5,9 @@ import CarList from './CarList';
 import '../../assets/css/car_new.css'
 import img_Top from '../../assets/img/icon/icons8-traffic-jam-100-4.png'
 import ModelList from './ModelList';
+import { ToastContainer, toast } from 'react-toastify';
+import Loader from '../../components/Loader';
+
 export default class CarNew extends Component {
 
     state={
@@ -27,10 +30,12 @@ export default class CarNew extends Component {
             interiorColor: '',
             interiorFabric: '',
             vin: ''
+            
        },
        features: [],
        
-       options: []
+       options: [],
+       loading: false
     }
 
 
@@ -67,6 +72,17 @@ export default class CarNew extends Component {
 
        if(check_empty_val.length !== 0 || this.state.images.length === 0 || this.state.features.length === 0 ){
            console.log('please complete the form')
+           const message = `You have ${check_empty_val.length} icomplete fields:  \n${check_empty_val.map(e => `${e} \n`).join('')} `
+        //    console.log(message)
+        toast.error(message, {
+            position: "top-center",
+            autoClose: 10000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            }) 
        }else{
            console.log("completed")
 
@@ -88,16 +104,45 @@ export default class CarNew extends Component {
                 method: 'POST',
                 body: fd      
             }
+            this.setState({loading: true})
             fetch(API_ROOT + '/cars',options)
             .then(resp => resp.json())
-            .then(json => !json.error ? window.location.href = `${ROOT}/cars/${json.car_id}/show`: console.log(json.error))
+            .then(json => {if(!json.error){
+                this.setState({loading: false})
+                toast.success('Your car has been succefully created!', {
+                    position: "top-right",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    }) ;
+                    setTimeout(() => {window.location.href = `/cars/${json.car_id}/show` }, 1000);
+
+                
+            }else{
+                toast.error(json.error, {
+                    position: "top-center",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    }) 
+            }  
+         })
         }
     }
     render() {
         return (
             <div>
                 {/**The following div will be the form to add new cars */}
+
                 <div className="form_div">
+           
+                    <Loader loading={this.state.loading}/>
                     <div className="div_img_top">
                         <img src={img_Top} className="img_top" alt=""/>
                     </div>

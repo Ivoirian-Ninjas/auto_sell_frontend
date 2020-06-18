@@ -25,6 +25,11 @@ import '@brainhubeu/react-carousel/lib/style.css'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import About from './views/car/About';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import ReviewIndex from './views/reviews/ReviewIndex';
+
+
 function App() {
   AOS.init();
   return (
@@ -32,7 +37,18 @@ function App() {
       <Switch>
           <React.Fragment>
             <Navbar/>
-              
+            <ToastContainer
+                    position="top-center"
+                    autoClose={50000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    />
+             
               <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
               
               {/*These routes are the routes for the cart */}
@@ -45,10 +61,11 @@ function App() {
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
               <Route path='/users/:id/favorites' render={renderProps => <Favorite/>} />
+              <Route path='/reviews' render={renderProps => <ReviewIndex/>} />
+
               {/* These routes are the routes for the booking process */}          
               <Route path='/bookings' render={renderProps => <BookingCalendar {...renderProps}/>}  />
               {/**Display analytics for the admin only */}
-              <Route path='/analytics' render={renderProps => <Analytics/>} />
               <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
               <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  /> 
               <Route  path='/about' render={renderProps => <About {...renderProps}/>}  />

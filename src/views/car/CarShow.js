@@ -23,15 +23,17 @@ import Carousel, {
 import '@brainhubeu/react-carousel/lib/style.css'
 import current_user from '../../helpers/current_user';
 import Footer from '../../components/Footer';
+import Loader from '../../components/Loader';
 export default class CarShow extends Component {
     componentDidMount(){
         // find the id of the car
+        this.setState({loading: true})
         window.addEventListener('scroll', this.handleScroll, true)
         const id = window.location.pathname.match(/\d/g).join('')
         if(id){
             fetch(API_ROOT + `/cars/${id}`)
             .then(resp => resp.json())
-            .then(json => this.setState({car: json.car.data.attributes, features: json.car.data.attributes.features}))
+            .then(json => this.setState({car: json.car.data.attributes, features: json.car.data.attributes.features, loading: false}))
         }
       
         // 
@@ -41,6 +43,7 @@ export default class CarShow extends Component {
         openModal: false,
         Position:"absolute",
         Top: "95%",
+        loading: false
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
@@ -55,6 +58,7 @@ export default class CarShow extends Component {
             this.setState({
                 Position: "fixed",
                 Top: "0%",
+                'margin-top': 20
             })
         } else {
             this.setState({
@@ -75,6 +79,7 @@ export default class CarShow extends Component {
         return (
             <div>
                 <div>{modal && modal}</div>
+                <Loader loading={this.state.loading}/>
                 <div className="show_images" ref="myContainers">
                 {/*<ImageGallery 
                                             items={images} 
@@ -195,7 +200,7 @@ export default class CarShow extends Component {
                     </div>
                     <div className="part_name_show" style={{position: ""+this.state.Position+"", 
                         top:""+this.state.Top+"", }}>
-                        <h2 className="price_car_show"> $ 20000</h2>
+                        <h2 className="price_car_show"> $ {car && car.price}</h2>
                         <p className="number_seller">Number of seller : </p>
                         <p className="contact_hilaire"> +1 (817) 937-3306</p>
                         <button className="contact_us" onClick={() => window.location.href = 'tel: +1 (817) 937-3306' }>
