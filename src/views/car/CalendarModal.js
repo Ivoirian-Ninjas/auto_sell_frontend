@@ -10,7 +10,7 @@ export default function CalendarModal(props) {
         </button>
 
 
-        <h1 className="let_s">Let's Schedule</h1>
+        <h1 class_name='.modal_schedule'>Let's Schedule</h1>
         {/* <iframe  style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> */}
         <Iframe url="https://calendly.com/hilaire-auto-sell/60min"
         width="100%"
