@@ -26,7 +26,7 @@
 }
 .part_filter{
     width: 80%;
-    display: inline-block;
+    display: flex;
     /* position: relative; 
     justify-content: right;*/
     /* border: 1px solid rgb(53, 35, 156); */
@@ -82,7 +82,7 @@
     /* text-transform: uppercase; */
     letter-spacing: 1px;
     font-weight: 400;
-    width: 10%;
+    width: 15%;
     padding: 7px 0;
     justify-content: center;
     align-items: center;
@@ -101,17 +101,18 @@
     transition: ease-in-out 0.3s;
 }
 .filter_choose{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1% 5px 1% 0 ;
+    display: inline-block;
+    margin: 1% 1% 1% 0 ;
     font-weight:400;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: rgb(243, 146, 0);
-    /* border: 1px solid red; */
+    background:rgba(245, 245, 245, 0.836);
+    border-radius: 3px;
+    /* border: 1px solid rgb(72, 255, 0); */
+    /* width: 19%; */
 }
 .btn_clear_filters{
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: rgb(44, 44, 44);
     background:transparent;
     cursor: pointer;
@@ -121,14 +122,19 @@
     letter-spacing: 1px;
     font-weight: 400;
     justify-content: center;
+    margin: 0 0 0 3px;
 }
 .display_filters{
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     margin: 0 2%;
+    /* border: 1px solid red; */
+    width: 85%;
+    display: inline-block;
+
 }
 .clear_display{
-    display: none;
+    display: block;
 }
 .display_car_bloc{
     width: 100%;

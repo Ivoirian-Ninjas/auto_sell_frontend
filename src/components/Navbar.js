@@ -5,7 +5,7 @@ export default function Navbar() {
     return (
         <div style={{flexDirection: "row", flex: 1}}> 
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light nav_bar">
+                <nav className="navbar navbar-expand-lg fixed-top navbar-light nav_bar">
                     <div className="container">
                         <a className="navbar-brand" href="/">Home</a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

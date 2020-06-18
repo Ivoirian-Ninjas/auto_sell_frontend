@@ -484,20 +484,20 @@ export default class CarIndex extends Component {
                     </button> : null
                   }
                     {this.state.filters.length !== 0 && <React.Fragment>
-                                                          <div className="display_filters">
-                                                               { this.state.filters.map(e => <React.Fragment>
-                                                                    <p className="filter_choose">
-                                                                    {(e.type !== 'price' && e.type !== 'mileage' && e.type !== 'year') && e.value}
-                                                                    {e.type === 'price' && `$${e.value[0]} - $${e.value[1]}` }
-                                                                    {e.type === 'year' &&  `${e.value[0]}  - ${e.value[1]}` }
-                                                                    {e.type === 'mileage' &&  `UP to ${e.value} miles` }
-                                                                    <span className="btn_clear_filters" onClick={() => this.removeFilter(e)}> X </span>
-                                                                  </p>
-                                                                  </React.Fragment>)
-                                                               }
-                                                            </div>
-                                                            <button className="btn_filters clear_display"> Clear filters </button>
-                                                        </React.Fragment>
+                      <div className="display_filters">
+                        { this.state.filters.map(e => <React.Fragment>
+                            <p className="filter_choose">
+                            {(e.type !== 'price' && e.type !== 'mileage' && e.type !== 'year') && e.value}
+                            {e.type === 'price' && `$${e.value[0]} - $${e.value[1]}` }
+                            {e.type === 'year' &&  `${e.value[0]}  - ${e.value[1]}` }
+                            {e.type === 'mileage' &&  `UP to ${e.value} miles` }
+                            <span className="btn_clear_filters" onClick={() => this.removeFilter(e)}> X </span>
+                          </p>
+                          </React.Fragment>)
+                        }
+                      </div>
+                      <button className="btn_filters clear_display"> Clear filters </button>
+                  </React.Fragment>
                   }
                   </div> 
                   
