@@ -1,15 +1,17 @@
 import React from 'react'
 import '../../assets/css/about.css'
-import img from "../../assets/img/cars-img/rishab-lamichhane-iflRMZelx0M-unsplash.jpg"
+import img from "../../assets/img/cars-img/matt-antonioli-T_ZdgxzPS5k-unsplash - Copie.jpg"
 import Footer from '../../components/Footer';
 export default function About() {
     return (
         <div>
             <div className="about_div">
-                <div className="bloc_img_about">
+                <div className="bloc_image">
                     <div className="bloc_imgAbout">
                         <img src={img} alt="" className="imageAbout" />
                     </div>
+                </div>
+                <div className="bloc_img_about">
                     <div className="bloc_infoAbout">
                         <h3 className="h3_about">About us</h3>
                         <p className="small_about">
