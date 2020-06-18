@@ -517,7 +517,7 @@ export default class CarIndex extends Component {
                           </React.Fragment>)
                         }
                       </div>
-                      <button className="btn_filters clear_display"> Clear filters </button>
+                      <button className="btn_filters clear_display" onClick={() => this.setState({filters: [], modifiable_cars: this.state.cars})} > Clear filters </button>
                   </React.Fragment>
                   }
                   </div> 

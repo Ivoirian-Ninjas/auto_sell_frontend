@@ -18,6 +18,7 @@ export default function CalendarModal(props) {
         id="myId"
         className="myClassname"
         display="initial"
+        loading="eager"
         position="relative"/>
             
         </div>
