@@ -54,12 +54,11 @@ export default class CarShow extends Component {
         var infoHeight = this.refs.myContainer
         var scrollHeight = window.scrollY;
             // console.log(scrollHeight, pageHeight.clientHeight)
-        if (scrollHeight > (pageHeight.clientHeight+100) && scrollHeight < (infoHeight.clientHeight+600)) {
+        if (scrollHeight > (pageHeight.clientHeight) && scrollHeight < (infoHeight.clientHeight+600)) {
             console.log(scrollHeight, pageHeight.clientHeight)
             this.setState({
                 Position: "fixed",
-                Top: "0%",
-                'margin-top': 20
+                Top: "8%",
             })
         } else {
             this.setState({
