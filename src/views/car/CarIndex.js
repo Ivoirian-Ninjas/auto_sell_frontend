@@ -18,7 +18,10 @@ import CarList from './CarList';
 import Loader from '../../components/Loader';
 export default class CarIndex extends Component {
   state = {
+    no_more: false,
+    offset: 0,
     loading: false,
+    more: false,
     makeOpen : false,
     bodyOpen : false,
     colorOpen : false,
@@ -92,9 +95,29 @@ export default class CarIndex extends Component {
 
     componentDidMount(){
       this.setState({loading: true})
+      window.addEventListener('scroll', this.handleScroll, true)
         fetch(API_ROOT + '/cars' )
         .then(resp => resp.json())
         .then(json => this.setState({cars: json.cars, modifiable_cars: json.cars, loading: false}) )
+    }
+
+    handleScroll = () => {
+      const pageHeight = this.refs.index_part_right.scrollHeight
+      const scrollHeight = window.scrollY;
+      
+
+      console.log(pageHeight, scrollHeight)
+
+            if( ( pageHeight- (scrollHeight + 398) <= 400) && !this.state.no_more){// 398 is the difference of the pageheight and the scollheight when the scroll hit the bottom of the page
+              this.setState({more: true, offset: this.state.offset + this.state.cars.length }, () =>{
+                 fetch(API_ROOT + `/cars?offset=${this.state.offset}`)
+                 .then(resp => resp.json())
+                 .then( json =>  this.setState(!json.no_more  ? {more: false,modifiable_cars: [...this.state.cars, ...json.cars]} : {more: false, no_more: true} ))
+              })
+             
+
+            }
+
     }
 
     display_cars = (cars) => {
@@ -496,7 +519,7 @@ export default class CarIndex extends Component {
                 </div>
               </div> : null
               }
-              <div className="index_part_right">
+              <div className="index_part_right" ref='index_part_right'>
                 <div className="filter_part">
                 <div className="part_filter">
                   {!this.state.showFilter ?
@@ -532,6 +555,7 @@ export default class CarIndex extends Component {
                  { this.state.filters.length !==0 && <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3> }
                   <Loader loading={this.state.loading}/>
                   {cars && this.display_cars(cars)}
+                  <Loader loading={this.state.more}/>
                 </div>
               </div>
               
