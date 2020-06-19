@@ -68,7 +68,7 @@
     border: none;
     outline: none;
     box-shadow: none;
-    margin: 1% 0;
+    margin: 0 0 0 0;
     font-size: 14px;
     letter-spacing: 1px;
     font-weight: 300;
@@ -77,8 +77,8 @@
 .input_form_car:focus,
 .text_form_car:hover,
 .text_form_car:focus {
-    background: #fdfdfd;
-    border: 1px solid rgba(243, 171, 15, 0.185);
+    background: #f8f8f8;
+    border: 1px solid rgba(206, 123, 15, 0.185);
 }
 .select_form_car {
     position: relative;
