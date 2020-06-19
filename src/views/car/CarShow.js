@@ -218,7 +218,7 @@ export default class CarShow extends Component {
                 <div className="similar_cars">
                     <p className="p_similar">Similar car</p>
                     <div className="bloc_similar">
-                        <Carousel slidesPerPage={4} arrows infinite 
+                        <Carousel slidesPerPage={4} arrows 
                             breakpoints = {
                                 {
                                     600: {

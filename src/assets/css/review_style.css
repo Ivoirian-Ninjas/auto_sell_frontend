@@ -28,7 +28,7 @@
     display: block;
     /* border: 1px solid rgb(241, 163, 17); */
     margin: 0 0 0 3%;
-    width: 75%;
+    width: 100%;
 }
 .name_user_review{
     color: rgb(29, 29, 29);
@@ -48,8 +48,8 @@
 }
 .message_review{
     width: 100%;
-    height: 100px;
-    background: rgba(241, 241, 241, 0.562);
+    /* height: 100px; */
+    background: rgba(241, 241, 241, 0.199);
     border-radius: 3px;
     font-size: 0.8rem;
     padding : 1% 1%;
@@ -136,7 +136,7 @@
 }
 .modal_contain{
     width: 80%;
-    height: 650px;
+    height: 450px;
     background: white;
     display: block;
     border-radius: 5px;
@@ -272,5 +272,22 @@
 .star-ratings{
     /* border: 1px solid rgb(241, 163, 17); */
     margin: 0 0 0 2%;
-
+}
+.part_name_review{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.part_name{
+    width: 60%;
+    display: block;
+}
+.p_rate_review{
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 40%;
+    display: block;
+    margin: 2% 0 1% 0;
+    text-align: right;
+    /* border: 1px solid rgb(241, 163, 17); */
 }
