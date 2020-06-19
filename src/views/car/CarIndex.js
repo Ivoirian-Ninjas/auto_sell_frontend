@@ -98,16 +98,17 @@ export default class CarIndex extends Component {
       window.addEventListener('scroll', this.handleScroll, true)
         fetch(API_ROOT + '/cars' )
         .then(resp => resp.json())
-        .then(json => this.setState({cars: json.cars, modifiable_cars: json.cars, loading: false}) )
+        .then(json => this.setState({cars: json.cars, modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
     }
 
     handleScroll = () => {
       const div_cars = this.refs.index_part_right
             if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more){// check if the user reached the bottom of the page
-              this.setState({more: true, offset: this.state.offset + this.state.cars.length }, () =>{
-                 fetch(API_ROOT + `/cars?offset=${this.state.offset}`)
-                 .then(resp => resp.json())
-                 .then( json =>  this.setState(!json.no_more  ? {more: false,modifiable_cars: [...this.state.cars, ...json.cars]} : {more: false, no_more: true} ))
+              this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length }, () =>{
+                setTimeout(()=>{ 
+                  this.setState(this.state.offset + 1 === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 8)] } )
+                 }, 1000);
+
               })
              
 
