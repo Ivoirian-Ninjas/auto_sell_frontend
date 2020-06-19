@@ -1,0 +1,276 @@
+.div_review{
+    width: 80%;
+    display: block;
+    margin: 3% auto;
+    padding: 0.5% 0;
+    /* border: 1px solid green; */
+    box-shadow: 0px 0px 10px 1px rgba(70, 70, 70, 0.123);
+}
+.review_part{
+    margin: 3% 5%;
+    display: flex;
+    width: 90%;
+    border-bottom: 1px solid rgb(230, 149, 0);
+    padding: 0.5% 0;
+}
+.bloc_img_review{
+    display: flex;
+    width: 200px;
+    height: 200px;
+    /* border: 1px solid rgb(212, 235, 4); */
+}
+.img_car_review{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.part_sms_review{
+    display: block;
+    /* border: 1px solid rgb(241, 163, 17); */
+    margin: 0 0 0 3%;
+    width: 75%;
+}
+.name_user_review{
+    color: rgb(29, 29, 29);
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    margin: 1% 0 3px 0;
+}
+.date_review{
+    color: rgb(39, 39, 39);
+    font-size: 1rem;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    margin: 0 0 1% 0;
+}
+.message_review{
+    width: 100%;
+    height: 100px;
+    background: rgba(241, 241, 241, 0.562);
+    border-radius: 3px;
+    font-size: 0.8rem;
+    padding : 1% 1%;
+    color: rgb(44, 44, 44);
+}
+.btn_more_review {
+    font-size: 0.8rem;
+    margin: 2% 0 0 81%;
+    display: inline-block;
+    color: white;
+    background: rgb(255, 160, 51);
+    margin-bottom: 0;
+    text-align: center;
+    border: none;
+    transition: ease-in-out 0.3s;
+    letter-spacing: 1px;
+    padding: 7px 20px;
+    font-weight: 400;
+}
+
+.btn_more_review:hover,
+.btn_more_review:active,
+.btn_more_review:focus {
+    transition: ease-in-out 0.3s;
+    background: rgb(255, 123, 0);
+}
+.btn_add_review {
+    font-size: 0.8rem;
+    margin: 0 0 0 81%;
+    display: inline-block;
+    color: white;
+    background: rgb(2, 211, 96);
+    margin-bottom: 0;
+    text-align: center;
+    border: none;
+    transition: ease-in-out 0.3s;
+    letter-spacing: 1px;
+    padding: 7px 20px;
+    font-weight: 400;
+}
+
+.btn_add_review:hover,
+.btn_add_review:active,
+.btn_add_review:focus {
+    transition: ease-in-out 0.3s;
+    background: rgb(0, 168, 76);
+}
+.btn_review {
+    font-size: 0.8rem;
+    margin: 0 0 0 75%;
+    display: inline-block;
+    color: white;
+    background: rgb(230, 141, 9);
+    margin-bottom: 0;
+    text-align: center;
+    border: none;
+    transition: ease-in-out 0.3s;
+    letter-spacing: 1px;
+    padding: 7px 0;
+    width: 20%;
+    font-weight: 400;
+}
+
+.btn_review:hover,
+.btn_review:active,
+.btn_review:focus {
+    transition: ease-in-out 0.3s;
+    background: rgb(240, 165, 4);
+}
+.div_modal{
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;;
+    z-index: 5000;
+    background: rgba(0, 0, 0, 0.253);
+    justify-content: center;
+    align-items: center;
+    padding: 1% 0;
+    /* overflow-y: scroll; */
+    /* flex-direction: column; */
+}
+.modal_contain{
+    width: 80%;
+    height: 650px;
+    background: white;
+    display: block;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.close_modal_more{
+    position: absolute;
+    display: flex;
+    right: 0;
+    margin: 0.40% 3% 0 0 ;
+    padding: 3px 10px;
+    color: black;
+    background: rgba(255, 255, 255, 0.459);
+    border: none;
+    box-shadow: 0px 0px 5px 1px rgba(70, 70, 70, 0.123);
+    font-weight: 600;
+    font-size: 1rem;
+}
+.car_name{
+    color: rgb(39, 39, 39);
+    font-size: 2rem;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    margin: 1% 0 1% 1%;
+}
+.bloc_img_modal{
+    display: flex;
+    width: 800px;
+    height: 500px;
+    /* border: 1px solid rgb(241, 163, 17); */
+    margin: 1% auto;
+}
+.bloc_info_modal{
+    display: block;
+    width: 90%;
+    /* border: 1px solid rgb(241, 163, 17); */
+    margin: 3% auto;
+}
+.reviews_title{
+    color: rgb(39, 39, 39);
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    margin: 0 0;
+    border-bottom: 2px solid rgb(44, 44, 44);
+    padding: 0.5% 0;
+}
+.name_user_modal {
+    color: rgb(46, 46, 46);
+    font-size: 1.3rem;
+    font-weight: 500;
+    width: 100%;
+    display: block;
+    margin: 1% 0 3px 0;
+    text-align: right;
+    padding : 0 3%;
+}
+
+.date_modal {
+    color: rgb(61, 61, 61);
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    display: block;
+    margin: 0 0 1% 0;
+    text-align: right;
+    padding : 0 3%;
+}
+.car_appreciation{
+    width: 94%;
+    height: 100px;
+    background: rgba(252, 252, 252, 0.685);
+    border-radius: 3px;
+    margin: 1% 3%;
+}
+.client_service {
+    width: 94%;
+    height: 100px;
+    background: rgba(252, 252, 252, 0.685);
+    border-radius: 3px;
+    margin: 1% 3%;
+}
+.title_big_point{
+    color: rgb(70, 70, 70);
+    font-size: 0.6rem;
+    font-weight: 400;
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding : 1% 3% 0 3%;
+    margin: 0;
+}
+.contain_appreciation {
+    color: rgb(0, 0, 0);
+    font-size: 0.7rem;
+    font-weight: 400;
+    width: 100%;
+    display: block;
+    text-align: left;
+    margin: 1% 3% 0 3%;
+}
+.rate_part{
+    color: rgb(243, 152, 16);
+    font-size: 1.3rem;
+    width: 100%;
+    display: block;
+    margin: 0 0 1% 0;
+    text-align: right;
+    padding : 0 3%;
+}
+.div_contain_modal{
+    display: block;
+    width: 90%;
+    /* border: 1px solid rgb(241, 163, 17); */
+    margin: 3% auto;
+}
+.div_textarea{
+    width: 100%;
+}
+.p_rate{
+    /* color: rgb(61, 61, 61); */
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    margin: 2% 0 1% 0;
+    text-align: left;
+    align-items: center;
+}
+.star-ratings{
+    /* border: 1px solid rgb(241, 163, 17); */
+    margin: 0 0 0 2%;
+
+}
