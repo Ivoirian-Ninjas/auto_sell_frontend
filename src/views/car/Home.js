@@ -216,12 +216,12 @@ handleUnsuscribe   = () => {
                     <div className="info_by_slide">
                         <div className="contain_info">
                             <h2 className="welcome_to">
-                                Find a part
+                                Find parts
                             </h2>
                             <p className="text_slider">
                             You can find some part of car that you search.
                             </p>
-                            <button className="btn_rm_slider">Find a part</button>
+                            <button className="btn_rm_slider">Comming soon!</button>
                         </div>
                     </div>
                     <img src={image4} alt="" className="img_slide" />

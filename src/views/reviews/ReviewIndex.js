@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import ReviewShowModal from './ReviewShowModal';
 import ReviewAddModal from './ReviewAddModal';
 import '../../assets/css/review_style.css'
-import imgTest from "../../assets/img/cars-img/alex-suprun-A53o1drQS2k-unsplash.jpg"
+import StarRatings from 'react-star-ratings'
+import ReadMoreAndLess from 'react-read-more-less';
+
+
 export default class ReviewIndex extends Component {
     state={
-        showModal: false,
         addModal: false,
         selectedReview: null
     }
@@ -18,27 +19,37 @@ export default class ReviewIndex extends Component {
     render() {
         return (
             <div>
-                <div>{this.state.showModal && <ReviewShowModal close_modal ={() => this.close_modal('showModal')}/>}</div>
                 <div>{this.state.addModal && <ReviewAddModal close_modal={() =>this.close_modal('addModal') }/> }</div>
+               
                 <div className="div_review">
+                        <button onClick={() => this.open_modal('addModal') } className="btn_add_review">
+                                Add a review <i className="far fa-plus-square"></i>
+                        </button>
                     <div className="review_part">
-                        <div className="bloc_img_review">
-                            <img src={imgTest} className="img_car_review" alt="" />
-                        </div>
                         <div className="part_sms_review">
                             <h1 className="name_user_review"> Pascale Duprez</h1>
                             <h1 className="date_review">21 May 2020</h1>
+                            <p className="p_rate">
+                                 <StarRatings rating={5} starRatedColor="#f5a142"
+                                       numberOfStars={5} name='rating'
+                                        starDimension = "30px" starSpacing = "7px" starHoverColor="#f5a142" />
+                            </p>
                             <div className="message_review">
-                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            </div>
-                            <button onClick={() => this.open_modal('showModal')} className="btn_more_review">
-                                Read More <i className="fa fa-chevron-down"></i>
-                            </button>
+                                    <ReadMoreAndLess
+                                    ref={this.ReadMore}
+                                    className="message_review"
+                                    charLimit={200}
+                                    readMoreText="Read more"
+                                    readLessText="Read less"
+                                    >
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    </ReadMoreAndLess>
+                        </div> 
+                        
+                         
                         </div>
                     </div>
-                    <button onClick={() => this.open_modal('addModal') } className="btn_add_review">
-                        Add a review <i className="far fa-plus-square"></i>
-                    </button>
+                  
                 </div>
             </div>
         )

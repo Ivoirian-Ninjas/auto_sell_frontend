@@ -26,6 +26,7 @@
     "react-images": "^1.1.7",
     "react-nouislider": "^2.0.1",
     "react-photo-gallery": "^8.0.0",
+    "react-read-more-less": "^0.1.6",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
