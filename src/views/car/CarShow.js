@@ -208,6 +208,13 @@ export default class CarShow extends Component {
                             <i className="far fa-envelope"></i> Contact us 
                         </button>
                     </div>
+                    <div className="part_name_mobile">
+                        <p className="price_car_show_2"> $ {car && car.price}</p>
+                        <p className="contact_hilaire">
+                        Number of seller : <br/>
+                        +1 (817) 937-3306
+                        </p>
+                    </div>
                 </div>                    
                 <div className="any_question">
                     <h3 className="question_h3">Any Questions ? </h3>
@@ -238,7 +245,7 @@ export default class CarShow extends Component {
                                 }
                             }>
 
-                            {similars.length !== 0 && similars.map(e => <div className="div_similar_cars">
+                            {similars && similars.map(e => <div className="div_similar_cars">
                                                     <div className="div_similar_img_cars">
                                                         <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
                                                     </div>

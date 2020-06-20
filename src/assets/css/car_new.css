@@ -165,3 +165,20 @@
     border: 1px solid #f89320;
     transition: ease-in-out 0.3s;
 }
+@media (max-width:858px){
+    .form_div {
+        width: 98%;
+    }
+    .div_contain_form {
+        display: block;
+    }
+    .div_of_select {
+        width: 98%;
+    }
+    .div_of_select2 {
+        width: 98%;
+    }
+    .label_select_img {
+        width: 80%;
+    }
+}

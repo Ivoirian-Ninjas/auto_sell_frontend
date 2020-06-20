@@ -12,9 +12,10 @@
     width: 25%;
     display: block;
     /* border: 1px solid red; */
-    min-height:89vh;
     padding: 2% 1%;
     box-shadow: 0 0 5px 2px rgba(20, 20, 20, 0.075);
+    height: 89vh;
+    overflow-y: auto;
 }
 .filter_part{
     width: 100%;
@@ -168,7 +169,7 @@
     padding: 1% 3%;
 }
 .car_name_years{
-    font-weight: 500;
+    font-weight: bolder;
     font-size: 1rem;
     line-height: 22px;
     color: #1f1f1f;
@@ -195,7 +196,7 @@
     border-left: 1px solid rgb(32, 32, 32);
 }
 .car_price{
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1.1rem;
     line-height: 22px;
     color: #1f1f1f;
@@ -584,4 +585,66 @@
     text-align: right;
     margin: 1% 3px;
     color: #1f1f1fa6;
+}
+.slide_up{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: block;
+    margin: 0px 3% 2% 0;
+    z-index: 1000;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 22px;
+    color: #ffffff;
+    width: 5%;
+    background: #f38e0a;
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+.slide_up:hover{
+    background: #ff9205;
+}
+@media (max-width:858px){
+    .display_car_info{
+        width: 48%;
+    }
+    .car_img_bloc {
+        height: 130px;
+    }
+    .btn_filters {
+        width: 25%;
+    }
+    .filter_part {
+        display: block;
+    }
+    .part_filter {
+        width: 100%;
+        display: block;
+    }
+    .part_search {
+        width: 80%;
+        display: flex;
+    }
+    .display_filters {
+        width: 94%;
+    }
+    .clear_display {
+        width: 35%;
+    }
+    .index_part_left {
+        width: 80%;
+        height: 89vh;
+        position: absolute;
+        right: 0;
+        z-index: 5;
+        background: white;
+        overflow-y: auto;
+    }
+    .slide_up {
+        left: 0;
+        margin: 0px 0 2% 3%;
+        width: 15%;
+    }
 }

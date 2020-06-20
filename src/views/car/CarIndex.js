@@ -98,16 +98,17 @@ export default class CarIndex extends Component {
       window.addEventListener('scroll', this.handleScroll, true)
         fetch(API_ROOT + '/cars' )
         .then(resp => resp.json())
-        .then(json => this.setState({cars: json.cars, modifiable_cars: json.cars, loading: false}) )
+        .then(json => this.setState({cars: json.cars, modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
     }
 
     handleScroll = () => {
       const div_cars = this.refs.index_part_right
             if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more){// check if the user reached the bottom of the page
-              this.setState({more: true, offset: this.state.offset + this.state.cars.length }, () =>{
-                 fetch(API_ROOT + `/cars?offset=${this.state.offset}`)
-                 .then(resp => resp.json())
-                 .then( json =>  this.setState(!json.no_more  ? {more: false,modifiable_cars: [...this.state.cars, ...json.cars]} : {more: false, no_more: true} ))
+              this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length }, () =>{
+                setTimeout(()=>{ 
+                  this.setState(this.state.offset + 1 === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 8)] } )
+                 }, 1000);
+
               })
              
 
@@ -220,7 +221,7 @@ export default class CarIndex extends Component {
           <div>
             <div className="index_car_contain">
             {this.state.showFilter ?
-              <div className="index_part_left" data-aos='slide-right'>
+              <div className="index_part_left" data-aos='slide-left'>
                 <div className="bloc_filter_close">
                   <button className="p_filters_close" onClick={this.filterToggle}> <i className="fa fa-sliders-h icon_filters_close"></i> Filter</button>
                   <button className="btn_close_filters" onClick={this.filterToggle}> X </button>
@@ -498,7 +499,7 @@ export default class CarIndex extends Component {
                             <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Automatic' }) } /> Automatic Only</p>
                             <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Manual' }) }  /> Manual Only</p>
                             <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Semi Auto' }) } />Semi Auto</p>
-                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Continuously variable transmission"' }) }/> Continuously variable transmission</p>
+                            <p className="p_radio"><input type="radio" className="radio_transmission" name="radio1"  onClick ={() => this.addFilter({type: 'transmission',value: 'Continuously variable transmission' }) }/> Continuously variable transmission</p>
                             <h3 className="I_part_title">Drive Type</h3>
                             <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.removeFilter({type: 'driveTrain' }) } /> All</p>
                             <p className="p_radio"><input type="radio" className="radio_transmission" name="radio2"   onClick ={() => this.addFilter({type: 'driveTrain',value: '4WD' }) } /> 4WD</p>
@@ -541,11 +542,11 @@ export default class CarIndex extends Component {
                   </div> 
                   
                   <div className="part_search">
-
-                  <input className="search_input" value ={this.state.search} placeholder="Enter make, model,year or body style" onChange={this.handleChange} />
-                  <button className="btn_search" onClick={this.handleSearch}> <i className="fas fa-search icon_search"></i> </button>
+                    <input className="search_input" value ={this.state.search} placeholder="Enter make, model,year or body style" onChange={this.handleChange} />
+                    <button className="btn_search" onClick={this.handleSearch}> <i className="fas fa-search icon_search"></i> </button>
                   </div>
                 </div>
+                <button className="slide_up"> <i className="fa fa-arrow-up"></i> </button>
                 <div className="display_car_bloc">
                  { this.state.filters.length !==0 && <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3> }
                   <Loader loading={this.state.loading}/>

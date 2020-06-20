@@ -189,7 +189,7 @@ handleUnsuscribe   = () => {
                                 A better experience
                             </h2>
                             <p className="text_slider">
-                                We've a good relation client seller and you can <br/>
+                                We've a good relation client seller and you can 
                                 call back us if you've some problems.
                             </p>
                             <button className="btn_rm_slider" onClick={() => window.location.href = ROOT + '/about'}>Contact us</button>
@@ -242,7 +242,7 @@ handleUnsuscribe   = () => {
                         <button className="talk_btn" data-aos="fade-up" onClick={() => window.location.href = ROOT + '/about'}>See details</button>
                     </div>
                     <div className="work_div">
-                        <div className="work_part" data-aos="fade-left">
+                        <div className="work_part" data-aos="fade-down">
                             <p className="work_icon_part">
                                 <img src={icon1} alt="" />
                             </p>
@@ -252,7 +252,7 @@ handleUnsuscribe   = () => {
                             </p>
                             <button className="work_btn" onClick={() => window.location.href = ROOT + '/cars'}>See more</button>
                         </div>
-                        <div className="work_part" data-aos="fade-left" data-aos-delay="200">
+                        <div className="work_part" data-aos="fade-down" data-aos-delay="200">
                             <p className="work_icon_part">
                                 <img src={icon2} alt="" />
                             </p>
@@ -262,7 +262,7 @@ handleUnsuscribe   = () => {
                             </p>
                             <button className="work_btn" onClick={() => window.location.href = ROOT + '/about'}>See more</button>
                         </div>
-                        <div className="work_part" data-aos="fade-left" data-aos-delay="400">
+                        <div className="work_part" data-aos="fade-down" data-aos-delay="400">
                             <p className="work_icon_part">
                                 <img src={icon3} alt="" />
                             </p>
