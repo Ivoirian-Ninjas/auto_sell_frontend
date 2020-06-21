@@ -1,20 +1,56 @@
 import StarRatings from 'react-star-ratings'
 import React, { Component } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import { API_ROOT, HEADERS } from '../../helpers/constant';
+import current_user from '../../helpers/current_user';
+import { responsiveFontSizes } from '@material-ui/core';
 
 
 export default class ReviewAddModal extends Component {
     state = {
         title: '',
         comment: '',
-        name: '',
         rating: 0
     }
     changeRating = (rating, name) => this.setState({rating, rating})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = () => {
-        if(this.state.title !== '' && this.state.comment !== '' && this.state.name !== '' && this.state.rating !== 0){
-            console.log('year')
+        if(this.state.title !== '' && this.state.comment !== ''  && this.state.rating !== 0){
+            const options={
+                method: 'POST',
+                headers: HEADERS,
+                body: JSON.stringify(this.state)
+
+            }
+            fetch(`${API_ROOT}/reviews?current_user=${current_user().id}`, options)
+            .then(resp => resp.json())
+            .then(json => {
+                    if(json.error){
+                        toast.error('Please make sure you complete the form', {
+                            position: "top-center",
+                            autoClose: 10000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+
+                    }else{
+                        this.props.close_modal()
+                        toast.success(json.message,  {
+                            position: "top-right",
+                            autoClose: 10000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+
+                    }
+            })
+            
         }else{
             toast.error('Please make sure you complete the form', {
                 position: "top-center",
