@@ -8,12 +8,14 @@ import GalleryRange from "react-photo-gallery"
 import Lightbox from 'react-images'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { CarouselSlide } from "react-responsive-carousel";
 import icon_show1 from '../../assets/img/icon/icons8-gas-station-100-8.png'
 import icon_show2 from '../../assets/img/icon/icons8-engine-500-5.png'
 import icon_show3 from '../../assets/img/icon/icons8-mpg-500-2.png'
 import icon_show4 from '../../assets/img/icon/icons8-substation-500.png'
 import icon_show5 from '../../assets/img/icon/icons8-pen-drive-500.png'
-import slideImg1 from "../../assets/img/cars-img/patrick-tomasso-CP1cKFIl7qc-unsplash.jpg"
+import slideImg1 from "../../assets/img/cars-img/alistair-smith-fxliDZFt-qY-unsplash.jpg"
 import slideImg2 from "../../assets/img/cars-img/jonathan-daniels-sfqxNM2ugfc-unsplash.jpg"
 import slideImg3 from "../../assets/img/cars-img/benjamin-child-7Cdw956mZ4w-unsplash.jpg"
 import slideImg4 from "../../assets/img/cars-img/serge-kutuzov-1K9-TbJWs2U-unsplash.jpg"
@@ -44,7 +46,8 @@ export default class CarShow extends Component {
         Position:"absolute",
         similars: [],
         Top: "95%",
-        loading: false
+        loading: false,
+        modalShow:false,
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
@@ -70,18 +73,41 @@ export default class CarShow extends Component {
         
     }
     close_modal = () => this.setState({  openModal: false })
+    close_modal_show = () => {
+        this.setState({
+            modalShow: false
+        })
+    }
+    open_modal_show = () => {
+        this.setState({
+            modalShow: true
+        })
+    }
     
     render() {
         let car = this.state.car.status &&  this.state.car
         let similars = this.state.similars
         let modal = this.state.openModal ? <CalendarModal close_modal={this.close_modal} /> : null
         let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
-
+        let modal_open = (
+            <div className="modal_show" modalShow={this.state.modalShow}>
+                <button onClick={this.close_modal_show} className="modal_btn_close">X</button>
+                <div className="modal_container">
+                    <img src={slideImg1} className="imgModal" alt="" />
+                </div>
+            </div>
+        )
+        if (!this.state.modalShow) {
+            modal_open = null;
+        }
         return (
             <div>
                 <div>{modal && modal}</div>
+                <div>{modal_open}</div>
                 <Loader loading={this.state.loading}/>
                 <div className="show_images" ref="myContainers">
+                    <button onClick={this.open_modal_show} className="view_modal">View all</button>
+                    {/*Mettre le carouselSlide ici*/}
                 {/*<ImageGallery 
                                             items={images} 
                                             showThumbnails
@@ -96,7 +122,7 @@ export default class CarShow extends Component {
                         showLightboxThumbnails={true}
                         enableLightbox={true}
                         enableImageSelection={false}
-                    />*/}
+                    />
                     {images && 
                         <ImageGallery 
                             items={images} 
@@ -109,6 +135,7 @@ export default class CarShow extends Component {
                             showNav={true}
                     />
                     }
+                */}
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
