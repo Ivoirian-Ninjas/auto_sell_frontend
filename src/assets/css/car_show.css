@@ -441,3 +441,141 @@
     display: flex;
     border-radius: 5px 5px 0 0;
 }
+.part_name_mobile{
+    display: none;
+}
+.modal_show{
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 5000;
+    background: rgba(0, 0, 0, 0.911);
+    justify-content: center;
+    align-items: center;
+    padding: 1% 0;
+}
+.modal_container {
+    width: 93%;
+    height: 90vh;
+    background: transparent;
+    display: block;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal_btn_close {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    margin: 1% 0% 0 0.5%;
+    padding: 3px 10px;
+    color: black;
+    background: rgba(255, 255, 255, 0.459);
+    border: none;
+    box-shadow: 0px 0px 5px 1px rgba(70, 70, 70, 0.123);
+    font-weight: 600;
+    font-size: 1rem;
+    content: normal;
+}
+.view_modal {
+    position: absolute;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    margin: 0% 10% 5% 0%;
+    padding: 5px 30px;
+    color: rgb(255, 255, 255);
+    background: rgb(245, 133, 4);
+    border: 2px solid rgb(245, 133, 4);
+    /* box-shadow: 0px 0px 5px 1px rgba(70, 70, 70, 0.123); */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: ease-in-out 0.3s;
+}
+.view_modal:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(255, 136, 0);
+    border: 2px solid white;
+    transition: ease-in-out 0.3s;
+}
+.imgModal{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
+@media (max-width:858px){
+    .show_images{
+        height: 180px;
+    }
+    .image-gallery-fullscreen-button,
+    .image-gallery-play-button {
+        margin-bottom: 10%;
+    }
+    .part_name_show {
+        display: none;
+    }
+    .show_infos {
+        width: 100%;
+    }
+    .p_Schedule {
+        width: 65%;
+    }
+    .btn_edit {
+        width: 40%;
+        margin: 5px 0 5px 60%;
+    }
+    .any_question {
+        width: 90%;
+        display: block;
+        margin: 2% 5%;
+        background: #f1f1f1a2;
+        border: 1px solid rgba(43, 43, 43, 0.315);
+        padding: 1% 3%;
+    }
+    .part_name_mobile{
+        display: flex;
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.164);
+        align-items: center;
+    }
+    .price_car_show_2 {
+        font-weight: bolder;
+        font-size: 1.5rem;
+        color: #e68c06;
+        width: 40%;
+        margin: 5% 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px solid rgba(43, 43, 43, 0.315); */
+        /* text-align: center; */
+    }
+    .contact_hilaire {
+        font-weight: bolder;
+        font-size: 1rem;
+        color: #363636;
+        width: 60%;
+        margin: 5% 5%;
+        /* border-bottom: 1px solid rgba(61, 60, 60, 0.61); */
+        background: rgba(255, 255, 255, 0.486);
+        /* border: 1px solid rgba(43, 43, 43, 0.315); */
+        display: flex;
+        align-items: center;
+    }
+    .icon_show {
+        width: 20px;
+        height: 20px;
+    }
+}

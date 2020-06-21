@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import {ROOT,HEADERS, API_ROOT} from '../../helpers/constant';
 import CalendarModal from './CalendarModal'
@@ -24,6 +23,11 @@ import '@brainhubeu/react-carousel/lib/style.css'
 import current_user from '../../helpers/current_user';
 import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
+import CarouselComponent from '../../components/CarouselComponent';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel as CarouselShow } from 'react-responsive-carousel';
+
+
 export default class CarShow extends Component {
     componentDidMount(){
         // find the id of the car
@@ -82,39 +86,13 @@ export default class CarShow extends Component {
                 <div>{modal && modal}</div>
                 <Loader loading={this.state.loading}/>
                 <div className="show_images" ref="myContainers">
-                {/*<ImageGallery 
-                                            items={images} 
-                                            showThumbnails
-                                            showIndex
-                                            thumbnailPosition="right"
-                                            showFullscreenButton
-                                            showBullets
-                                            showPlayButton={false}
-                    />
-                   car && this.display_images(car.images) <Gallery
-                        images={images}
-                        showLightboxThumbnails={true}
-                        enableLightbox={true}
-                        enableImageSelection={false}
-                    />*/}
-                    {images && 
-                        <ImageGallery 
-                            items={images} 
-                            showThumbnails={true}
-                            showIndex={false}
-                            thumbnailPosition="bottom"
-                            showFullscreenButton
-                            showBullets={false}
-                            showPlayButton={false}
-                            showNav={true}
-                    />
-                    }
+                    {/** go to components/CarouselComponent to modify the css */}
+                    {car && <CarouselComponent images={car.images}/> }
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
                         <h3 className="name_show">{car && `${car.make} ${car.model}`}</h3>
-                        <p className="surname_show">Twingo II 1.2 LEV 16v 75 eco2 Walkman Limited Edition</p>
-                        <p className="year_mile">2017, 20, 895 Km </p>
+                        <p className="surname_show">{car && `${car.year}, ${car.engine} ${car.make} ${car.model}`}</p>
                         <p className="general_info">General Information</p>
                         <div className="show_details">
                             <p className="p_nameElement">Description : </p>

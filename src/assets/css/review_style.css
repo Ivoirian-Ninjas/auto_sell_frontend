@@ -28,7 +28,7 @@
     display: block;
     /* border: 1px solid rgb(241, 163, 17); */
     margin: 0 0 0 3%;
-    width: 75%;
+    width: 100%;
 }
 .name_user_review{
     color: rgb(29, 29, 29);
@@ -48,8 +48,8 @@
 }
 .message_review{
     width: 100%;
-    height: 100px;
-    background: rgba(241, 241, 241, 0.562);
+    /* height: 100px; */
+    background: rgba(241, 241, 241, 0.199);
     border-radius: 3px;
     font-size: 0.8rem;
     padding : 1% 1%;
@@ -112,7 +112,6 @@
     width: 20%;
     font-weight: 400;
 }
-
 .btn_review:hover,
 .btn_review:active,
 .btn_review:focus {
@@ -125,7 +124,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;;
+    min-height: 100vh;
     z-index: 5000;
     background: rgba(0, 0, 0, 0.253);
     justify-content: center;
@@ -136,7 +135,7 @@
 }
 .modal_contain{
     width: 80%;
-    height: 650px;
+    height: 450px;
     background: white;
     display: block;
     border-radius: 5px;
@@ -272,5 +271,71 @@
 .star-ratings{
     /* border: 1px solid rgb(241, 163, 17); */
     margin: 0 0 0 2%;
-
+}
+.part_name_review{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.part_name{
+    width: 60%;
+    display: block;
+}
+.p_rate_review{
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 40%;
+    display: flex;
+    margin: 1% 0 1% 0;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid rgb(241, 163, 17); */
+}
+@media (max-width:858px){
+    .div_review {
+        width: 90%;
+        margin: 13% auto;
+        padding: 0.5% 0;
+    }
+    .btn_add_review {
+        font-size: 0.8rem;
+        margin: 3% 2% 0 20%;
+        padding: 7px 60px;
+    }
+    .review_part {
+        margin: 3% 2%;
+        width: 96%;
+    }
+    .name_user_review {
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
+    .date_review {
+        font-size: 0.8rem;
+    }
+    .part_name {
+        width: 50%;
+    }
+    .p_rate_review {
+        width: 50%;
+    }
+    .star-container{
+        padding: 0 3px !important;
+    }
+    .widget-svg{
+        width: 17px !important;
+        height: 17px !important;
+    }
+    .modal_contain {
+        width: 80%;
+        height: 400px;
+        margin-right: 1%;
+    }
+    .close_modal_more {
+        margin: 0% 0.5% 0 0;
+    }
+    .btn_review {
+        margin: 0 0 0 52%;
+        width: 45%;
+    }
 }

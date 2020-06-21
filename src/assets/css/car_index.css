@@ -595,9 +595,9 @@ textarea:focus {
 
 }
 .elements_list{
-    width: 18%;
+    /* width: 18%; */
     display: inline-block;
-    margin: 0 1% 1% 0;
+    margin: 0 3% 1% 0;
     text-align: center;
 }
 .elements_icon{
@@ -670,4 +670,109 @@ textarea:focus {
   }
   .text_black{
       color: rgb(56, 56, 56) !important;
+  }
+  @media (max-width:858px){
+    .slide_part {
+        overflow: hidden;
+    }
+    .welcome_to {
+        color: rgb(255, 145, 0);
+        font-size: 1.4rem;
+        line-height: 0px;
+    }
+    .text_slider {
+        font-size: 0.6rem;
+        font-weight: 300;
+        margin: 5px 0 3px 0;
+    }
+    .contain_info {
+        display: block;
+        width: 100%;
+        /* border: 1px solid rgb(255, 255, 255) */
+    }
+    .btn_rm_slider {
+        font-size: 0.8rem;
+        margin: 3px;
+        height: 30px;
+        line-height: 5px;
+    }
+    .info_by_slide {
+        margin-left: 3%;
+        margin-top: -4%;
+    }
+    body{
+        padding: 57px 0 0 0;
+        overflow-x: hidden;
+    }
+    .lets_talk {
+        width: 90%;
+    }
+    .talk_title {
+        font-size: 2rem;
+    }
+    .talk_text {
+        font-size: 0.9rem;
+    }
+    .work_div {
+        width: 90%;
+        display: block;
+    }
+    .work_part {
+        width: 98%;
+    }
+    .part_text_c {
+        text-align: center;
+        margin: 3% 0;
+        font-weight: 500;
+        font-size: 1.4rem;
+        /* border: 1px solid rgb(255, 255, 255); */
+        padding: 0 2%;
+    }
+    .btn_c {
+        width: 40%;
+    }
+    .offers_img {
+        width: 45%;
+        display: none;
+        height: 350px;
+        overflow: hidden;
+        border: 1px solid rgb(236, 236, 236);
+        position: absolute;
+        right: 0;
+        margin-right: 7%;
+    }
+    .offers_form {
+        width: 90%;
+        height: 240px;
+        /* border: 1px solid rgb(77, 55, 13); */
+        margin-left: 5%;
+        box-shadow: 3px 0px 19px -8px rgba(0, 0, 0, 0.37);
+    }
+    .h2_offers {
+        width: 75%;
+        font-size: 1.9rem;
+    }
+    .part_offers {
+        height: 280px;
+        /* justify-content: center; */
+    }
+    .big_title_popular {
+        font-size: 2rem;
+    }
+    .line_popular {
+        display: none;
+    }
+    .p_popular {
+        width: 100%;
+    }
+    .elements_list {
+        display: inline-block;
+        /* width: 32%; */
+    }
+    .elements_icon {
+        display: none;
+    }
+    .div_img_cars {
+        height: 200px;
+    }
   }

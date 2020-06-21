@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins";
+    font-family: "Helvetica";
 }
 body{
     padding: 70px 0 0 0;
@@ -111,4 +111,18 @@ body{
     font-weight: 600;
     text-decoration: none;
     color: #f5a142;
+}
+@media (max-width:858px){
+    .main_content {
+        width: 100%;
+        height: 350px;
+    }
+    .bloc_img_box {
+        display: none;
+    }
+    .form_box {
+        width: 100%;;
+        padding: 10px 10px;
+    }
+
 }
