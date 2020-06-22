@@ -23,8 +23,8 @@ export default class SignUp extends Component {
             if(json.error){
                 console.log(json.error)
             }else{
-                localStorage.setItem('auto_sell_user', JSON.stringify(json.user) )
-                window.location.href = '/'
+                localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
+                window.history.back()
 
             }
         })
