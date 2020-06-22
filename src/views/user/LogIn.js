@@ -4,6 +4,9 @@ import { API_ROOT, HEADERS } from '../../helpers/constant';
 import '../../assets/css/authentification.css'
 import img_one from "../../assets/img/cars-img/marcus-p-oUBjd22gF6w-unsplash.jpg"
 import {Link} from "react-router-dom"
+import { toast } from 'react-toastify';
+
+
 export default class LogIn extends Component {
     state = {
         password: '',
@@ -21,7 +24,15 @@ export default class LogIn extends Component {
         .then(resp => resp.json())
         .then(json => {
             if(json.error){
-                console.log(json.error)
+                toast.error(json.error, {
+                    position: "top-center",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
             }else{
                 localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
                 window.history.back()

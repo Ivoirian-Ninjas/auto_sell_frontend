@@ -47,7 +47,7 @@ export default class Profile extends Component {
                                                                                 <div className="part_sms_review">
                                                                                     <div className="part_name_review">
                                                                                         <div className="part_name">
-                                                                                            <h1 className="name_user_review"> {current_user().email}</h1>
+                                                                                            <h1 className="name_user_review"> {current_user().name}</h1>
                                                                                             <h1 className="date_review">{e.creatated_at}</h1>
                                                                                         </div>
                                                                                     <p className="p_rate_review">

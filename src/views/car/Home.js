@@ -127,7 +127,7 @@ handleUnsuscribe   = () => {
         fetch(API_ROOT + `/users/${current_user().id}`,options)
         .then(resp => resp.json)
         .then(json =>{
-            JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user) )
+            JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.attributes) )
             this.setState({loading: false})
                      toast.success('We are sorry to see you go. You can always come back!', {
                         position: "top-right",

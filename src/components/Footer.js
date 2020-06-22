@@ -18,7 +18,7 @@ export default function Footer() {
                                                 <li><a href="/signup">Sign Up</a></li>
                                             </React.Fragment> :
 
-                                            <li><a href='#'>You are signed in as {current_user().email}</a></li>
+                                            <li><a href={`/users/${current_user().id}`}>You are signed in as {current_user().name ? current_user().name : current_user().email}</a></li>
                                             }
                                         </ul>
                                     </div>

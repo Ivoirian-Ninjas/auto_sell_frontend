@@ -50,6 +50,9 @@ export default function index() {
                                         </React.Fragment>
                                     }
                                     <li className="li_menu">
+                                                <a className="a_menu" href={`/users/${current_user().id}`}>Profile</a>
+                                            </li>
+                                    <li className="li_menu">
                                         <a className="a_menu" 
                                         onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}}>
                                             Log Out
