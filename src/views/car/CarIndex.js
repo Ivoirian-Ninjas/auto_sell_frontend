@@ -16,6 +16,7 @@ import RangeTypography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import CarList from './CarList';
 import Loader from '../../components/Loader';
+
 export default class CarIndex extends Component {
   state = {
     no_more: false,
@@ -106,8 +107,8 @@ export default class CarIndex extends Component {
             if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more){// check if the user reached the bottom of the page
               this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length }, () =>{
                 setTimeout(()=>{ 
-                  this.setState(this.state.offset + 1 === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 8)] } )
-                 }, 1000);
+                  this.setState(this.state.modifiable_cars.length === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 8)] } )
+                 }, 1500);
 
               })
              
@@ -219,7 +220,7 @@ export default class CarIndex extends Component {
         let cars = this.state.modifiable_cars
         return (
           <div>
-            <div className="index_car_contain">
+            <div className="index_car_contain" id='top'>
             {this.state.showFilter ?
               <div className="index_part_left" data-aos='slide-left'>
                 <div className="bloc_filter_close">
@@ -515,7 +516,7 @@ export default class CarIndex extends Component {
                 </div>
               </div> : null
               }
-              <div className="index_part_right" ref='index_part_right'>
+              <div className="index_part_right" ref='index_part_right' >
                 <div className="filter_part">
                 <div className="part_filter">
                   {!this.state.showFilter ?
@@ -546,7 +547,7 @@ export default class CarIndex extends Component {
                     <button className="btn_search" onClick={this.handleSearch}> <i className="fas fa-search icon_search"></i> </button>
                   </div>
                 </div>
-                <button className="slide_up"> <i className="fa fa-arrow-up"></i> </button>
+                {this.state.no_more && <button className="slide_up" onClick={() => window.location.href = "#top"}> <i className="fa fa-arrow-up"></i> </button>}
                 <div className="display_car_bloc">
                  { this.state.filters.length !==0 && <h3 style={{alignSelf: 'center'}}>{this.state.not_found}</h3> }
                   <Loader loading={this.state.loading}/>

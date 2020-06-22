@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import {ROOT,HEADERS, API_ROOT} from '../../helpers/constant';
 import CalendarModal from './CalendarModal'
@@ -8,14 +7,12 @@ import GalleryRange from "react-photo-gallery"
 import Lightbox from 'react-images'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { CarouselSlide } from "react-responsive-carousel";
 import icon_show1 from '../../assets/img/icon/icons8-gas-station-100-8.png'
 import icon_show2 from '../../assets/img/icon/icons8-engine-500-5.png'
 import icon_show3 from '../../assets/img/icon/icons8-mpg-500-2.png'
 import icon_show4 from '../../assets/img/icon/icons8-substation-500.png'
 import icon_show5 from '../../assets/img/icon/icons8-pen-drive-500.png'
-import slideImg1 from "../../assets/img/cars-img/alistair-smith-fxliDZFt-qY-unsplash.jpg"
+import slideImg1 from "../../assets/img/cars-img/patrick-tomasso-CP1cKFIl7qc-unsplash.jpg"
 import slideImg2 from "../../assets/img/cars-img/jonathan-daniels-sfqxNM2ugfc-unsplash.jpg"
 import slideImg3 from "../../assets/img/cars-img/benjamin-child-7Cdw956mZ4w-unsplash.jpg"
 import slideImg4 from "../../assets/img/cars-img/serge-kutuzov-1K9-TbJWs2U-unsplash.jpg"
@@ -26,6 +23,12 @@ import '@brainhubeu/react-carousel/lib/style.css'
 import current_user from '../../helpers/current_user';
 import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
+import CarouselComponent from '../../components/CarouselComponent'
+import CarouselModal from '../../components/CarouselModal'
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel as CarouselShow } from 'react-responsive-carousel';
+
+
 export default class CarShow extends Component {
     componentDidMount(){
         // find the id of the car
@@ -47,11 +50,11 @@ export default class CarShow extends Component {
         similars: [],
         Top: "95%",
         loading: false,
-        modalShow:false,
+        modalShow: false,
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
-    display_images = images => images.map(e => <div key={e.url} className="showImage_bloc"><img src={e.url} className="showImage_img" /></div>)
+    //display_images = images => images.map(e => <div key={e.url} ><img src={e.url} /></div>)
     handleScroll = () => {
         var pageHeight = this.refs.myContainers
         var infoHeight = this.refs.myContainer
@@ -83,17 +86,16 @@ export default class CarShow extends Component {
             modalShow: true
         })
     }
-    
     render() {
         let car = this.state.car.status &&  this.state.car
         let similars = this.state.similars
         let modal = this.state.openModal ? <CalendarModal close_modal={this.close_modal} /> : null
-        let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
-        let modal_open = (
+        //let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
+         let modal_open = (
             <div className="modal_show" modalShow={this.state.modalShow}>
                 <button onClick={this.close_modal_show} className="modal_btn_close">X</button>
                 <div className="modal_container">
-                    <img src={slideImg1} className="imgModal" alt="" />
+                    {car && <CarouselModal images={car.images}/> }
                 </div>
             </div>
         )
@@ -107,41 +109,13 @@ export default class CarShow extends Component {
                 <Loader loading={this.state.loading}/>
                 <div className="show_images" ref="myContainers">
                     <button onClick={this.open_modal_show} className="view_modal">View all</button>
-                    {/*Mettre le carouselSlide ici*/}
-                    {/*<ImageGallery
-                        items={images}
-                        showThumbnails
-                        showIndex
-                        thumbnailPosition="right"
-                        showFullscreenButton
-                        showBullets
-                        showPlayButton={false}
-                    />
-                   car && this.display_images(car.images) <Gallery
-                        images={images}
-                        showLightboxThumbnails={true}
-                        enableLightbox={true}
-                        enableImageSelection={false}
-                    />
-                    {images && 
-                        <ImageGallery 
-                            items={images} 
-                            showThumbnails={true}
-                            showIndex={false}
-                            thumbnailPosition="bottom"
-                            showFullscreenButton
-                            showBullets={false}
-                            showPlayButton={false}
-                            showNav={true}
-                    />
-                    }
-                */}
+                    {/** go to components/CarouselComponent to modify the css */}
+                    {car && <CarouselComponent images={car.images}/> }
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
                         <h3 className="name_show">{car && `${car.make} ${car.model}`}</h3>
-                        <p className="surname_show">Twingo II 1.2 LEV 16v 75 eco2 Walkman Limited Edition</p>
-                        <p className="year_mile">2017, 20, 895 Km </p>
+                        <p className="surname_show">{car && `${car.year}, ${car.engine} ${car.make} ${car.model}`}</p>
                         <p className="general_info">General Information</p>
                         <div className="show_details">
                             <p className="p_nameElement">Description : </p>
@@ -223,8 +197,6 @@ export default class CarShow extends Component {
                             <button className="btn_edit" onClick={() => window.location.href = `/cars/${car && car.id}/edit`}>Edit <i className="fa fa-edit"></i> </button>
                         </div>
                         }
-                     
-                      
                     </div>
                     <div className="part_name_show" style={{position: ""+this.state.Position+"", 
                         top:""+this.state.Top+"", }}>
@@ -252,7 +224,7 @@ export default class CarShow extends Component {
                 <div className="similar_cars">
                     <p className="p_similar">Similar car</p>
                     <div className="bloc_similar">
-                        <Carousel slidesPerPage={4} arrows 
+                        <Carousel slidesPerPage={4} arrows infinite 
                             breakpoints = {
                                 {
                                     600: {
@@ -272,7 +244,7 @@ export default class CarShow extends Component {
                                 }
                             }>
 
-                            {similars && similars.map(e => <div className="div_similar_cars">
+                            {similars.length !== 0 && similars.map(e => <div className="div_similar_cars">
                                                     <div className="div_similar_img_cars">
                                                         <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
                                                     </div>

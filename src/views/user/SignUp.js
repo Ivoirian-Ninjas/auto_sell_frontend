@@ -6,7 +6,8 @@ export default class SignUp extends Component {
     state = {
         password: '',
         password_confirm: '' ,
-        email: ''
+        email: '',
+        name: ''
     }
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = (event) =>{
@@ -37,6 +38,7 @@ export default class SignUp extends Component {
                         <div className="form_box">
                             <form className="form_login">
                                 <h2 className="log_title">Sign Up</h2>
+                                <input className="input_log" onChange={this.handleChange} name='name' value={this.state.name}  placeholder="John Doe"/>
                                 <input className="input_log" onChange={this.handleChange} name='email' value={this.state.email} type="mail" placeholder="user@gmail.com"/>
                                 <input className="input_log" onChange={this.handleChange} name='password' value={this.state.password} type="password" placeholder="Password"/>
                                 <input className="input_log" onChange={this.handleChange} name='password_confirm' value={this.state.password_confirm} type="password" placeholder="Confirm password"/>

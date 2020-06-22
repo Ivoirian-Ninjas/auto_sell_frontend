@@ -171,6 +171,7 @@
 @media (max-width:858px){
     body{
         overflow-x: hidden;
+        padding: 75px 0 0 0;
     }
     .bloc_formula {
         width: 90%;
