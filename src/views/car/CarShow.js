@@ -25,8 +25,8 @@ import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
 import CarouselComponent from '../../components/CarouselComponent'
 import CarouselModal from '../../components/CarouselModal'
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel as CarouselShow } from 'react-responsive-carousel';
+import HeartCheckbox from 'react-heart-checkbox';
+import { toast } from 'react-toastify';
 
 
 export default class CarShow extends Component {
@@ -38,7 +38,7 @@ export default class CarShow extends Component {
         if(id){
             fetch(API_ROOT + `/cars/${id}`)
             .then(resp => resp.json())
-            .then(json => this.setState({car: json.car.data.attributes,similars: json.similars, features: json.car.data.attributes.features, loading: false} ))
+            .then(json => this.setState({car: json.car.data.attributes,similars: json.similars, features: json.car.data.attributes.features, loading: false, checked: current_user() &&  !!current_user().cars.find(e => `${e.id}` ===`${json.car.data.attributes.id}` ) } ))
         }
       
         // 
@@ -51,6 +51,8 @@ export default class CarShow extends Component {
         Top: "95%",
         loading: false,
         modalShow: false,
+        checked: false
+       
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
@@ -75,6 +77,59 @@ export default class CarShow extends Component {
         }
         
     }
+    check =() => {// add to the favorites
+        this.setState({checked: !this.state.checked}, ()=> {
+            if(this.state.checked){
+                const options = {
+                    method: 'POST',
+                    headers: HEADERS,
+                    body: JSON.stringify({user_id: current_user().id, car_id: this.state.car.id})
+                }
+                fetch(`${API_ROOT}/favorites`, options)
+                .then(resp => resp.json())
+                .then( json => {
+                    if(!json.error){
+                        JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
+                    }else{
+                        toast.error(json.error, {
+                            position: "top-center",
+                            autoClose: 10000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+                    }
+                })
+          
+            }else{
+                const options = {
+                    method: 'DELETE',
+                    headers: HEADERS,
+                    body: JSON.stringify({user_id: current_user().id, car_id: this.state.car.id})
+                }
+                fetch(`${API_ROOT}/favorites/id`, options)
+                .then(resp => resp.json())
+                .then(json => {
+                    if(!json.error){
+                        JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
+                    }else{
+                        toast.error(json.error, {
+                            position: "top-center",
+                            autoClose: 10000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+                    }
+                })
+            }
+        })
+    }
+
     close_modal = () => this.setState({  openModal: false })
     close_modal_show = () => {
         this.setState({
@@ -114,7 +169,7 @@ export default class CarShow extends Component {
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
-                        <h3 className="name_show">{car && `${car.make} ${car.model}`}</h3>
+                        <h3 className="name_show">{car && `${car.make} ${car.model}`}  <HeartCheckbox style={{height: 30, width: 30}} checked={this.state.checked} onClick={this.check} /> </h3>
                         <p className="surname_show">{car && `${car.year}, ${car.engine} ${car.make} ${car.model}`}</p>
                         <p className="general_info">General Information</p>
                         <div className="show_details">

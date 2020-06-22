@@ -9888,6 +9888,11 @@ react-grid-gallery@^0.5.5:
     prop-types "^15.5.8"
     react-images "^0.5.16"
 
+react-heart-checkbox@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-heart-checkbox/-/react-heart-checkbox-0.0.4.tgz#39e0ce9f9129c7bbf56aa2e74c0de6f58b0b3172"
+  integrity sha512-GlbPCOJcjZYjyHw3jVziYD13UlaXNOo+e81HSWzIiVeACH6YOVgeTv2F1KytKOvUelOWVMqwvXk9EEP4gyvz4A==
+
 react-iframe@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/react-iframe/-/react-iframe-1.8.0.tgz#8c78f2c59b894ca5605fa7e45e61e27e57e96091"

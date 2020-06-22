@@ -50,6 +50,10 @@ export default function index() {
                                         </React.Fragment>
                                     }
                                     <li className="li_menu">
+                                                <a className="a_menu" href={`/favorites`}>Favorites</a>
+                                            </li>
+                                   
+                                    <li className="li_menu">
                                                 <a className="a_menu" href={`/users/${current_user().id}`}>Profile</a>
                                             </li>
                                     <li className="li_menu">

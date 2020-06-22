@@ -60,7 +60,7 @@ function App() {
 
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
-              <Route path='/users/:id/favorites' render={renderProps => <Favorite/>} />
+              <Route path='/favorites' render={renderProps => <Favorite/>} />
               <Route path='/reviews' render={renderProps => <ReviewIndex/>} />
 
               {/* These routes are the routes for the booking process */}          
