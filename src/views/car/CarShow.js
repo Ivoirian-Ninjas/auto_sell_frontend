@@ -108,14 +108,14 @@ export default class CarShow extends Component {
                 <div className="show_images" ref="myContainers">
                     <button onClick={this.open_modal_show} className="view_modal">View all</button>
                     {/*Mettre le carouselSlide ici*/}
-                {/*<ImageGallery 
-                                            items={images} 
-                                            showThumbnails
-                                            showIndex
-                                            thumbnailPosition="right"
-                                            showFullscreenButton
-                                            showBullets
-                                            showPlayButton={false}
+                    {/*<ImageGallery
+                        items={images}
+                        showThumbnails
+                        showIndex
+                        thumbnailPosition="right"
+                        showFullscreenButton
+                        showBullets
+                        showPlayButton={false}
                     />
                    car && this.display_images(car.images) <Gallery
                         images={images}
