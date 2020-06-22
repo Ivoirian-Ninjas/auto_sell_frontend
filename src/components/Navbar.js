@@ -49,13 +49,19 @@ export default function index() {
                                                 </li> */}
                                         </React.Fragment>
                                     }
-                                    <li className="li_menu">
-                                                <a className="a_menu" href={`/favorites`}>Favorites</a>
-                                            </li>
+                                    {!current_user().admin ? <li className="li_menu">
+                                                                 <a className="a_menu" href={`/favorites`}>Favorites</a>
+                                                            </li> 
+                                                            : <li className="li_menu">
+                                                                 <a className="a_menu" href={`/cars?status=sold`}>Sold cars</a>
+                                                            </li> 
+
+                                    }
+                                 
                                    
                                     <li className="li_menu">
-                                                <a className="a_menu" href={`/users/${current_user().id}`}>Profile</a>
-                                            </li>
+                                            <a className="a_menu" href={`/users/${current_user().id}`}>Profile</a>
+                                    </li>
                                     <li className="li_menu">
                                         <a className="a_menu" 
                                         onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}}>

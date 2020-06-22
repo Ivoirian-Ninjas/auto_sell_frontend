@@ -16,6 +16,7 @@ import RangeTypography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import CarList from './CarList';
 import Loader from '../../components/Loader';
+import current_user from '../../helpers/current_user';
 
 export default class CarIndex extends Component {
   state = {
@@ -95,11 +96,19 @@ export default class CarIndex extends Component {
   }
 
     componentDidMount(){
+
       this.setState({loading: true})
       window.addEventListener('scroll', this.handleScroll, true)
-        fetch(API_ROOT + '/cars' )
-        .then(resp => resp.json())
-        .then(json => this.setState({cars: json.cars, modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
+     if(!!window.location.search && current_user().admin){
+      fetch(API_ROOT + '/cars?status=sold' )
+      .then(resp => resp.json())
+      .then(json => this.setState({cars: json.cars, modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
+     }else{
+      fetch(API_ROOT + '/cars' )
+      .then(resp => resp.json())
+      .then(json => this.setState({cars: json.cars , modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
+     }
+    
     }
 
     handleScroll = () => {

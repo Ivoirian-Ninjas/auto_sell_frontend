@@ -43,6 +43,7 @@ export default class CarShow extends Component {
       
         // 
     }
+    
     state={
         car: {},
         openModal: false,
@@ -58,6 +59,7 @@ export default class CarShow extends Component {
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
     //display_images = images => images.map(e => <div key={e.url} ><img src={e.url} /></div>)
     handleScroll = () => {
+        
         var pageHeight = this.refs.myContainers
         var infoHeight = this.refs.myContainer
         var scrollHeight = window.scrollY;
@@ -129,6 +131,82 @@ export default class CarShow extends Component {
             }
         })
     }
+    changeStatus = () =>{
+      
+            if(this.state.car.status ==='on sale' ){
+                let options = {
+                    method: 'PATCH',
+                    headers: HEADERS,
+                    body: JSON.stringify({id: this.state.car.id, car: {status: 'sold'} })     
+                }
+                this.setState({car: {...this.state.car, status: 'sold'} } ) 
+               
+                fetch(API_ROOT + `/cars/${this.state.car.id && this.state.car.id}`,options)
+                .then(resp => resp.json())
+                .then(json => {if(!json.error){
+                    this.setState({loading: false})
+                    toast.success('Your car has been succefully updated!', {
+                        position: "top-right",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                       
+    
+                  
+                }else{
+                    toast.error(json.error, {
+                        position: "top-center",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        }) 
+                }  
+             })
+            }else{
+                this.setState( {car: {...this.state.car, status: 'on sale'} }  ) 
+                let options = {
+                    method: 'PATCH',
+                    headers: HEADERS,
+                    body: JSON.stringify({id: this.state.car.id, car: {status: 'on sale' } })     
+                }
+                fetch(API_ROOT + `/cars/${this.state.car.id && this.state.car.id}`,options)
+                .then(resp => resp.json())
+                .then(json => {if(!json.error){
+                    this.setState({loading: false})
+                    toast.success('Your car has been succefully updated!', {
+                        position: "top-right",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+    
+                  
+                }else{
+                    toast.error(json.error, {
+                        position: "top-center",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        }) 
+                }  
+             })
+            }
+          
+
+    }
 
     close_modal = () => this.setState({  openModal: false })
     close_modal_show = () => {
@@ -169,7 +247,7 @@ export default class CarShow extends Component {
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
-                        <h3 className="name_show">{car && `${car.make} ${car.model}`}  <HeartCheckbox style={{height: 30, width: 30}} checked={this.state.checked} onClick={this.check} /> </h3>
+                        <h3 className="name_show">{car && `${car.make} ${car.model}`}  {!current_user().admin &&  <HeartCheckbox style={{height: 30, width: 30}} checked={this.state.checked} onClick={this.check} /> } </h3>
                         <p className="surname_show">{car && `${car.year}, ${car.engine} ${car.make} ${car.model}`}</p>
                         <p className="general_info">General Information</p>
                         <div className="show_details">
@@ -178,7 +256,7 @@ export default class CarShow extends Component {
                         </div>
                         <div className="show_details">
                             <p className="p_nameElement">Status : </p>
-                            <p className="p_Element">{car && car.status} </p>
+                            <p className="p_Element">{car && car.status} {current_user().admin && <button onClick={(event) => this.changeStatus()}>Change</button>}</p>
                         </div>
                         <div className="show_details">
                             <p className="p_nameElement">Body Type : </p>
@@ -276,8 +354,8 @@ export default class CarShow extends Component {
                     <p className="host_mail">Email: <a className="link_host" href='mailto:hilaire.auto.sell@gmail.com' target="_blank">hilaire.auto.sell@gmail.com</a> </p>
                     <p className="host_number">Phone: <a className="link_host" href='tel: +1 (817) 937-3306' target="_blank">+1 (817) 937-3306</a></p>
                 </div>
-                <div className="similar_cars">
-                    <p className="p_similar">Similar car</p>
+                {similars.length !== 0 && <div className="similar_cars">
+                    <p className="p_similar">Similar cars</p>
                     <div className="bloc_similar">
                         <Carousel slidesPerPage={4} arrows infinite 
                             breakpoints = {
@@ -299,7 +377,7 @@ export default class CarShow extends Component {
                                 }
                             }>
 
-                            {similars.length !== 0 && similars.map(e => <div className="div_similar_cars">
+                           {similars.map(e => <div className="div_similar_cars">
                                                     <div className="div_similar_img_cars">
                                                         <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
                                                     </div>
@@ -315,12 +393,12 @@ export default class CarShow extends Component {
                                                     <div className="btn_slide_carP">
                                                         <button className="view_similar_details_cars" onClick = {() => window.location.href = `/cars/${e.data.attributes.id}/show`}>View details</button>
                                                     </div>
-                                                </div>
-                                                )}
+                                                </div>)}
+                                                
 
                         </Carousel>
                     </div>
-                </div>
+                </div>}
               <Footer/>
             </div>
         )

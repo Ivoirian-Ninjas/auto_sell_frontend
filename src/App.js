@@ -58,10 +58,12 @@ function App() {
               <Route  path = "/cars/:id/show" render={renderProps => <CarShow {...renderProps}/>} />
 
 
+
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
               <Route path='/favorites' render={renderProps => <Favorite/>} />
               <Route path='/reviews' render={renderProps => <ReviewIndex/>} />
+
 
               {/* These routes are the routes for the booking process */}          
               <Route path='/bookings' render={renderProps => <BookingCalendar {...renderProps}/>}  />
