@@ -23,7 +23,8 @@ import '@brainhubeu/react-carousel/lib/style.css'
 import current_user from '../../helpers/current_user';
 import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
-import CarouselComponent from '../../components/CarouselComponent';
+import CarouselComponent from '../../components/CarouselComponent'
+import CarouselModal from '../../components/CarouselModal'
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // import { Carousel as CarouselShow } from 'react-responsive-carousel';
 
@@ -48,11 +49,12 @@ export default class CarShow extends Component {
         Position:"absolute",
         similars: [],
         Top: "95%",
-        loading: false
+        loading: false,
+        modalShow: false,
     }
     // attributes :images,:model, :make, :price, :mpg, :mileage, :style,:maximum_seats,:engine, :transmission, :fuel, :driveTrain, :condition, :exteriorColor, :interiorColor, :interiorFabric, :stock, :vin, :description,:status, :year
     display_features = features =>  features.map(e => <li key={e.title}>{e.title}</li>)
-    display_images = images => images.map(e => <div key={e.url} className="showImage_bloc"><img src={e.url} className="showImage_img" /></div>)
+    //display_images = images => images.map(e => <div key={e.url} ><img src={e.url} /></div>)
     handleScroll = () => {
         var pageHeight = this.refs.myContainers
         var infoHeight = this.refs.myContainer
@@ -74,18 +76,39 @@ export default class CarShow extends Component {
         
     }
     close_modal = () => this.setState({  openModal: false })
-    
+    close_modal_show = () => {
+        this.setState({
+            modalShow: false
+        })
+    }
+    open_modal_show = () => {
+        this.setState({
+            modalShow: true
+        })
+    }
     render() {
         let car = this.state.car.status &&  this.state.car
         let similars = this.state.similars
         let modal = this.state.openModal ? <CalendarModal close_modal={this.close_modal} /> : null
-        let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
-
+        //let images = car && car.images.map(e => ({original: e.url, thumbnail: e.url}) )
+         let modal_open = (
+            <div className="modal_show" modalShow={this.state.modalShow}>
+                <button onClick={this.close_modal_show} className="modal_btn_close">X</button>
+                <div className="modal_container">
+                    {car && <CarouselModal images={car.images}/> }
+                </div>
+            </div>
+        )
+        if (!this.state.modalShow) {
+            modal_open = null;
+        }
         return (
             <div>
                 <div>{modal && modal}</div>
+                <div>{modal_open}</div>
                 <Loader loading={this.state.loading}/>
                 <div className="show_images" ref="myContainers">
+                    <button onClick={this.open_modal_show} className="view_modal">View all</button>
                     {/** go to components/CarouselComponent to modify the css */}
                     {car && <CarouselComponent images={car.images}/> }
                 </div>
@@ -174,8 +197,6 @@ export default class CarShow extends Component {
                             <button className="btn_edit" onClick={() => window.location.href = `/cars/${car && car.id}/edit`}>Edit <i className="fa fa-edit"></i> </button>
                         </div>
                         }
-                     
-                      
                     </div>
                     <div className="part_name_show" style={{position: ""+this.state.Position+"", 
                         top:""+this.state.Top+"", }}>
@@ -185,6 +206,13 @@ export default class CarShow extends Component {
                         <button className="contact_us" onClick={() => window.location.href = 'tel: +1 (817) 937-3306' }>
                             <i className="far fa-envelope"></i> Contact us 
                         </button>
+                    </div>
+                    <div className="part_name_mobile">
+                        <p className="price_car_show_2"> $ {car && car.price}</p>
+                        <p className="contact_hilaire">
+                        Number of seller : <br/>
+                        +1 (817) 937-3306
+                        </p>
                     </div>
                 </div>                    
                 <div className="any_question">
