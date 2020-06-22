@@ -46,7 +46,8 @@ export default class Home extends Component {
     }
     state = {
         loading: false,
-        cars: []
+        cars: [],
+        email_subscription: current_user() ? current_user().email_subscription : false
     }
     // responsive={this.responsive} dotsDisabled={true} buttonsDisabled={false}
     // slidesPerPage={3} arrows infinite dots
@@ -80,16 +81,16 @@ export default class Home extends Component {
             const options = {
                 method: 'PATCH',
                 headers: HEADERS,
-               body: JSON.stringify({user: {email_subscription: true} } )
+               body: JSON.stringify({user: {email_subscription: !current_user().email_subscription} } )
     
             }
             fetch(API_ROOT + `/users/${current_user().id}`,options)
-            .then(resp => resp.json)
+            .then(resp => resp.json())
             .then(json => {
-                JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user) )
+                JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
 
-                this.setState({loading: false})
-                 toast.success('You succefully joined our email list. Thanks for trusting us!', {
+                this.setState({loading: false, email_subscription: current_user().email_subscription})
+                 toast.success(current_user() && current_user().email_subscription ? 'You succefully joined our email list. Thanks for trusting us!': 'We are sorry to see you leave. Our doors will always be open', {
                     position: "top-right",
                     autoClose: 10000,
                     hideProgressBar: false,
@@ -115,46 +116,6 @@ export default class Home extends Component {
         }
       
     }
-handleUnsuscribe   = () => {
-    if(current_user()){
-        this.setState({loading: true})
-        const options = {
-            method: 'PATCH',
-            headers: HEADERS,
-           body: JSON.stringify({user: {email_subscription: false} } )
-
-        }
-        fetch(API_ROOT + `/users/${current_user().id}`,options)
-        .then(resp => resp.json)
-        .then(json =>{
-            JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.attributes) )
-            this.setState({loading: false})
-                     toast.success('We are sorry to see you go. You can always come back!', {
-                        position: "top-right",
-                        autoClose: 10000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        })
-                    
-                    
-                    } )
-    }else{
-        toast.warning('Please log in to proceed', {
-            position: "top-right",
-            limit: 3,
-            autoClose: 10000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
-    }
-
-}
 
     render() {
         let cars = this.state.cars
@@ -296,16 +257,16 @@ handleUnsuscribe   = () => {
                                     }
                                 }
                             }>
-                            {(cars && cars.length !== 0 )&& cars.map(e=> <div className="div_cars">
+                            {(cars && cars.length !== 0 )&& cars.map(e=> <div key={e.data.attributes.id} className="div_cars">
                                                                 
                                                                 <div className="div_img_cars">
                                                                     <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
                                                                 </div>
                                                                 <div className="div_info_cars">
-                                                                    <p className="cars_mark_name">
+                                                                    <div className="cars_mark_name">
                                                                         <p className="mark_cars">{e.data.attributes.make} {e.data.attributes.model} </p>
                                                                         <p className="title_cars">{e.data.attributes.year} {e.data.attributes.make} {e.data.attributes.model}</p>
-                                                                    </p>
+                                                                    </div>
                                                                     <p className="cars_priceS">
                                                                         ${e.data.attributes.price}
                                                                     </p>
@@ -336,7 +297,7 @@ handleUnsuscribe   = () => {
                         <h2 className="h2_offers"> RECEIVE OFFERS </h2>
                         <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
                         <div className="form_offers">
-                           {(current_user() && current_user().email_subscription) ? <button className="btn_offers" onClick={this.handleUnsuscribe} >Unsubscribe</button> : <button className="btn_offers" onClick={this.handleSubmit}>Keep me updated</button> }
+                           <button className="btn_offers" onClick={() =>  this.handleSubmit()} >{ this.state.email_subscription ? 'Unsubcribe' : 'Keep me updated'} </button> 
                         </div>
                     </div>
                     <div className="offers_img" data-aos="fade-up">
