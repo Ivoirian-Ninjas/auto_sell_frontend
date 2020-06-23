@@ -17,6 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CarList from './CarList';
 import Loader from '../../components/Loader';
 import current_user from '../../helpers/current_user';
+import ReactGA from 'react-ga';
 
 export default class CarIndex extends Component {
   state = {
@@ -255,7 +256,13 @@ export default class CarIndex extends Component {
                             </div>
                             <div className="invisible_div">
                             <button className="make_btn" onClick={() => this.removeFilter({type: 'make'})}>All Makes</button>
-                                {this.state.makes.map(e => <p onClick ={() => this.addFilter({type: 'make',value: e }) }  className="make_name" key={e}>{e}</p>)}
+                                {this.state.makes.map(e => <p onClick ={() => {
+                                                                          this.addFilter({type: 'make',value: e }) 
+                                                                          ReactGA.event({
+                                                                            category: `searched ${e}`,
+                                                                            action: `a user was looking for the make ${e}`
+                                                                          })
+                                                                      }}  className="make_name" key={e}>{e}</p>)}
                             <button className="make_btn"  onClick={() =>this.setState(this.state.showing_less ? {makes: array_car(), showing_less: false}: {makes: array_car().slice(0,5), showing_less: true} )}>Show {this.state.showing_less ? 'more' : 'less'}</button>
                             </div>
                           </div>

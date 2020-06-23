@@ -20,13 +20,14 @@ export default class ReviewIndex extends Component {
     open_modal = (modal) => {
         this.setState({[modal]: true})
     }
+    options =  { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false, timeZone: 'UTC'  }
 
     componentDidMount(){
         fetch(`${API_ROOT}/reviews`)
         .then(resp => resp.json())
         .then(json => this.setState({reviews: json.reviews}))
     }
-
+    
 
     render() {
         const reviews = this.state.reviews
@@ -59,12 +60,14 @@ export default class ReviewIndex extends Component {
 
                     {reviews && reviews.length !== 0 &&
                         reviews.map(e => 
+                            
                             <div className="review_part">
+                                {console.log(e.data.attributes)}
                                 <div className="part_sms_review">
                                     <div className="part_name_review">
                                         <div className="part_name">
-                                            <h1 className="name_user_review"> {e.data.attributes.email}</h1>
-                                            <h1 className="date_review">{e.data.attributes.creatated_at}</h1>
+                                            <h1 className="name_user_review"> {e.data.attributes.user.name}</h1>
+                                            <h1 className="date_review">{ (new Date(e.data.attributes.created_at) ).toLocaleDateString(undefined, this.options) }</h1>
                                         </div>
                                     <p className="p_rate_review">
                                         <StarRatings rating={e.data.attributes.rating} starRatedColor="#f5a142"

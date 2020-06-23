@@ -7,6 +7,8 @@ import img_Top from '../../assets/img/icon/icons8-traffic-jam-100-4.png'
 import ModelList from './ModelList';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../components/Loader';
+import ReactGA from 'react-ga';
+
 
 export default class CarNew extends Component {
 
@@ -84,7 +86,6 @@ export default class CarNew extends Component {
             progress: undefined,
             }) 
        }else{
-           console.log("completed")
 
             const fd = new FormData()
 
@@ -108,6 +109,10 @@ export default class CarNew extends Component {
             fetch(API_ROOT + '/cars',options)
             .then(resp => resp.json())
             .then(json => {if(!json.error){
+                ReactGA.event({
+                    category: 'New car',
+                    action: `The admin just added a new car. ID: ${json.car_id}`
+                  })
                 this.setState({loading: false})
                 toast.success('Your car has been succefully created!', {
                     position: "top-right",

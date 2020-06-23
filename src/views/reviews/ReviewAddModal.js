@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { API_ROOT, HEADERS } from '../../helpers/constant';
 import current_user from '../../helpers/current_user';
 import { responsiveFontSizes } from '@material-ui/core';
+import ReactGA from 'react-ga';
 
 
 export default class ReviewAddModal extends Component {
@@ -37,7 +38,13 @@ export default class ReviewAddModal extends Component {
                         })
 
                     }else{
+                        JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                         this.props.close_modal()
+                        ReactGA.event({
+                            category: 'New review',
+                            action: `${current_user().name}, added a review`
+                          })
+                          
                         toast.success(json.message,  {
                             position: "top-center",
                             autoClose: 10000,

@@ -21,6 +21,7 @@
     "react-bootstrap-range-slider": "^1.0.0",
     "react-compound-slider": "^2.5.0",
     "react-dom": "^16.13.1",
+    "react-ga": "^3.0.0",
     "react-grid-gallery": "^0.5.5",
     "react-heart-checkbox": "^0.0.4",
     "react-iframe": "^1.8.0",
