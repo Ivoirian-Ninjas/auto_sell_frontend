@@ -69,8 +69,6 @@ export default function index() {
                                         </li> 
 
                                     }
-                                 
-                                   
                                     <li className="li_menu">
                                         <a className={document.location.href === `${ROOT}/users/${current_user().id}`? 
                                             'a_menu actives' : 'a_menu'} href={`/users/${current_user().id}`}>
