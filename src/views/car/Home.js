@@ -28,6 +28,8 @@ import current_user from '../../helpers/current_user';
 import { ROOT, API_ROOT, HEADERS } from '../../helpers/constant';
 import Footer from '../../components/Footer';
 import { ToastContainer, toast } from 'react-toastify';
+import ReactGA from 'react-ga';
+
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -49,26 +51,7 @@ export default class Home extends Component {
         cars: [],
         email_subscription: current_user() ? current_user().email_subscription : false
     }
-    // responsive={this.responsive} dotsDisabled={true} buttonsDisabled={false}
-    // slidesPerPage={3} arrows infinite dots
-    // breakpoints = {
-    //     {
-    //         600: {
-    //             slidesPerPage: 1,
-    //             arrows: false,
-    //             keepDirectionWhenDragging: true
-    //         },
-    //         950: {
-    //             slidesPerPage: 2,
-    //             arrows: false,
-    //             keepDirectionWhenDragging: true
-    //         },
-    //         1024: {
-    //             slidesPerPage: 3,
-    //             arrows: true
-    //         }
-    //     }
-    // }
+
 
     componentDidMount(){
         fetch(API_ROOT + '/cars?limit=5')
@@ -88,6 +71,10 @@ export default class Home extends Component {
             .then(resp => resp.json())
             .then(json => {
                 JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
+                ReactGA.event({
+                    category: `${current_user().email_subscription ? 'Subscibed to email list' : 'Unsubscibed from email list'}`,
+                    action: `${current_user().name}, just ${current_user().email_subscription ? 'Subscibed to email list' : 'Unsubscibed from email list'}`
+                  })
 
                 this.setState({loading: false, email_subscription: current_user().email_subscription})
                  toast.success(current_user() && current_user().email_subscription ? 'You succefully joined our email list. Thanks for trusting us!': 'We are sorry to see you leave. Our doors will always be open', {

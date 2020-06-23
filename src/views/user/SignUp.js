@@ -3,6 +3,9 @@ import { API_ROOT, HEADERS } from '../../helpers/constant';
 import img_two from "../../assets/img/cars-img/raban-haaijk-wftNpcjCHT4-unsplash.jpg"
 import { Link } from "react-router-dom"
 import { toast } from 'react-toastify';
+import ReactGA from 'react-ga';
+import current_user from '../../helpers/current_user';
+
 export default class SignUp extends Component {
     state = {
         password: '',
@@ -18,11 +21,9 @@ export default class SignUp extends Component {
             headers: HEADERS,
             body: JSON.stringify(this.state)
         }
-        fetch(API_ROOT + '/signup', params)
-        .then(resp => resp.json())
-        .then(json => {
-            if(json.error){
-                toast.error(json.error, {
+        if(this.state.password !== '' && this.state.password_confirm !== '' && this.state.email !== '' && this.state.name !== ''){
+            if (this.state.password !== this.state.password_confirm){
+                toast.error("Password don't match", {
                     position: "top-center",
                     autoClose: 10000,
                     hideProgressBar: true,
@@ -32,11 +33,45 @@ export default class SignUp extends Component {
                     progress: undefined,
                 })
             }else{
-                localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
-                window.history.back()
-
+                fetch(API_ROOT + '/signup', params)
+                .then(resp => resp.json())
+                .then(json => {
+                    if(json.error){
+                        toast.error(json.error, {
+                            position: "top-center",
+                            autoClose: 10000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+                    }else{
+                        ReactGA.event({
+                            category: 'New user',
+                            action: `${current_user().name}, is a new user`
+                          })
+                        localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
+                        window.history.back()
+                      
+                          
+        
+                    }
+                })
             }
-        })
+        }else{
+            toast.error("Please complete the form", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+        
+       
     }
 
     render() {

@@ -27,6 +27,7 @@ import CarouselComponent from '../../components/CarouselComponent'
 import CarouselModal from '../../components/CarouselModal'
 import HeartCheckbox from 'react-heart-checkbox';
 import { toast } from 'react-toastify';
+import ReactGA from 'react-ga';
 
 
 export default class CarShow extends Component {
@@ -87,6 +88,10 @@ export default class CarShow extends Component {
                     headers: HEADERS,
                     body: JSON.stringify({user_id: current_user().id, car_id: this.state.car.id})
                 }
+                ReactGA.event({
+                    category: `${this.state.checked ? 'Added to favorites': 'Removed from favorites' } `,
+                    action: `${current_user().name}, ${this.state.checked ?`added ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} to favorites` : `removed ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} from favorites` }`
+                })
                 fetch(`${API_ROOT}/favorites`, options)
                 .then(resp => resp.json())
                 .then( json => {
@@ -140,6 +145,10 @@ export default class CarShow extends Component {
                     body: JSON.stringify({id: this.state.car.id, car: {status: 'sold'} })     
                 }
                 this.setState({car: {...this.state.car, status: 'sold'} } ) 
+                ReactGA.event({
+                    category: 'Sold Car',
+                    action: `The admin just sold the ${this.state.car && `${this.state.car.price} ${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`}`
+                  })
                
                 fetch(API_ROOT + `/cars/${this.state.car.id && this.state.car.id}`,options)
                 .then(resp => resp.json())

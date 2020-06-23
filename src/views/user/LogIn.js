@@ -5,6 +5,8 @@ import '../../assets/css/authentification.css'
 import img_one from "../../assets/img/cars-img/marcus-p-oUBjd22gF6w-unsplash.jpg"
 import {Link} from "react-router-dom"
 import { toast } from 'react-toastify'
+import ReactGA from 'react-ga';
+import current_user from '../../helpers/current_user';
 
 
 export default class LogIn extends Component {
@@ -34,8 +36,13 @@ export default class LogIn extends Component {
                     progress: undefined,
                 })
             }else{
+                ReactGA.event({
+                    category: 'Login',
+                    action: `${current_user().name}, just signed in`
+                  })
                 localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
                 window.history.back()
+             
             }
         })
         
