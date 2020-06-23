@@ -24,9 +24,9 @@ export default class ModalBasicInfo extends Component {
                     console.log(json.user.data.attributes)
                     JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                     toast.success('We succefully updated your Info', {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -37,7 +37,7 @@ export default class ModalBasicInfo extends Component {
                     toast.error(json.error, {
                         position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -66,7 +66,7 @@ export default class ModalBasicInfo extends Component {
                                 <input name='email' type='email' className="input_form_car" value={this.state.email} onChange={this.handleChange}/>
                             </div>
                             <button className="btn_review" onClick={this.handleSubmit}>
-                               Change Info <i className="far fa-clipboard"></i>
+                               Change Info <i className="fa fa-user-plus"></i>
                             </button>
                         </div>
                     </div>

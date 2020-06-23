@@ -1,0 +1,75 @@
+/* .profile_div{
+    width: 80%;
+    display: block;
+    margin: 3% auto;
+    padding: 0.5% 0;
+    border: 1px solid green; 
+    box-shadow: 0px 0px 10px 1px rgba(70, 70, 70, 0.123);
+} */
+.profile_name{
+    width: 80%;
+    display: block;
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 1% 10%;
+}
+.btn_div_prof {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 5%;
+}
+b{
+    color: rgb(37, 37, 37);
+}
+.btn_edit_prof{
+    padding: 7px 10px;
+    border: none;
+    background: rgb(245, 134, 7);
+    color: white;
+    font-size: 1.2rem;
+    transition: ease-in 0.3s;
+    margin: 0 1%;
+}
+.btn_edit_prof:hover{
+    background: rgb(197, 107, 5);
+    transition: ease-in 0.3s;
+}
+.btn_pass_prof{
+    padding: 7px 10px;
+    border: none;
+    background: rgb(4, 196, 100);
+    color: white;
+    font-size: 1.2rem;
+    transition: ease-in 0.3s;
+    margin: 0 1%;
+}
+.btn_pass_prof:hover{
+    background: rgb(0, 156, 78);
+    transition: ease-in 0.3s;
+}
+@media (max-width:858px){
+    .btn_div_prof {
+        width: 90%;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin: 3% 5%;
+    }
+    .btn_edit_prof {
+        padding: 7px 0;
+        margin: 1% 1%;
+        width: 90%;
+    }
+    .btn_pass_prof {
+        padding: 7px 0;
+        margin: 1% 1%;
+        width: 90%;
+    }
+    .profile_name {
+        width: 90%;
+        font-size: 1.2rem;
+        margin: 2% 5%;
+    }
+}

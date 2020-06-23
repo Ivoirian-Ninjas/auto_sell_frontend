@@ -26,9 +26,9 @@ export default class ModalPassword extends Component {
                     console.log(json.user.data.attributes)
                     JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                     toast.success('We succefully updated your password', {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -40,7 +40,7 @@ export default class ModalPassword extends Component {
                     toast.error(json.error, {
                         position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -53,7 +53,7 @@ export default class ModalPassword extends Component {
             toast.error('The new password and its confirmation do not match. Please try again', {
                 position: "top-center",
                 autoClose: 10000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -85,7 +85,7 @@ export default class ModalPassword extends Component {
                                 <input name='confirm_new_password' type='password' className="input_form_car" value={this.state.confirm_new_password} onChange={this.handleChange}/>
                             </div>
                             <button className="btn_review" onClick={this.handleSubmit}>
-                                Change Password <i className="far fa-clipboard"></i>
+                                Change Password <i className="fa fa-lock"></i>
                             </button>
                         </div>
                     </div>

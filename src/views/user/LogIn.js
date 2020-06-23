@@ -4,7 +4,7 @@ import { API_ROOT, HEADERS } from '../../helpers/constant';
 import '../../assets/css/authentification.css'
 import img_one from "../../assets/img/cars-img/marcus-p-oUBjd22gF6w-unsplash.jpg"
 import {Link} from "react-router-dom"
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 
 export default class LogIn extends Component {
@@ -27,7 +27,7 @@ export default class LogIn extends Component {
                 toast.error(json.error, {
                     position: "top-center",
                     autoClose: 10000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,

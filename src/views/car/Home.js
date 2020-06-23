@@ -91,9 +91,9 @@ export default class Home extends Component {
 
                 this.setState({loading: false, email_subscription: current_user().email_subscription})
                  toast.success(current_user() && current_user().email_subscription ? 'You succefully joined our email list. Thanks for trusting us!': 'We are sorry to see you leave. Our doors will always be open', {
-                    position: "top-right",
+                    position: "top-center",
                     autoClose: 10000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -104,10 +104,10 @@ export default class Home extends Component {
             )
         }else{
             toast.warning('Please log in to proceed', {
-                position: "top-right",
+                position: "top-center",
                 limit: 3,
                 autoClose: 10000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,

@@ -37,6 +37,7 @@
     width: 100%;
     display: flex;
     margin: 1% 0 3px 0;
+    /* border: 1px solid rgb(241, 163, 17); */
 }
 .date_review{
     color: rgb(39, 39, 39);
@@ -45,6 +46,7 @@
     width: 100%;
     display: flex;
     margin: 0 0 1% 0;
+    /* border: 1px solid rgb(241, 163, 17); */
 }
 .message_review{
     width: 100%;
@@ -135,7 +137,7 @@
 }
 .modal_contain{
     width: 80%;
-    height: 450px;
+    height: 490px;
     background: white;
     display: block;
     border-radius: 5px;

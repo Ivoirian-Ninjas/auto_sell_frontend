@@ -96,7 +96,7 @@ export default class CarShow extends Component {
                         toast.error(json.error, {
                             position: "top-center",
                             autoClose: 10000,
-                            hideProgressBar: false,
+                            hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
@@ -120,7 +120,7 @@ export default class CarShow extends Component {
                         toast.error(json.error, {
                             position: "top-center",
                             autoClose: 10000,
-                            hideProgressBar: false,
+                            hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
@@ -146,9 +146,9 @@ export default class CarShow extends Component {
                 .then(json => {if(!json.error){
                     this.setState({loading: false})
                     toast.success('Your car has been succefully updated!', {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -161,7 +161,7 @@ export default class CarShow extends Component {
                     toast.error(json.error, {
                         position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -181,9 +181,9 @@ export default class CarShow extends Component {
                 .then(json => {if(!json.error){
                     this.setState({loading: false})
                     toast.success('Your car has been succefully updated!', {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -195,7 +195,7 @@ export default class CarShow extends Component {
                     toast.error(json.error, {
                         position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -247,7 +247,16 @@ export default class CarShow extends Component {
                 </div>
                 <div className="under_img">
                     <div className="show_infos" ref="myContainer">
-                        <h3 className="name_show">{car && `${car.make} ${car.model}`}  {!current_user().admin &&  <HeartCheckbox style={{height: 30, width: 30}} checked={this.state.checked} onClick={this.check} /> } </h3>
+                        <div className="bloc_name_show">
+                            <h3 className="name_show">
+                                {car && `${car.make} ${car.model}`}  
+                            </h3>
+                             <div className="div_heart">
+                                {!current_user().admin &&
+                                <HeartCheckbox style={{height: 10, width: 10}} checked={this.state.checked} 
+                                onClick={this.check} /> }
+                            </div>
+                        </div>
                         <p className="surname_show">{car && `${car.year}, ${car.engine} ${car.make} ${car.model}`}</p>
                         <p className="general_info">General Information</p>
                         <div className="show_details">
@@ -256,7 +265,14 @@ export default class CarShow extends Component {
                         </div>
                         <div className="show_details">
                             <p className="p_nameElement">Status : </p>
-                            <p className="p_Element">{car && car.status} {current_user().admin && <button onClick={(event) => this.changeStatus()}>Change</button>}</p>
+                            <p className="p_Element_status">
+                                {car && car.status}
+                                {current_user().admin &&
+                                    <button className="change_status" onClick={(event) => this.changeStatus()}>
+                                        Change
+                                    </button>
+                                }
+                            </p>
                         </div>
                         <div className="show_details">
                             <p className="p_nameElement">Body Type : </p>

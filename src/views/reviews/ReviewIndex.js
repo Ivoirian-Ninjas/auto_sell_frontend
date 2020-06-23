@@ -41,10 +41,10 @@ export default class ReviewIndex extends Component {
 
                             }else{
                                 toast.warning('Please log in to proceed', {
-                                position: "top-right",
+                                position: "top-center",
                                 limit: 3,
                                 autoClose: 10000,
-                                hideProgressBar: false,
+                                hideProgressBar: true,
                                 closeOnClick: true,
                                 pauseOnHover: true,
                                 draggable: true,
@@ -57,35 +57,30 @@ export default class ReviewIndex extends Component {
                         </button>
 
 
-                    {reviews && reviews.length !== 0 &&    reviews.map(e => <div className="review_part">
-                                                                                <div className="part_sms_review">
-                                                                                    <div className="part_name_review">
-                                                                                        <div className="part_name">
-                                                                                            <h1 className="name_user_review"> {e.data.attributes.email}</h1>
-                                                                                            <h1 className="date_review">{e.data.attributes.creatated_at}</h1>
-                                                                                        </div>
-                                                                                    <p className="p_rate_review">
-                                                                                        <StarRatings rating={e.data.attributes.rating} starRatedColor="#f5a142"
-                                                                                            numberOfStars={5} name='rating'
-                                                                                                starDimension = "20px" starSpacing = "7px" starHoverColor="#f5a142" />
-                                                                                    </p>
-                                                                                    </div>
-                                                                                    <div className="message_review">
-                                                                                        <ReadMoreAndLess ref={this.ReadMore} className="message_review" charLimit={200}
-                                                                                            readMoreText=" Read more" readLessText=" Read less">
-                                                                                           {e.data.attributes.comment}
-                                                                                        </ReadMoreAndLess>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>)
-
+                    {reviews && reviews.length !== 0 &&
+                        reviews.map(e => 
+                            <div className="review_part">
+                                <div className="part_sms_review">
+                                    <div className="part_name_review">
+                                        <div className="part_name">
+                                            <h1 className="name_user_review"> {e.data.attributes.email}</h1>
+                                            <h1 className="date_review">{e.data.attributes.creatated_at}</h1>
+                                        </div>
+                                    <p className="p_rate_review">
+                                        <StarRatings rating={e.data.attributes.rating} starRatedColor="#f5a142"
+                                            numberOfStars={5} name='rating' starDimension = "20px" starSpacing = "7px" 
+                                            starHoverColor="#f5a142" />
+                                    </p>
+                                    </div>
+                                    <div className="message_review">
+                                        <ReadMoreAndLess ref={this.ReadMore} className="message_review" charLimit={200}
+                                            readMoreText=" Read more" readLessText=" Read less">
+                                            {e.data.attributes.comment}
+                                        </ReadMoreAndLess>
+                                    </div>
+                                </div>
+                            </div>)
                     }
-                
-
-                
-                  
-
-             
                 </div>
             </div>
         )

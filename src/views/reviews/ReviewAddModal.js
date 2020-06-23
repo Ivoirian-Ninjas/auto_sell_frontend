@@ -29,7 +29,7 @@ export default class ReviewAddModal extends Component {
                         toast.error('Please make sure you complete the form', {
                             position: "top-center",
                             autoClose: 10000,
-                            hideProgressBar: false,
+                            hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
@@ -39,9 +39,9 @@ export default class ReviewAddModal extends Component {
                     }else{
                         this.props.close_modal()
                         toast.success(json.message,  {
-                            position: "top-right",
+                            position: "top-center",
                             autoClose: 10000,
-                            hideProgressBar: false,
+                            hideProgressBar: true,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
@@ -55,7 +55,7 @@ export default class ReviewAddModal extends Component {
             toast.error('Please make sure you complete the form', {
                 position: "top-center",
                 autoClose: 10000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,

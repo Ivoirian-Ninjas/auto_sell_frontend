@@ -97,7 +97,7 @@ export default class CarEdit extends Component {
            toast.error(message, {
                position: "top-center",
                autoClose: 10000,
-               hideProgressBar: false,
+               hideProgressBar: true,
                closeOnClick: true,
                pauseOnHover: true,
                draggable: true,
@@ -132,7 +132,7 @@ export default class CarEdit extends Component {
                 toast.success('Your car has been succefully updated!', {
                     position: "top-right",
                     autoClose: 10000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -145,7 +145,7 @@ export default class CarEdit extends Component {
                 toast.error(json.error, {
                     position: "top-center",
                     autoClose: 10000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,

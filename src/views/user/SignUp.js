@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { API_ROOT, HEADERS } from '../../helpers/constant';
 import img_two from "../../assets/img/cars-img/raban-haaijk-wftNpcjCHT4-unsplash.jpg"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { toast } from 'react-toastify';
 export default class SignUp extends Component {
     state = {
         password: '',
@@ -21,7 +22,15 @@ export default class SignUp extends Component {
         .then(resp => resp.json())
         .then(json => {
             if(json.error){
-                console.log(json.error)
+                toast.error(json.error, {
+                    position: "top-center",
+                    autoClose: 10000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
             }else{
                 localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
                 window.history.back()

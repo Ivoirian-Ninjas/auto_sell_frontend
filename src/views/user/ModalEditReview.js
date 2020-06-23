@@ -27,9 +27,9 @@ export default class ModalEditReview extends Component {
                     console.log(json.user.data.attributes)
                     JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                     toast.success('Your review has been updated', {
-                        position: "top-right",
+                        position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -40,7 +40,7 @@ export default class ModalEditReview extends Component {
                     toast.error(json.error, {
                         position: "top-center",
                         autoClose: 10000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
