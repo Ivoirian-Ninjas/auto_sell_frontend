@@ -24,7 +24,6 @@ export default class ModalEditReview extends Component {
             .then(resp => resp.json())
             .then(json =>{
                 if(!json.error){
-                    console.log(json.user.data.attributes)
                     JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                     toast.success('Your review has been updated', {
                         position: "top-center",

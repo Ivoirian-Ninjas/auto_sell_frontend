@@ -252,7 +252,7 @@ export default class CarShow extends Component {
                                 {car && `${car.make} ${car.model}`}  
                             </h3>
                              <div className="div_heart">
-                                {!current_user().admin &&
+                                {current_user() && !current_user().admin &&
                                 <HeartCheckbox style={{height: 10, width: 10}} checked={this.state.checked} 
                                 onClick={this.check} /> }
                             </div>
@@ -267,7 +267,7 @@ export default class CarShow extends Component {
                             <p className="p_nameElement">Status : </p>
                             <p className="p_Element_status">
                                 {car && car.status}
-                                {current_user().admin &&
+                                {current_user() && current_user().admin &&
                                     <button className="change_status" onClick={(event) => this.changeStatus()}>
                                         Change
                                     </button>

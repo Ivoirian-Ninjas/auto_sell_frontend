@@ -37,6 +37,7 @@ export default class ReviewAddModal extends Component {
                         })
 
                     }else{
+                        JSON.stringify(json.user)  && localStorage.setItem("auto_sell_user", JSON.stringify(json.user.data.attributes) )
                         this.props.close_modal()
                         toast.success(json.message,  {
                             position: "top-center",
