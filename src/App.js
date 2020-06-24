@@ -21,14 +21,14 @@ import './assets/fontawesome-free-5.11.2-web/css/all.css'
 import Home from './views/car/Home';
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css'
-import AOS from "aos";
-import "aos/dist/aos.css";
-import About from './views/car/About';
-import { ToastContainer, toast } from 'react-toastify';
+import AOS from "aos"
+import "aos/dist/aos.css"
+import About from './views/car/About'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import ReviewIndex from './views/reviews/ReviewIndex';
-import ReactGA from 'react-ga';
-import current_user from './helpers/current_user';
+import ReviewIndex from './views/reviews/ReviewIndex'
+import ReactGA from 'react-ga'
+import current_user from './helpers/current_user'
 
 
 function App() {
@@ -56,14 +56,11 @@ function App() {
              
               <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
               
-              {/*These routes are the routes for the cart */}
+              {/*These routes are the routes for the car */}
               <Route exact path='/cars' render={renderProps => <CarIndex {...renderProps} /> } />
-              {current_user().admin && <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} /> }
-              {current_user().admin && <Route  path='/cars/new' render={renderProps => <CarNew {...renderProps} />} /> }           
+              {current_user() && current_user().admin && <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} /> }
+              {current_user() && current_user().admin && <Route  path='/cars/new' render={renderProps => <CarNew {...renderProps} />} /> }
               <Route  path = "/cars/:id/show" render={renderProps => <CarShow {...renderProps}/>} />
-
-
-
               {/* user routes */}
               <Route path='/users/:id' render={renderProps => <Profile/>} />
               <Route path='/favorites' render={renderProps => <Favorite/>} />
@@ -80,9 +77,9 @@ function App() {
               {/* <Route path='/cart' render={renderProps => <Cart/>} /> */}
 
               {/**Car Parts routes */}
-              {current_user().admin && <Route path='/parts/new' render={renderProps => <CarPartNew/>} /> }
+              {current_user() && current_user().admin && <Route path='/parts/new' render={renderProps => <CarPartNew/>} /> }
               <Route path='/parts' render={renderProps => <CarPartIndex/>} />
-              {current_user().admin && <Route path='/parts/:id/edit' render={renderProps => <CarPartEdit/>} /> }
+              {current_user() && current_user().admin && <Route path='/parts/:id/edit' render={renderProps => <CarPartEdit/>} /> }
             </React.Fragment>
          
        </Switch>

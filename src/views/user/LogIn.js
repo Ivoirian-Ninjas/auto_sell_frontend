@@ -38,7 +38,7 @@ export default class LogIn extends Component {
             }else{
                 ReactGA.event({
                     category: 'Login',
-                    action: `${current_user().name}, just signed in`
+                    action: `${current_user() && current_user().name}, just signed in`
                   })
                 localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
                 window.history.back()

@@ -85,7 +85,7 @@ export default class ModalPassword extends Component {
                                 <input name='confirm_new_password' type='password' className="input_form_car" value={this.state.confirm_new_password} onChange={this.handleChange}/>
                             </div>
                             <button className="btn_review" onClick={this.handleSubmit}>
-                                Change Password <i className="fa fa-lock"></i>
+                                Change Password <i className="fab fa-expeditedssl"></i>
                             </button>
                         </div>
                     </div>

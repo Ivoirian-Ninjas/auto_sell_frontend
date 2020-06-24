@@ -2,7 +2,7 @@ import React from 'react'
 import loggedIn from '../helpers/loggedIn'
 import current_user from '../helpers/current_user'
 import '../assets/css/index.css'
-import {ROOT } from '../helpers/constant';
+import {ROOT } from '../helpers/constant'
 export default function index() {
         return (
             <div>

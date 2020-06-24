@@ -66,7 +66,7 @@ export default class ModalBasicInfo extends Component {
                                 <input name='email' type='email' className="input_form_car" value={this.state.email} onChange={this.handleChange}/>
                             </div>
                             <button className="btn_review" onClick={this.handleSubmit}>
-                               Change Info <i className="fa fa-user-plus"></i>
+                               Change Info <i className="fa fa-user-shield"></i>
                             </button>
                         </div>
                     </div>
