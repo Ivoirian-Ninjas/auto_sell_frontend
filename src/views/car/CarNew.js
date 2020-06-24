@@ -302,7 +302,7 @@ export default class CarNew extends Component {
                         </div>
                     </div>
                     <div className="div_btn_add">
-                    <button onClick={this.handleSubmit} className="btn_send_car">
+                    <button onClick={!this.state.loading && this.handleSubmit} className="btn_send_car">
                         Create <i className="fas fa-check icon_create"></i> 
                     </button>
                     </div>

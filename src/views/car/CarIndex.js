@@ -182,22 +182,27 @@ export default class CarIndex extends Component {
           this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type), data]}, () => { //this call back will iterate through all the elements in the filter array and apply each filter.
         
             let copy_of_array =  [...this.state.cars ] 
+            let copy_of_array2 = [...this.state.cars]
             console.log(this.state.filters)
     
             this.state.filters.forEach(e => {
               if(e.type === 'year'){
                 copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]) : this.state.cars
+                copy_of_array2.filter(car => car.data.attributes[e.type] <= e.value[1] && car.data.attributes[e.type] >= e.value[0]).length === 0  && this.setState({not_found: "Sorry, we couldn't find what you were looking for"})
+
     
               }else if (e.type === 'mileage'){
                 copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] <= e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] <= e.value) : this.state.cars
-    
+               this.setState(  copy_of_array2.filter(car => car.data.attributes[e.type] <= e.value).length === 0  ? {not_found: "Sorry, we couldn't find what you were looking for"}: {not_found: ''})
+
               }else if (e.type === 'price'){
                 console.log(e.value[0])
                 copy_of_array = copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ).length !== 0 ? copy_of_array.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ) : this.state.cars
-    
+                this.setState( copy_of_array2.filter(car => (`${car.data.attributes[e.type]}` <= `${e.value[1]}` && `${car.data.attributes[e.type]}` >= `${e.value[0]}`) ).length === 0  ? {not_found: "Sorry, we couldn't find what you were looking for"}: {not_found: ''})
+
               }else{
                 copy_of_array = copy_of_array.filter(car => car.data.attributes[e.type] === e.value).length !== 0 ?  copy_of_array.filter(car => car.data.attributes[e.type] === e.value) : this.state.cars
-    
+                  this.setState(copy_of_array2.filter(car => car.data.attributes[e.type] === e.value).length === 0 ? {not_found: "Sorry, we couldn't find what you were looking for"} : {not_found: ''})
               }
     
               
