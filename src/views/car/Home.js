@@ -11,10 +11,11 @@ import image4 from "../../assets/img/cars-img/joey-banks-YApiWyp0lqo-unsplash.jp
 import icon1 from "../../assets/img/icon/icons8-traffic-jam-100-3.png"
 import icon2 from "../../assets/img/icon/icons8-services-100.png"
 import icon3 from "../../assets/img/icon/icons8-four-of-five-stars-100.png"
-import logo1 from "../../assets/img/icon/icons8-sedan-100.png"
-import logo2 from "../../assets/img/icon/icons8-sedan-100-4.png"
-import logo3 from "../../assets/img/icon/icons8-hyundai-100.png"
-import logo4 from "../../assets/img/icon/icons8-mercedes-benz-100.png"
+import logo1 from "../../assets/img/icon/icons8-lexus-100.png"
+import logo2 from "../../assets/img/icon/icons8-toyota-100.png"
+import logo3 from "../../assets/img/icon/icons8-nissan-100-2.png"
+import logo4 from "../../assets/img/icon/icons8-honda-100.png"
+
 import slideImg1 from "../../assets/img/cars-img/patrick-tomasso-CP1cKFIl7qc-unsplash.jpg"
 import slideImg2 from "../../assets/img/cars-img/jonathan-daniels-sfqxNM2ugfc-unsplash.jpg"
 import slideImg3 from "../../assets/img/cars-img/benjamin-child-7Cdw956mZ4w-unsplash.jpg"
@@ -119,7 +120,7 @@ export default class Home extends Component {
                     <div className="info_by_slide">
                         <div className="contain_info">
                             <h2 className="welcome_to">
-                                Welcome to Car for sale
+                                Welcome to HTM Auto
                             </h2>
                             <p className="text_slider">
                                 Our mission is to provide the ultimate
@@ -180,7 +181,7 @@ export default class Home extends Component {
                 <div className="our_works">
                     <div className="lets_talk">
                         <h2 className="talk_title" data-aos="fade-up">
-                            Let's talk about us
+                            About HTM  Auto
                         </h2>
                         <p className="talk_text" data-aos="fade-up">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
@@ -295,21 +296,29 @@ export default class Home extends Component {
                     <p className="big_title_popular" data-aos="fade-up">Popular search</p>
                     <div className="cars_popular">
                         <div className="title_popular">
-                            <p className="p_popular" data-aos="fade-up"> Popular marks</p>
+                            <p className="p_popular" data-aos="fade-up"> Popular make</p>
                             <div className="line_popular"></div>
                         </div>
                         <div className="element_popular" data-aos="fade-up">
                             <div className="elements_list">
+                                <img src={logo1} className="elements_icon" alt="" />
+                                <a href="#" className="elements">Lexus</a>
+                            </div>
+                            <div className="elements_list">
+                                <img src={logo2} className="elements_icon" alt="" />
+                                <a href="#" className="elements">Toyota</a>
+                            </div>
+                            <div className="elements_list">
                                 <img src={logo3} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Hyundai (5)</a>
+                                <a href="#" className="elements">Nissan</a>
                             </div>
                             <div className="elements_list">
                                 <img src={logo4} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Mercedes-Benz (2)</a>
+                                <a href="#" className="elements">Honda</a>
                             </div>
                         </div>
                     </div>
-                    <div className="cars_popular">
+                    {/* <div className="cars_popular">
                         <div className="title_popular">
                             <p className="p_popular" data-aos="fade-up"> Popular cars</p>
                             <div className="line_popular"></div>
@@ -324,7 +333,7 @@ export default class Home extends Component {
                                 <a href="#" className="elements">Hatchbacks (6)</a>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="cars_popular">
                         <div className="title_popular">
                             <p className="p_popular" data-aos="fade-up"> Popular models</p>
@@ -332,10 +341,16 @@ export default class Home extends Component {
                         </div>
                         <div className="element_popular" data-aos="fade-up">
                             <div className="elements_list">
-                                <a href="#" className="elements">Mitsubishi Lancer Sportback (1)</a>
+                                <a href="#" className="elements">Lexus SC 430</a>
                             </div>
                             <div className="elements_list">
-                                <a href="#" className="elements">Mercedes-Benz C-Class (2)</a>
+                                <a href="#" className="elements">Toyota Camry</a>
+                            </div>
+                            <div className="elements_list">
+                                <a href="#" className="elements">Nissan Sentra</a>
+                            </div>
+                            <div className="elements_list">
+                                <a href="#" className="elements">Honda Civic</a>
                             </div>
                         </div>
                     </div>

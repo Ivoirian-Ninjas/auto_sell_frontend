@@ -81,17 +81,19 @@ export default class CarShow extends Component {
         
     }
     check =() => {// add to the favorites
+     
         this.setState({checked: !this.state.checked}, ()=> {
+            ReactGA.event({
+                category: `${this.state.checked ? 'Added to favorites': 'Removed from favorites' } `,
+                action: `${current_user().name}, ${this.state.checked ?`added ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} to favorites` : `removed ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} from favorites` }`
+            })
             if(this.state.checked){
                 const options = {
                     method: 'POST',
                     headers: HEADERS,
                     body: JSON.stringify({user_id: current_user().id, car_id: this.state.car.id})
                 }
-                ReactGA.event({
-                    category: `${this.state.checked ? 'Added to favorites': 'Removed from favorites' } `,
-                    action: `${current_user().name}, ${this.state.checked ?`added ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} to favorites` : `removed ${this.state.car && `${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`} from favorites` }`
-                })
+             
                 fetch(`${API_ROOT}/favorites`, options)
                 .then(resp => resp.json())
                 .then( json => {

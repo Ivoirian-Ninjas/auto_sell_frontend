@@ -114,10 +114,11 @@ export default class CarIndex extends Component {
 
     handleScroll = () => {
       const div_cars = this.refs.index_part_right
-            if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more){// check if the user reached the bottom of the page
-              this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length }, () =>{
+            if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more && this.state.filters.length ===0){// check if the user reached the bottom of the page
+              this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length -1 }, () =>{
                 setTimeout(()=>{ 
-                  this.setState(this.state.modifiable_cars.length === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 8)] } )
+                    console.log(this.state.modifiable_cars.length, this.state.cars.length)
+                  this.setState(this.state.modifiable_cars.length === this.state.cars.length ? {more: false, no_more: true}  :  {more: false,modifiable_cars: [...this.state.modifiable_cars, ...this.state.cars.slice(this.state.offset, this.state.offset + 10)] } )
                  }, 1500);
 
               })

@@ -47,11 +47,12 @@ export default class SignUp extends Component {
                             progress: undefined,
                         })
                     }else{
-                        ReactGA.event({
+                     
+                        localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
+                           ReactGA.event({
                             category: 'New user',
                             action: `${current_user() && current_user().name}, is a new user`
                           })
-                        localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
                         window.history.back()
                       
                           
