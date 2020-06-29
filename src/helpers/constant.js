@@ -1,5 +1,5 @@
-export const API_ROOT= 'http://localhost:3000'
-export const ROOT = "http://localhost:3001"
+export const API_ROOT= 'https://htm-auto-backend.herokuapp.com'
+export const ROOT = "https://htm-auto.herokuapp.com"
 export const HEADERS = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
