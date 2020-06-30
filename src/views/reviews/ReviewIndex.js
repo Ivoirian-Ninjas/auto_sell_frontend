@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import ReviewAddModal from './ReviewAddModal';
 import '../../assets/css/review_style.css'
 import StarRatings from 'react-star-ratings'
-import ReadMoreAndLess from 'react-read-more-less';
 import current_user from '../../helpers/current_user';
 import { ToastContainer, toast } from 'react-toastify';
 import { API_ROOT } from '../../helpers/constant';
+import ReadMore from "read-more-less-react";
+import "read-more-less-react/dist/index.css";
+
 
 
 export default class ReviewIndex extends Component {
@@ -76,10 +78,7 @@ export default class ReviewIndex extends Component {
                                     </p>
                                     </div>
                                     <div className="message_review">
-                                        <ReadMoreAndLess ref={this.ReadMore} className="message_review" charLimit={200}
-                                            readMoreText=" Read more" readLessText=" Read less">
-                                            {e.data.attributes.comment}
-                                        </ReadMoreAndLess>
+                                        <ReadMore text= {e.data.attributes.comment}  className="message_review" lines={1} />
                                     </div>
                                 </div>
                             </div>)

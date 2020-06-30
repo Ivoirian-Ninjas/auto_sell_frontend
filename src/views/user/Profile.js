@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import current_user from '../../helpers/current_user';
 import '../../assets/css/review_style.css'
-import ReadMoreAndLess from 'react-read-more-less';
 import { ToastContainer, toast } from 'react-toastify';
 import ModalBasicInfo from './ModalBasicInfo';
 import ModalPassword from './ModalPassword';
 import StarRatings from 'react-star-ratings'
 import ModalEditReview from './ModalEditReview';
 import '../../assets/css/profile.css'
+import ReadMore from "read-more-less-react";
+import "read-more-less-react/dist/index.css";
 export default class Profile extends Component {
     state={
         mod_basic: false,
@@ -63,10 +64,7 @@ export default class Profile extends Component {
                                         </p>
                                         </div>
                                         <div className="message_review">
-                                            <ReadMoreAndLess ref={this.ReadMore} className="message_review" charLimit={200}
-                                                readMoreText=" Read more" readLessText=" Read less">
-                                                {e.comment}
-                                            </ReadMoreAndLess>
+                                            <ReadMore text= {e.comment}  className="message_review" lines={1} />
                                         </div>
                                         <button className="edit_review" 
                                             onClick={()=> this.setState({selecteReview: e, mod_review:true})}>
