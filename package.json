@@ -13,13 +13,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "acorn": "^6.4.1",
     "aos": "^2.3.4",
     "autoprefixer": "^9.8.0",
     "color-name": "^1.1.4",
     "creatable": "^3.0.3",
     "material-auto-rotating-carousel": "^3.0.2",
     "node-sass": "^4.14.1",
-    "react": "^16.13.1",
+    "react": "^15.6.2",
     "react-aos": "^1.0.1",
     "react-awesome-slider": "^4.1.0",
     "react-bootstrap-range-slider": "^1.0.0",
@@ -42,7 +43,8 @@
     "react-spinners": "^0.8.3",
     "react-star-ratings": "^2.3.0",
     "react-swipeable-views": "^0.13.9",
-    "react-toastify": "^6.0.5"
+    "react-toastify": "^6.0.5",
+    "yargs-parser": "^13.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
