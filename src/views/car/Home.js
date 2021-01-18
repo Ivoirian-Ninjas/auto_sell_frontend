@@ -283,7 +283,7 @@ export default class Home extends Component {
                 <div className="part_offers">
                     <div className="offers_form" data-aos="fade-up" data-aos-delay="100">
                         <h2 className="h2_offers"> RECEIVE OFFERS </h2>
-                        <p className="p_offers"> Taste the holidays of the everyday close to home. </p>
+                        <p className="p_offers"> Don't miss out any update from us! </p>
                         <div className="form_offers">
                            <button className="btn_offers" onClick={() =>  this.handleSubmit()} >{ this.state.email_subscription ? 'Unsubcribe' : 'Keep me updated'} </button> 
                         </div>
@@ -302,38 +302,23 @@ export default class Home extends Component {
                         <div className="element_popular" data-aos="fade-up">
                             <div className="elements_list">
                                 <img src={logo1} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Lexus</a>
+                                <a href="/cars?make=Lexus" className="elements">Lexus</a>
                             </div>
                             <div className="elements_list">
                                 <img src={logo2} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Toyota</a>
+                                <a href="/cars?make=Toyota" className="elements">Toyota</a>
                             </div>
                             <div className="elements_list">
                                 <img src={logo3} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Nissan</a>
+                                <a href="/cars?make=Nissan" className="elements">Nissan</a>
                             </div>
                             <div className="elements_list">
                                 <img src={logo4} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Honda</a>
+                                <a href="/cars?make=Honda" className="elements">Honda</a>
                             </div>
                         </div>
                     </div>
-                    {/* <div className="cars_popular">
-                        <div className="title_popular">
-                            <p className="p_popular" data-aos="fade-up"> Popular cars</p>
-                            <div className="line_popular"></div>
-                        </div>
-                        <div className="element_popular" data-aos="fade-up">
-                            <div className="elements_list">
-                                <img src={logo1} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Sedan (19)</a>
-                            </div>
-                            <div className="elements_list">
-                                <img src={logo2} className="elements_icon" alt="" />
-                                <a href="#" className="elements">Hatchbacks (6)</a>
-                            </div>
-                        </div>
-                    </div> */}
+               
                     <div className="cars_popular">
                         <div className="title_popular">
                             <p className="p_popular" data-aos="fade-up"> Popular models</p>
@@ -341,16 +326,16 @@ export default class Home extends Component {
                         </div>
                         <div className="element_popular" data-aos="fade-up">
                             <div className="elements_list">
-                                <a href="#" className="elements">Lexus SC 430</a>
+                                <a href="/cars?model=Lexus SC 430" className="elements">Lexus SC 430</a>
                             </div>
                             <div className="elements_list">
-                                <a href="#" className="elements">Toyota Camry</a>
+                                <a href="/cars?model=Toyota Camry" className="elements">Toyota Camry</a>
                             </div>
                             <div className="elements_list">
-                                <a href="#" className="elements">Nissan Sentra</a>
+                                <a href="/cars?model=Nissan Sentra" className="elements">Nissan Sentra</a>
                             </div>
                             <div className="elements_list">
-                                <a href="#" className="elements">Honda Civic</a>
+                                <a href="/cars?model=Honda Civic" className="elements">Honda Civic</a>
                             </div>
                         </div>
                     </div>

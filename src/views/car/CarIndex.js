@@ -100,14 +100,24 @@ export default class CarIndex extends Component {
 
       this.setState({loading: true})
       window.addEventListener('scroll', this.handleScroll, true)
-     if(!!window.location.search && current_user().admin){
+     if(window.location.search === "?status=sold" && current_user().admin){
       fetch(API_ROOT + '/cars?status=sold' )
       .then(resp => resp.json())
       .then(json => this.setState({cars: json.cars, modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
      }else{
       fetch(API_ROOT + '/cars' )
       .then(resp => resp.json())
-      .then(json => this.setState({cars: json.cars , modifiable_cars: [...json.cars].slice(0,12), loading: false}) )
+      .then(json => {
+        if(window.location.search && window.location.search != "?status=sold" ){
+          this.setState({cars: json.cars , modifiable_cars: [...json.cars].slice(0,12), loading: false}) 
+          //Filter the data
+          this.addFilter({type: 'search', value: window.location.search.split("=")[1] })
+          
+        }else{
+          this.setState({cars: json.cars , modifiable_cars: [...json.cars].slice(0,12), loading: false}) 
+
+        }
+        })
      }
     
     }
@@ -177,7 +187,7 @@ export default class CarIndex extends Component {
 
     addFilter = (data) => {
       if(data.type ==='search'){
-        this.setState({filters: [data], modifiable_cars: [...this.state.cars].filter(e => ((`${e.data.attributes.year} ${e.data.attributes.make} ${e.data.attributes.model} ${e.data.attributes.style}`).toLowerCase() ).includes(data.value.toLowerCase()) ), saerch: '' }, () =>{ this.setState(this.state.modifiable_cars.length === 0 ? {not_found: "Sorry we couldn't find what you were looking for"}: {not_found: ''})})
+        this.setState({filters: [data], modifiable_cars: [...this.state.cars].filter(e => ((`${e.data.attributes.year} ${e.data.attributes.make} ${e.data.attributes.model} ${e.data.attributes.style}`).toLowerCase() ).includes(data.value.toLowerCase()) ) }, () =>{ this.setState(this.state.modifiable_cars.length === 0 ? {not_found: "Sorry we couldn't find what you were looking for"}: {not_found: ''})})
         
       }else{
           this.setState({filters: [...this.state.filters.filter(e => e.type !== data.type), data]}, () => { //this call back will iterate through all the elements in the filter array and apply each filter.
