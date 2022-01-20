@@ -31,10 +31,10 @@ export default function Footer() {
                                     </div>
                                     <div className="col-md-3">
                                         <h2 className="footer-heading mb-4">Follow Us</h2>
-                                        <a href="https://www.facebook.com/Auto-Sale-102363378195261/?modal=admin_todo_tour"  target="_blank" className="pl-0 pr-3"><span className="fab fa-facebook-f"></span></a>
-                                        <a href="https://twitter.com/CK_Auto_Sale"  target="_blank" className="pl-3 pr-3"><span className="fab fa-twitter"></span></a>
-                                        <a href="https://www.linkedin.com/company/54332336"  target="_blank" className="pl-3 pr-3"><span className="fab fa-linkedin"></span></a>
-                                        <a href="https://www.instagram.com/ck_autosale/"  target="_blank" className="pl-3 pr-3"><span className="fab fa-instagram"></span></a>
+                                        <a href="https://www.facebook.com/Auto-Sale-102363378195261/?modal=admin_todo_tour" rel="noopener noreferrer" target="_blank" className="pl-0 pr-3"><span className="fab fa-facebook-f"></span></a>
+                                        <a href="https://twitter.com/CK_Auto_Sale" rel="noopener noreferrer" target="_blank" className="pl-3 pr-3"><span className="fab fa-twitter"></span></a>
+                                        <a href="https://www.linkedin.com/company/54332336" rel="noopener noreferrer" target="_blank" className="pl-3 pr-3"><span className="fab fa-linkedin"></span></a>
+                                        <a href="https://www.instagram.com/ck_autosale/" rel="noopener noreferrer" target="_blank" className="pl-3 pr-3"><span className="fab fa-instagram"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ export default function Footer() {
                                 <div className="border-top pt-5">
                                     <p>
                                         Copyright &copy; All rights reserved | Designed by &nbsp;
-                                        <a href="mailto:michel8cloe@gmail.com" target="_blank" className="text_black">michel8cloe</a>
+                                        <a href="https://www.graphix-ck.com/service" target="_blank" rel="noopener noreferrer" className="text_black">by Graphix</a>
                                     </p>
                                 </div>
                             </div>

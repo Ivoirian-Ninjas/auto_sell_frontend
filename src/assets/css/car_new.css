@@ -40,8 +40,8 @@
     width: 95%;
     display: flex;
     margin: 3% 0 3% 5%;
-    justify-content: end;
-    text-align: end;
+    /* justify-content: end;
+    text-align: end; */
 }
 .input_form_car{
     position: relative;

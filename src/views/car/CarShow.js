@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
-import {ROOT,HEADERS, API_ROOT} from '../../helpers/constant';
+import {HEADERS, API_ROOT} from '../../helpers/constant';
 import CalendarModal from './CalendarModal'
 import '../../assets/css/car_show.css'
-import Gallery from 'react-grid-gallery'
-import GalleryRange from "react-photo-gallery"
-import Lightbox from 'react-images'
-import ImageGallery from 'react-image-gallery';
-import "react-image-gallery/styles/css/image-gallery.css";
 import icon_show1 from '../../assets/img/icon/icons8-gas-station-100-8.png'
 import icon_show2 from '../../assets/img/icon/icons8-engine-500-5.png'
 import icon_show3 from '../../assets/img/icon/icons8-mpg-500-2.png'
 import icon_show4 from '../../assets/img/icon/icons8-substation-500.png'
 import icon_show5 from '../../assets/img/icon/icons8-pen-drive-500.png'
-import slideImg1 from "../../assets/img/cars-img/patrick-tomasso-CP1cKFIl7qc-unsplash.jpg"
-import slideImg2 from "../../assets/img/cars-img/jonathan-daniels-sfqxNM2ugfc-unsplash.jpg"
-import slideImg3 from "../../assets/img/cars-img/benjamin-child-7Cdw956mZ4w-unsplash.jpg"
-import slideImg4 from "../../assets/img/cars-img/serge-kutuzov-1K9-TbJWs2U-unsplash.jpg"
-import Carousel, {
-    Dots
-} from '@brainhubeu/react-carousel';
+import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css'
 import current_user from '../../helpers/current_user';
 import Footer from '../../components/Footer';
@@ -378,8 +367,8 @@ export default class CarShow extends Component {
                 <div className="any_question">
                     <h3 className="question_h3">Any Questions ? </h3>
                     <p className="host_name">Name: Hilaire Kadjo</p>
-                    <p className="host_mail">Email: <a className="link_host" href='mailto:hilaire.auto.sell@gmail.com' target="_blank">hilaire.auto.sell@gmail.com</a> </p>
-                    <p className="host_number">Phone: <a className="link_host" href='tel: +1 (817) 937-3306' target="_blank">+1 (817) 937-3306</a></p>
+                    <p className="host_mail">Email: <a className="link_host" href='mailto:hilaire.auto.sell@gmail.com' target="_blank" rel="noopener noreferrer">hilaire.auto.sell@gmail.com</a> </p>
+                    <p className="host_number">Phone: <a className="link_host" href='tel: +1 (817) 937-3306' target="_blank" rel="noopener noreferrer">+1 (817) 937-3306</a></p>
                 </div>
                 {similars.length !== 0 && <div className="similar_cars">
                     <p className="p_similar">Similar cars</p>

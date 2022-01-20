@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AwesomeSlider from "react-awesome-slider"
 import CoreStyle from "react-awesome-slider/src/styles"
-import AwesomeSliderStyles from "react-awesome-slider/src/styled/scale-out-animation/index"
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css'
 import image1 from "../../assets/img/cars-img/eloy-carrasco-8TiC__MqXsc-unsplash.jpg"
@@ -15,20 +14,14 @@ import logo1 from "../../assets/img/icon/icons8-lexus-100.png"
 import logo2 from "../../assets/img/icon/icons8-toyota-100.png"
 import logo3 from "../../assets/img/icon/icons8-nissan-100-2.png"
 import logo4 from "../../assets/img/icon/icons8-honda-100.png"
-
-import slideImg1 from "../../assets/img/cars-img/patrick-tomasso-CP1cKFIl7qc-unsplash.jpg"
-import slideImg2 from "../../assets/img/cars-img/jonathan-daniels-sfqxNM2ugfc-unsplash.jpg"
-import slideImg3 from "../../assets/img/cars-img/benjamin-child-7Cdw956mZ4w-unsplash.jpg"
 import receiveOfferImg from "../../assets/img/cars-img/campbell-boulanger-3ZUsNJhi_Ik-unsplash.jpg"
 import '../../assets/css/car_index.css'
-import AliceCarousel from 'react-alice-carousel'
-import 'react-alice-carousel/lib/alice-carousel.css'
-import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import current_user from '../../helpers/current_user';
 import { ROOT, API_ROOT, HEADERS } from '../../helpers/constant';
 import Footer from '../../components/Footer';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import ReactGA from 'react-ga';
 
 
@@ -107,6 +100,7 @@ export default class Home extends Component {
 
     render() {
         let cars = this.state.cars
+        console.log(cars)
         return (
           <div>
             <div className="slide_part">
@@ -195,35 +189,35 @@ export default class Home extends Component {
                             <p className="work_icon_part">
                                 <img src={icon1} alt="" />
                             </p>
-                            <p className="work_text">
+                            <div className="work_text">
                                 <h2 className="title_work">Inventory</h2>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            </p>
+                            </div>
                             <button className="work_btn" onClick={() => window.location.href = ROOT + '/cars'}>See more</button>
                         </div>
                         <div className="work_part" data-aos="fade-down" data-aos-delay="200">
                             <p className="work_icon_part">
                                 <img src={icon2} alt="" />
                             </p>
-                            <p className="work_text">
+                            <div className="work_text">
                                 <h2 className="title_work">Services</h2>
                                 incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam
-                            </p>
+                            </div>
                             <button className="work_btn" onClick={() => window.location.href = ROOT + '/about'}>See more</button>
                         </div>
                         <div className="work_part" data-aos="fade-down" data-aos-delay="400">
                             <p className="work_icon_part">
                                 <img src={icon3} alt="" />
                             </p>
-                            <p className="work_text">
+                            <div className="work_text">
                                 <h2 className="title_work">Reviews</h2>
                                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            </p>
+                            </div>
                             <button className="work_btn" onClick={() => window.location.href = ROOT + '/reviews'}>See more</button>
                         </div>
                     </div>
                 </div>
-                <div className="some_cars">
+                {cars.length !== 0 &&  <div className="some_cars">
                     <h2 className="title_feature" data-aos="fade-down">Featured vehicles</h2>
                     <div className="cars_slide" data-aos="fade-down">
                         <Carousel slidesPerPage={3} arrows infinite 
@@ -271,7 +265,8 @@ export default class Home extends Component {
                     <div className="view_more_slideC">
                         <button className="btn_more_slideC" onClick={() => window.location.href = ROOT + '/cars'}>View more</button>
                     </div>
-                </div>
+                </div> }
+               
                 <div className="part_create">
                     <div className="part_text_btn">
                         <p className="part_text_c">

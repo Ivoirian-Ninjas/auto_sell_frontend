@@ -16,7 +16,7 @@ const switch_statement = () =>{
                     <option label="RLX" value="RLX">RLX</option>
                     <option label="TLX" value="TLX">ILX</option>
                 </React.Fragment>)
-          break;
+         
 
         case 'Alfa Romeo':
         return  (<React.Fragment>
@@ -25,13 +25,11 @@ const switch_statement = () =>{
                     <option label="Giulia" value="GIULIA">Giulia</option>
                     <option label="Stelvio" value="Stelvio">Stelvio</option>
                 </React.Fragment>)
-        break;
         case 'Aston Martin':
         return  (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Audi':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -51,14 +49,12 @@ const switch_statement = () =>{
                 <option label="S4" value="S4">S4</option>
                 <option label="TT" value="TT">TT</option>
             </React.Fragment>)
-        break;
         case 'Bentley':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
                 <option label="Bentayga" value="Bentayga">Bentayga</option>
                 <option label="Flying Spur" value="Flying Spur">Flying Spur</option>
             </React.Fragment>)
-        break;
         case 'BMW':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -79,14 +75,12 @@ const switch_statement = () =>{
                     <option label="X7" value="X7">X7</option>
                     <option label="Z4" value="Z4">Z4</option>
             </React.Fragment>)
-        break;
         case 'Bugatti':
         return (<React.Fragment>
                    <option disabled selected value=''> -- Not Available -- </option>
 
 
             </React.Fragment>)
-        break;
         case 'Buick':
         return  (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -97,7 +91,6 @@ const switch_statement = () =>{
                     <option label="Regal" value="Regal">Regal</option>
                     <option label="Regal TourX" value="Regal TourX">Regal TourX</option>
             </React.Fragment>)
-        break;
         case 'Cadillac':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -109,7 +102,6 @@ const switch_statement = () =>{
                     <option label="XT5" value="XT5">XT5</option>
                     <option label="XT6" value="XT6">XT6</option>
             </React.Fragment>)
-        break;
         case 'Chevrolet':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -133,7 +125,6 @@ const switch_statement = () =>{
                     <option label="Traverse" value="Traverse">Traverse</option> 
                     <option label="Trax" value="Trax">Trax</option>                    
             </React.Fragment>)
-        break;
         case 'Chrysler':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -141,7 +132,6 @@ const switch_statement = () =>{
                     <option label="Pacifica" value="Pacifica">Pacifica</option> 
                     <option label="Voyager" value="Voyager">Voyager</option> 
             </React.Fragment>)
-        break;
         case 'Dodge':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -151,13 +141,11 @@ const switch_statement = () =>{
                     <option label="Grand Caravan" value="Grand Caravan">Grand Caravan</option> 
                     <option label="Journey" value="Journey">Journey</option> 
             </React.Fragment>)
-        break;
         case 'Ferrari':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'FIAT':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -165,7 +153,6 @@ const switch_statement = () =>{
                     <option label="500L" value="500L">500L</option>  
                     <option label="500X" value="500X">500X</option>  
             </React.Fragment>)
-        break;
         case 'Ford':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -184,7 +171,6 @@ const switch_statement = () =>{
                     <option label="Transit" value="Transit">Transit</option> 
                     <option label="Transit  Connect" value="Transit Connect">Transit Connect</option> 
             </React.Fragment>)
-        break;
         case 'Genesis':
         return (<React.Fragment>
                      <option disabled selected value=''> -- select an option -- </option>
@@ -193,7 +179,6 @@ const switch_statement = () =>{
                     <option label="G90" value="G90">G90</option> 
                     <option label="GV80" value="GV80">GV80</option> 
             </React.Fragment>)
-        break;
         case 'GMC':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -207,7 +192,6 @@ const switch_statement = () =>{
                 <option label="Yukon" value="Yukon">Yukon</option> 
                 <option label="Yukon XL" value="Yukon XL">Yukon XL</option> 
             </React.Fragment>)
-        break;
         case 'Honda':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -223,7 +207,6 @@ const switch_statement = () =>{
                 <option label="Pilot" value="Pilot">Pilot</option> 
                 <option label="Ridgeline" value="Ridgeline">Ridgeline</option> 
             </React.Fragment>)
-        break;
         case 'Hyundai':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -241,7 +224,6 @@ const switch_statement = () =>{
                 <option label="Veloster" value="Veloster">Veloster</option> 
                 <option label="Venue" value="Venue">Venue</option> 
             </React.Fragment>)
-        break;
         case 'INFINITI':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -251,7 +233,6 @@ const switch_statement = () =>{
                 <option label="QX60" value="QX60">QX60</option> 
                 <option label="QX80" value="QX80">QX80</option> 
             </React.Fragment>)
-        break;
         case 'Jaguar':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -262,7 +243,6 @@ const switch_statement = () =>{
                 <option label="XE" value="XE">XE</option> 
                 <option label="XF" value="XF">XF</option> 
             </React.Fragment>)
-        break;
         case 'Jeep':
         return (<React.Fragment>
                  <option disabled selected value=''> -- select an option -- </option>
@@ -273,13 +253,11 @@ const switch_statement = () =>{
                 <option label="Renegade" value="Renegade">Renegade</option> 
                 <option label="Wrangler" value="Wrangler">Wrangler</option> 
             </React.Fragment>)
-        break;
         case 'Karma':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Kia':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -298,13 +276,11 @@ const switch_statement = () =>{
                 <option label="Stinger" value="Stinger">Stinger</option> 
                 <option label="Telluride" value="Telluride">Telluride</option> 
             </React.Fragment>)
-        break;
         case 'Lamborghini':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Land Rover':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -316,7 +292,6 @@ const switch_statement = () =>{
                 <option label="Range Rover Sport" value="Range Rover Sport">Range Rover Sport</option> 
                 <option label="Range Rover Velar" value="Range Rover Velar">Range Rover Velar</option> 
             </React.Fragment>)
-        break;
         case 'Lexus':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -333,7 +308,6 @@ const switch_statement = () =>{
                 <option label="RX L" value="RX L">RX L</option> 
                 <option label="UX" value="UX">UX</option> 
             </React.Fragment>)
-        break;
         case 'Lincoln':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -344,13 +318,11 @@ const switch_statement = () =>{
                 <option label="Nautilus" value="Nautilus">Nautilus</option> 
                 <option label="Navigator" value="Navigator">Navigator</option> 
             </React.Fragment>)
-        break;
         case 'Lotus':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Maserati':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -358,7 +330,6 @@ const switch_statement = () =>{
                 <option label="Levante" value="Levante">Levante</option> 
                 <option label="Quattroporte" value="Quattroporte">Quattroporte</option> 
             </React.Fragment>)
-        break;
         case 'Mazda':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -370,13 +341,11 @@ const switch_statement = () =>{
                 <option label="CX-9" value="CX-9">CX-9</option> 
                 <option label="MX-5" value="MX-5">MX-5</option> 
             </React.Fragment>)
-        break;
         case 'Mclaren':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Mercedes-Benz':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -400,7 +369,6 @@ const switch_statement = () =>{
                 <option label="SLC" value="SLC">SLC</option> 
                 <option label="Sprinter" value="Sprinter">Sprinter</option> 
             </React.Fragment>)
-        break;
         case 'MINI':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -408,7 +376,6 @@ const switch_statement = () =>{
                 <option label="Cooper Clubman" value="Cooper Clubman">Cooper Clubman</option> 
                 <option label="Cooper Countryman" value="Cooper Countryman">Cooper Countryman</option> 
             </React.Fragment>)
-        break;
         case 'Mitsubishi':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -420,7 +387,6 @@ const switch_statement = () =>{
 
 
             </React.Fragment>)
-        break;
         case 'Nissan':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -443,13 +409,11 @@ const switch_statement = () =>{
                 <option label="Versa" value="Versa">Versa</option> 
                 <option label="Z" value="Z">Z</option> 
             </React.Fragment>)
-        break;
         case 'Pagani':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Porsche':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -462,7 +426,6 @@ const switch_statement = () =>{
                 <option label="Panamera" value="Panamera">Panamera</option> 
                 <option label="Taycan" value="Taycan">Taycan</option> 
             </React.Fragment>)
-        break;
         case 'RAM':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -471,19 +434,16 @@ const switch_statement = () =>{
                 <option label="2500" value="2500">2500</option> 
                 <option label="3500" value="3500">3500</option> 
             </React.Fragment>)
-        break;
         case 'Rolls-Royce':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Smart':
         return (<React.Fragment>
                  <option disabled selected value=''> -- Not Available -- </option>
 
             </React.Fragment>)
-        break;
         case 'Subaru':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -496,7 +456,6 @@ const switch_statement = () =>{
                 <option label="Outback" value="Outback">Outback</option>
                 <option label="WRX" value="WRX">WRX</option> 
             </React.Fragment>)
-        break;
         case 'Tesla':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -507,7 +466,6 @@ const switch_statement = () =>{
                 <option label="Model Y" value="Model Y">Model Y</option> 
                 <option label="Roadster" value="Roadster">Roadster</option> 
             </React.Fragment>)
-        break;
         case 'Toyota':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -534,7 +492,6 @@ const switch_statement = () =>{
                 <option label="Yaris" value="Yaris">Yaris</option> 
                 <option label="Yaris Hatchaback" value="Yaris Hatchback">Yaris Hatchback</option> 
             </React.Fragment>)
-        break;
         case 'Volkswagen':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -547,7 +504,6 @@ const switch_statement = () =>{
                 <option label="Passat" value="Passat">Passat</option> 
                 <option label="Tiguan" value="Tiguan">Tiguan</option> 
             </React.Fragment>)
-        break;
         case 'Volvo':
         return (<React.Fragment>
                 <option disabled selected value=''> -- select an option -- </option>
@@ -559,12 +515,9 @@ const switch_statement = () =>{
                 <option label="XC60" value="XC60">XC60</option> 
                 <option label="XC90" value="XC90">XC90</option> 
             </React.Fragment>)
-        break;
   
       default:
-         return (<React.Fragment>  <option disabled selected value=''> -- select a make -- </option></React.Fragment>)
-          break;
- 
+         return (<React.Fragment>  <option disabled selected value=''> -- select a make -- </option></React.Fragment>) 
   }
 }
 

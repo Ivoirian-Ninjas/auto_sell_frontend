@@ -1,9 +1,8 @@
 import StarRatings from 'react-star-ratings'
 import React, { Component } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { API_ROOT, HEADERS } from '../../helpers/constant';
 import current_user from '../../helpers/current_user';
-import { responsiveFontSizes } from '@material-ui/core';
 import ReactGA from 'react-ga';
 
 
@@ -11,9 +10,9 @@ export default class ReviewAddModal extends Component {
     state = {
         title: '',
         comment: '',
-        rating: 0
+        rating_state: 0
     }
-    changeRating = (rating, name) => this.setState({rating, rating})
+    changeRating = (rating, name) => this.setState({rating_state: rating})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = () => {
         if(this.state.title !== '' && this.state.comment !== ''  && this.state.rating !== 0){

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { API_ROOT, HEADERS, ROOT } from '../../helpers/constant';
+import { API_ROOT } from '../../helpers/constant';
 import Creatable from 'react-select/creatable';
 import CarList from './CarList';
 import '../../assets/css/car_new.css'
 import img_Top from '../../assets/img/icon/icons8-traffic-jam-100-4.png'
 import ModelList from './ModelList';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
 
 export default class CarEdit extends Component {

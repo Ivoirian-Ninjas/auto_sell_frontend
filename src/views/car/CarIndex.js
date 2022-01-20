@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
 import '../../assets/css/car_search.css'
-import img1 from '../../assets/img/cars-img/one.jpg'
 import img_SUV from '../../assets/img/car-model/SUV.png'
 import img_Sedan from '../../assets/img/car-model/Sedan.png'
 import img_truck from '../../assets/img/car-model/Pickup-Truck-PNG-Clipart.png'
 import img_coupe from '../../assets/img/car-model/2016-jaguar-f-type.png'
-import img_convert from '../../assets/img/car-model/949-9491261_car-side-view-convertible-png-m6-convertible-side.png'
-import img_wagon from '../../assets/img/car-model/png-transparent-fiat-500l-wagon-car-fiat.png'
 import img_hatch from '../../assets/img/car-model/12670_cc0640_001_qak.png'
 import img_mini from '../../assets/img/car-model/6837754_preview.png'
 import { API_ROOT, ROOT } from '../../helpers/constant';
 import array_car from './carArrayMake'
 import RangeSlider from '@material-ui/core/Slider';
 import RangeTypography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import CarList from './CarList';
 import Loader from '../../components/Loader';
 import current_user from '../../helpers/current_user';
 import ReactGA from 'react-ga';
@@ -39,7 +34,7 @@ export default class CarIndex extends Component {
     makes: array_car().slice(0,5),
     showing_less: true,
     priceRange: [5000,1000000],
-    yearRange: ['1998',(new Date).getFullYear()+1],
+    yearRange: ['1998',(new Date()).getFullYear()+1],
     mileMax: 1,
     dataYear: [{
         value: 0,
@@ -47,7 +42,7 @@ export default class CarIndex extends Component {
       },
       {
         value: 100,
-        label: (new Date).getFullYear() + 1,
+        label: (new Date()).getFullYear() + 1,
       },
     ],
     filters: [],
@@ -108,7 +103,7 @@ export default class CarIndex extends Component {
       fetch(API_ROOT + '/cars' )
       .then(resp => resp.json())
       .then(json => {
-        if(window.location.search && window.location.search != "?status=sold" ){
+        if(window.location.search && window.location.search !== "?status=sold" ){
           this.setState({cars: json.cars , modifiable_cars: [...json.cars].slice(0,12), loading: false}) 
           //Filter the data
           this.addFilter({type: 'search', value: window.location.search.split("=")[1] })
@@ -165,7 +160,6 @@ export default class CarIndex extends Component {
     }
 
     handlePriceChange = (event,value) =>{
-       const range = this.state.priceRange
        this.setState({priceRange: value}, () =>  this.addFilter({type: 'price', value: value}))
        //, modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
       
@@ -178,7 +172,6 @@ export default class CarIndex extends Component {
      }
 
     handleYearChange = (event, value) => {
-        const range = this.state.yearRange
         this.setState({yearRange: value}, () => this.addFilter({type: 'year', value: value}) )
         // modifiable_cars: [...this.state.cars].filter(car =>  car.data.attributes.year <= range[1] && car.data.attributes.year >= range[0])})
        
@@ -423,13 +416,13 @@ export default class CarIndex extends Component {
                                 value={this.state.yearRange}
                                 aria-labelledby="range-slider"
                                 step={1}
-                                max={(new Date).getFullYear() + 1}
+                                max={(new Date()).getFullYear() + 1}
                                 min={1998}
                                 onChange={this.handleYearChange}
                                 valueLabelDisplay="on"
                                 marks={this.state.dataYear}
                                  />
-                                 <button className="btn_reset" onClick={()=>{ this.removeFilter({type: 'year'}); this.setState({yearRange: ['1998',(new Date).getFullYear()+1] })}}>RESET</button>
+                                 <button className="btn_reset" onClick={()=>{ this.removeFilter({type: 'year'}); this.setState({yearRange: ['1998',(new Date()).getFullYear()+1] })}}>RESET</button>
                           </div>
                         </div>
                       )

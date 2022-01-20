@@ -3,7 +3,7 @@ import ReviewAddModal from './ReviewAddModal';
 import '../../assets/css/review_style.css'
 import StarRatings from 'react-star-ratings'
 import current_user from '../../helpers/current_user';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { API_ROOT } from '../../helpers/constant';
 import ReadMore from "read-more-less-react";
 import "read-more-less-react/dist/index.css";

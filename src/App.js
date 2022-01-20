@@ -5,9 +5,7 @@ import CarEdit from './views/car/CarEdit'
 import CarNew from './views/car/CarNew'
 import CarShow from './views/car/CarShow'
 import Profile from './views/user/Profile'
-import Analytics from './views/user/Analytic'
 import Favorite from './views/user/Favorite'
-import Cart from './views/cart/Cart'
 import CarPartEdit from './views/car_part/CarPartEdit'
 import CarPartIndex from './views/car_part/CarPartIndex'
 import CarPartNew from './views/car_part/CarPartIndex'
@@ -19,12 +17,10 @@ import './App.css';
 import './assets/bootstrap-4.3.1-dist/css/bootstrap.min.css'
 import './assets/fontawesome-free-5.11.2-web/css/all.css'
 import Home from './views/car/Home';
-import Carousel, { Dots } from '@brainhubeu/react-carousel'
-import '@brainhubeu/react-carousel/lib/style.css'
 import AOS from "aos"
 import "aos/dist/aos.css"
 import About from './views/car/About'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ReviewIndex from './views/reviews/ReviewIndex'
 import ReactGA from 'react-ga'

@@ -32,13 +32,13 @@ export default function About() {
                         <p className="host_name">Name: Hilaire Kadjo</p>
                         <p className="host_mail">
                             Email: 
-                            <a className="link_host" href='mailto:hilaire.auto.sell@gmail.com' target="_blank">
+                            <a className="link_host" href='mailto:hilaire.auto.sell@gmail.com' target="_blank" rel="noopener noreferrer">
                                 hilaire.auto.sell@gmail.com
                             </a> 
                         </p>
                         <p className="host_number">
                             Phone: 
-                            <a className="link_host" href='tel: +1 (817) 937-3306' target="_blank">
+                            <a className="link_host" href='tel: +1 (817) 937-3306' target="_blank" rel="noopener noreferrer">
                                 +1 (817) 937-3306
                             </a>
                         </p>

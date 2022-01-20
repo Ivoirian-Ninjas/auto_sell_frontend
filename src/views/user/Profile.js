@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import current_user from '../../helpers/current_user';
 import '../../assets/css/review_style.css'
-import { ToastContainer, toast } from 'react-toastify';
 import ModalBasicInfo from './ModalBasicInfo';
 import ModalPassword from './ModalPassword';
 import StarRatings from 'react-star-ratings'
