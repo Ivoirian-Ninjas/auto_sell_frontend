@@ -31,7 +31,6 @@ export default class CarShow extends Component {
             .then(json => this.setState({car: json.car.data.attributes,similars: json.similars, features: json.car.data.attributes.features, loading: false, checked: current_user() &&  !!current_user().cars.find(e => `${e.id}` ===`${json.car.data.attributes.id}` ) } ))
         }
       
-        // 
     }
     
     state={

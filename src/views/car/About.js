@@ -2,9 +2,15 @@ import React from 'react'
 import '../../assets/css/about.css'
 import img from "../../assets/img/cars-img/matt-antonioli-T_ZdgxzPS5k-unsplash - Copie.jpg"
 import Footer from '../../components/Footer';
+import {Helmet} from "react-helmet";
+
 export default function About() {
     return (
         <div>
+            <Helmet>
+                <title>HTM AUTO | About</title>
+                <meta name="description" content="Helmet application" />
+            </Helmet>
             <div className="about_div">
                 <div className="bloc_image">
                     <div className="bloc_imgAbout">

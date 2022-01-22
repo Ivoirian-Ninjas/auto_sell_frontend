@@ -64,13 +64,12 @@ export default class ModalPassword extends Component {
 
     render() {
         return (
-           <div>
-                <div className="div_modal">
-                    <div className="modal_contain">
+            <div className="div_modal">
+                <div className="modal_contain">
                     <button onClick ={() =>this.props.close_modal()} className="close_modal_more"> X </button>
                         <h1 className="car_name">Change your password</h1>
                         <div className="div_contain_modal">
-                     
+                        
                             <div className="div_textarea">
                                 <label className="label_form_car">Password</label>
                                 <input name='password' type='password' className="input_form_car" value={this.state.password} onChange={this.handleChange}/>
@@ -88,8 +87,7 @@ export default class ModalPassword extends Component {
                                 Change Password <i className="fab fa-expeditedssl"></i>
                             </button>
                         </div>
-                    </div>
-                 </div>
+                </div>
             </div>
         )
     }

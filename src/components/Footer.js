@@ -25,8 +25,8 @@ export default function Footer() {
                                     <div className="col-md-4 ml-auto">
                                         <h2 className="footer-heading mb-4">Features</h2>
                                         <ul className="list-unstyled">
-                                            <li><a href="/cars">Cars for sale</a></li>
-                                            <li><a href="/about">About us</a></li>
+                                            <li><a href="/cars">Iventory</a></li>
+                                            <li><a href="/about">About</a></li>
                                         </ul>
                                     </div>
                                     <div className="col-md-3">

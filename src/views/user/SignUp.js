@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { toast } from 'react-toastify';
 import ReactGA from 'react-ga';
 import current_user from '../../helpers/current_user';
+import {Helmet} from "react-helmet";
 
 export default class SignUp extends Component {
     state = {
@@ -78,6 +79,10 @@ export default class SignUp extends Component {
     render() {
         return (
             <div className="main_container" >
+            <Helmet>
+                <title>HTM AUTO | Sign up</title>
+                <meta name="description" content="Helmet application" />
+            </Helmet>
                 <div className="main_content">
                     <div className="user sign_box" data-aos="fade-left" data-aos-delay="100" data-aos-duration="500">
                         <div className="form_box">

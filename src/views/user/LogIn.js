@@ -7,13 +7,18 @@ import {Link} from "react-router-dom"
 import { toast } from 'react-toastify'
 import ReactGA from 'react-ga';
 import current_user from '../../helpers/current_user';
+import ModalForgotPassword from './ModlaForgotPassword';
+import {Helmet} from "react-helmet";
 
 
 export default class LogIn extends Component {
     state = {
         password: '',
-        email: ''
+        email: '',
+        show_modal: false
     }
+    open_modal = () => this.setState({show_modal: true})
+    close_modal = () => this.setState({show_modal: false})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = (event) =>{
         event.preventDefault()
@@ -52,7 +57,12 @@ export default class LogIn extends Component {
     render() {
         return (
             <div className="main_container">
+                <Helmet>
+                    <title>HTM AUTO | Log in</title>
+                    <meta name="description" content="Helmet application" />
+                </Helmet>
                 <div className="main_content" >
+                    {this.state.show_modal && <ModalForgotPassword close_modal={this.close_modal}/>}
                     <div className="user sign_box" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500">
                         <div className="bloc_img_box">
                             <img src={img_one} className="img_box" alt="" />
@@ -62,12 +72,16 @@ export default class LogIn extends Component {
                                 <h2 className="log_title">Log In</h2>
                                 <input className="input_log" onChange={this.handleChange} name='email' value={this.state.email} type="mail" placeholder="user@gmail.com"/>
                                 <input className="input_log" onChange={this.handleChange} name='password' value={this.state.password} type="password" placeholder="Password"/>
+
                                 <button onClick={this.handleSubmit} className="btn_login">Login</button>
                                 <p className="signup">
                                     Don't have an account ?
                                     <Link to="/signup" className="switch_a"> Sign Up</Link>
                                 </p>
+
                             </form>
+                            <button  className='switch_a' onClick={this.open_modal}>Forgot Password</button>
+
                         </div>
                     </div>
                 </div>

@@ -23,6 +23,7 @@
     "react-dom": "^16.13.1",
     "react-ga": "^3.0.0",
     "react-heart-checkbox": "^0.0.4",
+    "react-helmet": "^6.1.0",
     "react-iframe": "^1.8.0",
     "react-responsive-carousel": "^3.2.8",
     "react-router": "^5.2.0",

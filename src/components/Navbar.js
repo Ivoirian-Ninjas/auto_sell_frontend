@@ -37,11 +37,11 @@ export default function index() {
                             </label>
                             <li className="li_menu">
                                 <a href="/cars" className={document.location.href === `${ROOT}/cars`? 
-                                    'a_menu actives' : 'a_menu'}> Cars for sale </a>
+                                    'a_menu actives' : 'a_menu'}>Inventory</a>
                             </li>
                             <li className="li_menu">
                                 <a href="/about" className={document.location.href === `${ROOT}/about`? 
-                                    'a_menu actives' : 'a_menu'}> About us </a>
+                                    'a_menu actives' : 'a_menu'}> About</a>
                             </li>
                             { loggedIn() ? 
                                 <div>
@@ -86,11 +86,11 @@ export default function index() {
                                     <div >
                                             <li className="li_menu">
                                                 <a className={document.location.href === `${ROOT}/login`? 
-                                                    'a_menu actives' : 'a_menu'} href="/login">Login</a>
+                                                    'a_menu actives' : 'a_menu'} href="/login">Log in</a>
                                             </li>
                                             <li className="li_menu">
                                                 <a className={document.location.href === `${ROOT}/signup`? 
-                                                    'a_menu actives' : 'a_menu'} href="/signup">Sign Up</a>
+                                                    'a_menu actives' : 'a_menu'} href="/signup">Sign up</a>
                                             </li>
                                     </div>
                                 )
