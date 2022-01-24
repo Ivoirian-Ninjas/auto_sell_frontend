@@ -57,7 +57,7 @@ export default class Profile extends Component {
                                                 <h1 className="date_review">{(new Date(e.updated_at) ).toLocaleDateString(undefined, this.options)}</h1>
                                             </div>
                                         <p className="p_rate_review">
-                                            <StarRatings rating={e.rating} starRatedColor="#f5a142"
+                                            <StarRatings rating={e.rating ? e.rating : 0} starRatedColor="#f5a142"
                                                 numberOfStars={5} name='rating' starDimension = "20px" starSpacing = "7px" 
                                                 starHoverColor="#f5a142" />
                                         </p>

@@ -44,7 +44,7 @@ export default function Footer() {
                                 <div className="border-top pt-5">
                                     <p>
                                         Copyright &copy; All rights reserved | Designed by &nbsp;
-                                        <a href="https://www.graphix-ck.com/service" target="_blank" rel="noopener noreferrer" className="text_black">by Graphix</a>
+                                        <a href="https://www.graphix-ck.com/service" target="_blank" rel="noopener noreferrer" className="text_black">Graphix</a>
                                     </p>
                                 </div>
                             </div>

@@ -7,11 +7,11 @@ import { toast } from 'react-toastify';
 
 export default class ModalEditReview extends Component {
     state={
-        rating_state: this.props.review.rating,
+        rating: this.props.review.rating ? this.props.review.rating  : 0,
         title: this.props.review.title,
         comment: this.props.review.comment,
     }
-    changeRating = (rating, name) => this.setState({rating_state: rating})
+    changeRating = (new_rating, name) => this.setState({rating: new_rating})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit= () => {
         if(this.state.rating !== 0 && this.state.title !== '' && this.state.comment !== ''){

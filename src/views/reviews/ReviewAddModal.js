@@ -10,9 +10,9 @@ export default class ReviewAddModal extends Component {
     state = {
         title: '',
         comment: '',
-        rating_state: 0
+        rating: 0
     }
-    changeRating = (rating, name) => this.setState({rating_state: rating})
+    changeRating = (new_rating, name) => this.setState({rating: new_rating})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = () => {
         if(this.state.title !== '' && this.state.comment !== ''  && this.state.rating !== 0){
