@@ -39,6 +39,250 @@ export default class CarNew extends Component {
        loading: false
     }
 
+    componentDidMount(){
+        fetch(`${API_ROOT}/options`)
+        .then(resp => resp.json())
+        .then(json => {
+            this.setState({options: json.options})
+            
+        }) 
+    }
+    validate = () =>{
+        const {images,features} = this.state
+        const {model, make, transmission, description, condition, mileage, year, price, mpg, style, maximum_seats, engine, fuel, driveTrain, exteriorColor, interiorColor, interiorFabric, vin} = this.state.car
+        if(images.length > 0 && features.length > 0  && model && make && transmission && description && condition && mileage && year && price && mpg && style && maximum_seats && engine && fuel && driveTrain && exteriorColor && interiorColor && interiorFabric && vin){
+            return true
+        }else{
+            return false
+        }
+        
+    }
+
+    display_error = () => {
+        const {images,features} = this.state
+        const {model, make, transmission, description, condition, mileage, year, price, mpg, style, maximum_seats, engine, fuel, driveTrain, exteriorColor, interiorColor, interiorFabric, vin} = this.state.car
+        if(images.length === 0){
+            toast.error("Please add some images", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(features.length === 0){
+            toast.error("Please add some features", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!make){
+            toast.error("The model can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!model){
+            toast.error("The make can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!transmission){
+            toast.error("The transmission can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!condition){
+            toast.error("The description can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!mileage){
+            toast.error("The mileage can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!year){
+            toast.error("The year can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!price){
+            toast.error("The price can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!description){
+            toast.error("The condition can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!mpg){
+            toast.error("The mileage per gallon can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!style){
+            toast.error("The style can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!maximum_seats){
+            toast.error("The maximum seat can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!engine){
+            toast.error("The engine can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!fuel){
+            toast.error("The fuel can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!driveTrain){
+            toast.error("The drive train can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!exteriorColor){
+            toast.error("The exterior color can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!interiorColor){
+            toast.error("The interior color can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!interiorFabric){
+            toast.error("The interiro fabric can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }else if(!vin){
+            toast.error("The vin can't be blank", {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) 
+
+        }
+    }
 
     customStyles = {
         option: (provided, state) => ({
@@ -67,23 +311,8 @@ export default class CarNew extends Component {
     hansleFileChange = (event) => this.setState({images: event.target.files})
     
     handleSubmit = () =>{
-        //Check if there is any input that is an empty string
-       const check_empty_val = Object.keys(this.state.car).filter(key => this.state.car[key] === '')
-       console.log(check_empty_val)
-
-       if(check_empty_val.length !== 0 || this.state.images.length === 0 || this.state.features.length === 0 ){
-           console.log('please complete the form')
-           const message = `You have ${check_empty_val.length} icomplete fields:  \n${check_empty_val.map(e => `${e} \n`).join('')} `
-        //    console.log(message)
-        toast.error(message, {
-            position: "top-center",
-            autoClose: 10000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            }) 
+       if(!this.validate()){
+           this.display_error()
        }else{
 
             const fd = new FormData()
