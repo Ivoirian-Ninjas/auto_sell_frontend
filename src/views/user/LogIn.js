@@ -19,6 +19,10 @@ export default class LogIn extends Component {
         reset_password_token: window.location.search.split("=")[1] ? window.location.search.split("=")[1] : '',
         show_modal: false
     }
+    componentDidMount(){
+        if(current_user())
+        window.location.href =  ROOT
+    }
     open_modal = () => this.setState({show_modal: true})
     close_modal = () => this.setState({show_modal: false})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})

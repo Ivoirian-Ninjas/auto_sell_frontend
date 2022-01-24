@@ -95,7 +95,7 @@ export default class CarIndex extends Component {
     }
 
     handleScroll = () => {
-      const div_cars = this.refs.index_part_right
+      const div_cars = document.querySelector("div.index_part_right")
             if( (div_cars.scrollHeight - div_cars.scrollTop ===div_cars.clientHeight) && !this.state.no_more && this.state.filters.length ===0){// check if the user reached the bottom of the page
               this.setState({more: true, offset: this.state.offset + this.state.modifiable_cars.length -1 }, () =>{
                 setTimeout(()=>{ 
@@ -521,7 +521,7 @@ export default class CarIndex extends Component {
               </div>
             </div> : null
             }
-            <div className="index_part_right" ref='index_part_right' >
+            <div className="index_part_right"  >
               <div className="filter_part">
               <div className="part_filter">
                 {!this.state.showFilter ?

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { API_ROOT, HEADERS } from '../../helpers/constant';
+import { API_ROOT, EMAIL_PATTERN, HEADERS } from '../../helpers/constant';
 import current_user from '../../helpers/current_user';
 import { toast } from 'react-toastify';
 
@@ -11,7 +11,7 @@ export default class ModalBasicInfo extends Component {
     }
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit= () => {
-        if(this.state.email !== '' && this.state.name !== ''){
+        if(this.state.email.match(EMAIL_PATTERN) && this.state.name !== ''){
            const options = {
                 method: 'PATCH',
                 headers: HEADERS,
@@ -44,6 +44,16 @@ export default class ModalBasicInfo extends Component {
                         progress: undefined,
                     })
                 }
+            })
+        }else{
+            toast.error(this.state.email.match(EMAIL_PATTERN) ? 'The name can not be blank' : 'Please enter a valid email', {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
             })
         }
     }

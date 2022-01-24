@@ -13,7 +13,7 @@ export default class ModalPassword extends Component {
     }
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit= () => {
-        if( (this.state.password !== '' && this.state.new_password !== '' && this.state.confirm_new_password !== '') && (this.state.new_password === this.state.confirm_new_password)){
+        if( (this.state.password !== '' && this.state.new_password !== '' && this.state.confirm_new_password !== '') && (this.state.new_password === this.state.confirm_new_password) && (this.state.new_password.length > 5)){
            const options = {
                 method: 'PATCH',
                 headers: HEADERS,
@@ -50,7 +50,7 @@ export default class ModalPassword extends Component {
                             
             } )
         }else{
-            toast.error('The new password and its confirmation do not match. Please try again', {
+            toast.error(this.state.new_password !== this.state.confirm_new_password ? 'The passwords do not match' : 'The password is too short. The password should have a minimum of 6 characters', {
                 position: "top-center",
                 autoClose: 10000,
                 hideProgressBar: true,
