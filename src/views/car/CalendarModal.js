@@ -12,7 +12,7 @@ export default function CalendarModal(props) {
 
         <h1 class_name='.modal_schedule'>Let's Schedule</h1>
         {/* <iframe  style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> */}
-        <Iframe url="https://calendly.com/hilaire-auto-sell/60min"
+        <Iframe url="https://calendly.com/hilaire-auto-sell/30min"
         width="100%"
         height="500px"
         id="myId"
