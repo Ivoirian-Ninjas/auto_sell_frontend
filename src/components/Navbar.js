@@ -43,6 +43,10 @@ export default function index() {
                                 <a href="/about" className={document.location.href === `${ROOT}/about`? 
                                     'a_menu actives' : 'a_menu'}> About</a>
                             </li>
+                            <li className="li_menu">
+                                <a href="/reviews" className={document.location.href === `${ROOT}/reviews`? 
+                                    'a_menu actives' : 'a_menu'}> Reviews</a>
+                            </li>
                             { loggedIn() ? 
                                 <div>
                                     {current_user().admin &&
