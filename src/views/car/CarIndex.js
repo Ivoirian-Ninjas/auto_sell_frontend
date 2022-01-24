@@ -201,8 +201,13 @@ export default class CarIndex extends Component {
     }
 
     handleSearch = () =>{
-      this.state.search !== '' && this.addFilter({type: 'search', value: this.state.search})
-      this.state.search !== '' && this.setState({search: ''})
+      const {search} =this.state
+      search  && this.addFilter({type: 'search', value: this.state.search})
+      search && ReactGA.event({
+        category: `searched ${search}`,
+        action: `a user was looking for the following term '${search}'`
+      })
+      search && this.setState({search: ''})
     } 
 
     removeFilter = (data) => {

@@ -137,6 +137,7 @@ export default class CarShow extends Component {
                 this.setState({car: {...this.state.car, status: 'sold'} } ) 
                 ReactGA.event({
                     category: 'Sold Car',
+                    label: this.state.car && `${this.state.car.price} ${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`,
                     action: `The admin just sold the ${this.state.car && `${this.state.car.price} ${this.state.car.year}, ${this.state.car.engine} ${this.state.car.make} ${this.state.car.model}`}`
                   })
                
