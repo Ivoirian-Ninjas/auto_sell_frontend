@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { API_ROOT } from '../../helpers/constant';
+import { API_ROOT, ROOT } from '../../helpers/constant';
 import Creatable from 'react-select/creatable';
 import CarList from './CarList';
 import '../../assets/css/car_new.css'
@@ -32,11 +32,10 @@ export default class CarNew extends Component {
             interiorColor: '',
             interiorFabric: '',
             vin: ''
-            
        },
        features: [],
-       
        options: [],
+       root: ROOT,
        loading: false
     }
 

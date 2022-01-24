@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
-import { API_ROOT, HEADERS, EMAIL_PATTERN } from '../../helpers/constant';
+import { API_ROOT, HEADERS, EMAIL_PATTERN, ROOT } from '../../helpers/constant';
 import { toast } from 'react-toastify';
 
 class ModalForgotPassword extends Component {
     state = { 
-        email: ''
+        email: '',
+        root: ROOT
      } 
      handleChange = (event) => this.setState({[event.target.name]: event.target.value})
      handleSubmit = () => {
         if(this.state.email.match(EMAIL_PATTERN)){
             const options={
-                method: 'GET',
+                method: 'POST',
                 headers: HEADERS,
                 body: JSON.stringify(this.state)
 
             }
-            fetch(`${API_ROOT}/reviews`, options)
+            fetch(`${API_ROOT}/forgot_password`, options)
             .then(resp => resp.json())
             .then(json => {
                     if(json.error){
@@ -31,7 +32,7 @@ class ModalForgotPassword extends Component {
 
                     }else{
                         this.props.close_modal()
-                        toast.success("We sent you an email",  {
+                        toast.success(json.message,  {
                             position: "top-center",
                             autoClose: 10000,
                             hideProgressBar: true,

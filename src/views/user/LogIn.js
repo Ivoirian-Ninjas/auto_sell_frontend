@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { API_ROOT, HEADERS } from '../../helpers/constant';
+import { API_ROOT, EMAIL_PATTERN, HEADERS, ROOT } from '../../helpers/constant';
 import '../../assets/css/authentification.css'
 import img_one from "../../assets/img/cars-img/marcus-p-oUBjd22gF6w-unsplash.jpg"
 import {Link} from "react-router-dom"
@@ -15,6 +15,8 @@ export default class LogIn extends Component {
     state = {
         password: '',
         email: '',
+        root: ROOT,
+        reset_password_token: window.location.search.split("=")[1] ? window.location.search.split("=")[1] : '',
         show_modal: false
     }
     open_modal = () => this.setState({show_modal: true})
@@ -27,11 +29,46 @@ export default class LogIn extends Component {
             headers: HEADERS,
             body: JSON.stringify(this.state)
         }
-        fetch(API_ROOT + '/login', params)
-        .then(resp => resp.json())
-        .then(json => {
-            if(json.error){
-                toast.error(json.error, {
+
+        if(window.location.search && this.state.password.length <5){
+            toast.error( 'The password is too short. The minium is 6 characters' , {
+                position: "top-center",
+                autoClose: 10000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }else{
+            if(this.state.email.match(EMAIL_PATTERN)){
+                fetch(API_ROOT + '/login', params)
+                .then(resp => resp.json())
+                .then(json => {
+                    if(json.error){
+                        toast.error(json.error, {
+                            position: "top-center",
+                            autoClose: 10000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+                    }else{
+                      
+                        localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
+                        ReactGA.event({
+                            category: 'Login',
+                            action: `${current_user() && current_user().name}, just signed in`
+                          })
+                          console.log(ROOT)
+                        window.location.href = ROOT
+                     
+                    }
+                })
+            }else{
+                toast.error( 'Please enter a valid email' , {
                     position: "top-center",
                     autoClose: 10000,
                     hideProgressBar: true,
@@ -40,17 +77,10 @@ export default class LogIn extends Component {
                     draggable: true,
                     progress: undefined,
                 })
-            }else{
-              
-                localStorage.setItem('auto_sell_user', JSON.stringify(json.user.data.attributes) )
-                ReactGA.event({
-                    category: 'Login',
-                    action: `${current_user() && current_user().name}, just signed in`
-                  })
-                window.history.back()
-             
             }
-        })
+        }
+        
+    
         
     }
 
