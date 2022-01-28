@@ -23,7 +23,11 @@ export default class LogIn extends Component {
         if(current_user())
         window.location.href =  ROOT
     }
-    open_modal = () => this.setState({show_modal: true})
+    open_modal = (e) => {
+        e.preventDefault()
+        this.setState({show_modal: true})
+    }
+
     close_modal = () => this.setState({show_modal: false})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = (event) =>{
