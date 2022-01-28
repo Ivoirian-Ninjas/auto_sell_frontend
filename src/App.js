@@ -34,51 +34,50 @@ function App() {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }, [])
   return (
-   <Router history={createBrowserHistory()}>    
+    <Router history={createBrowserHistory()}>    
       <Switch>
-          <React.Fragment>
-            <Navbar/>
-            <ToastContainer
-                    position="top-center"
-                    autoClose={50000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-             
-              <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
-              
-              {/*These routes are the routes for the car */}
-              <Route exact path='/cars' render={renderProps => <CarIndex {...renderProps} /> } />
-              {current_user() && current_user().admin && <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} /> }
-              {current_user() && current_user().admin && <Route  path='/cars/new' render={renderProps => <CarNew {...renderProps} />} /> }
-              <Route  path = "/cars/:id/show" render={renderProps => <CarShow {...renderProps}/>} />
-              {/* user routes */}
-              <Route path='/users/:id' render={renderProps => <Profile/>} />
-              <Route path='/favorites' render={renderProps => <Favorite/>} />
-              <Route path='/reviews' render={renderProps => <ReviewIndex/>} />
+        <React.Fragment>
+          <Navbar/>
+          <ToastContainer
+                  position="top-center"
+                  autoClose={50000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  />
+          
+          <Route exact path='/' render={renderProps => <Home {...renderProps} /> } />
+          
+          {/*These routes are the routes for the car */}
+          <Route exact path='/cars' render={renderProps => <CarIndex {...renderProps} /> } />
+          {current_user() && current_user().admin && <Route  path='/cars/:id/edit' render={renderProps => <CarEdit {...renderProps}/>} /> }
+          {current_user() && current_user().admin && <Route  path='/cars/new' render={renderProps => <CarNew {...renderProps} />} /> }
+          <Route  path = "/cars/:id/show" render={renderProps => <CarShow {...renderProps}/>} />
+          {/* user routes */}
+          <Route path='/users/:id' render={renderProps => <Profile/>} />
+          <Route path='/favorites' render={renderProps => <Favorite/>} />
+          <Route path='/reviews' render={renderProps => <ReviewIndex/>} />
 
 
-              {/**Display analytics for the admin only */}
-              <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
-              <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  /> 
-              <Route  path='/about' render={renderProps => <About {...renderProps}/>}  />
+          {/**Display analytics for the admin only */}
+          <Route  path='/login' render={renderProps => <LogIn {...renderProps}/>}  />
+          <Route  path='/signup' render={renderProps => <SignUp {...renderProps}/>}  /> 
+          <Route  path='/about' render={renderProps => <About {...renderProps}/>}  />
 
 
-              {/**Cart routes */}
-              {/* <Route path='/cart' render={renderProps => <Cart/>} /> */}
+          {/**Cart routes */}
+          {/* <Route path='/cart' render={renderProps => <Cart/>} /> */}
 
-              {/**Car Parts routes */}
-              {current_user() && current_user().admin && <Route path='/parts/new' render={renderProps => <CarPartNew/>} /> }
-              <Route path='/parts' render={renderProps => <CarPartIndex/>} />
-              {current_user() && current_user().admin && <Route path='/parts/:id/edit' render={renderProps => <CarPartEdit/>} /> }
-            </React.Fragment>
-         
-       </Switch>
+          {/**Car Parts routes */}
+          {current_user() && current_user().admin && <Route path='/parts/new' render={renderProps => <CarPartNew/>} /> }
+          <Route path='/parts' render={renderProps => <CarPartIndex/>} />
+          {current_user() && current_user().admin && <Route path='/parts/:id/edit' render={renderProps => <CarPartEdit/>} /> }
+        </React.Fragment>
+      </Switch>
     </Router>
 
   );

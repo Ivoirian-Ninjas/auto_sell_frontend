@@ -39,6 +39,19 @@
     text-transform: capitalize;
     font-weight: 500;
 }
+.log_out{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    font-weight: 500;
+    background: rgb(226, 82, 71);
+    border: none;
+}
+.log_out:hover{
+    background: rgb(187, 34, 23);
+}
 
 .actives,
 .a_menu:hover {

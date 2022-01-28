@@ -80,10 +80,10 @@ export default function index() {
                                         </a>
                                     </li>
                                     <li className="li_menu">
-                                        <button className="a_menu"
+                                        <a className="log_out"
                                             onClick={()=> {localStorage.removeItem('auto_sell_user'); window.location.href = '/'}}>
                                             Log Out
-                                        </button>
+                                        </a>
                                     </li>
                                 </div> :
                                 (

@@ -27,8 +27,8 @@ export default class LogIn extends Component {
     close_modal = () => this.setState({show_modal: false})
     handleChange = (event) => this.setState({[event.target.name]: event.target.value})
     handleSubmit = (event) =>{
-        event.preventDefault()
-       const params = {
+      event.preventDefault()
+      const params = {
             method: 'POST',
             headers: HEADERS,
             body: JSON.stringify(this.state)
@@ -68,7 +68,7 @@ export default class LogIn extends Component {
                           })
                           console.log(ROOT)
                         window.location.href = ROOT
-                     
+                    
                     }
                 })
             }else{
@@ -102,20 +102,21 @@ export default class LogIn extends Component {
                             <img src={img_one} className="img_box" alt="" />
                         </div>
                         <div className="form_box">
-                            <form className="form_login">
-                                <h2 className="log_title">Log In</h2>
-                                <input className="input_log" onChange={this.handleChange} name='email' value={this.state.email} type="mail" placeholder="user@gmail.com"/>
-                                <input className="input_log" onChange={this.handleChange} name='password' value={this.state.password} type="password" placeholder="Password"/>
+                          <form className="form_login">
+                            <h2 className="log_title">Log In</h2>
+                            <input className="input_log" onChange={this.handleChange} name='email' value={this.state.email} type="mail" placeholder="user@gmail.com"/>
+                            <input className="input_log" onChange={this.handleChange} name='password' value={this.state.password} type="password" placeholder="Password"/>
+                            
+                            <button onClick={this.handleSubmit} className="btn_login">Login</button>
 
-                                <button onClick={this.handleSubmit} className="btn_login">Login</button>
-                                <p className="signup">
-                                    Don't have an account ?
-                                    <Link to="/signup" className="switch_a"> Sign Up</Link>
-                                </p>
-
-                            </form>
-                            <button  className='switch_a' onClick={this.open_modal}>Forgot Password</button>
-
+                            <div className='passwordForget'>
+                              <button className='forgetButton' onClick={this.open_modal}>Forgot Password ?</button>
+                            </div>
+                            <p className="signup">
+                                Don't have an account ?
+                                <Link to="/signup" className="switch_a"> Sign Up</Link>
+                            </p>
+                          </form>
                         </div>
                     </div>
                 </div>
