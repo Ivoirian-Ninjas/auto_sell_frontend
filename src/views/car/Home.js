@@ -16,7 +16,7 @@ import logo3 from "../../assets/img/icon/icons8-nissan-100-2.png"
 import logo4 from "../../assets/img/icon/icons8-honda-100.png"
 import receiveOfferImg from "../../assets/img/cars-img/campbell-boulanger-3ZUsNJhi_Ik-unsplash.jpg"
 import '../../assets/css/car_index.css'
-import Carousel from '@brainhubeu/react-carousel';
+import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css';
 import current_user from '../../helpers/current_user';
 import { ROOT, API_ROOT, HEADERS } from '../../helpers/constant';
@@ -220,46 +220,71 @@ export default class Home extends Component {
                 {cars.length !== 0 &&  <div className="some_cars">
                     <h2 className="title_feature" data-aos="fade-down">Featured vehicles</h2>
                     <div className="cars_slide" data-aos="fade-down">
-                        <Carousel slidesPerPage={3} arrows infinite 
-                            breakpoints = {
-                                {
-                                    600: {
-                                        slidesPerPage: 1,
-                                        arrows: false,
-                                        keepDirectionWhenDragging: true
-                                    },
-                                    950: {
-                                        slidesPerPage: 2,
-                                        arrows: false,
-                                        keepDirectionWhenDragging: true
-                                    },
-                                    1024: {
-                                        slidesPerPage: 3,
-                                        arrows: true
+                        <Carousel 
+                          plugins= {[
+                            'infinite','arrows',
+                            {
+                              resolve: slidesToShowPlugin,
+                              options: {
+                                numberOfSlides: 3,
+                                keepDirectionWhenDragging: true
+                              }
+                            }
+                          ]}
+                          breakpoints = {{
+                              640: {
+                                plugins: [
+                                  {
+                                    resolve: slidesToShowPlugin,
+                                    options: {
+                                      numberOfSlides: 1,
                                     }
-                                }
-                            }>
+                                  }
+                                ]
+                              },
+                              900: {
+                                plugins: [
+                                  {
+                                    resolve: slidesToShowPlugin,
+                                    options: {
+                                      numberOfSlides: 2,
+                                    }
+                                  }
+                                ]
+                              },
+                              1024: {
+                                plugins: [
+                                  {
+                                    resolve: slidesToShowPlugin,
+                                    options: {
+                                      numberOfSlides: 3,
+                                    }
+                                  }
+                                ]
+                              }
+                                }}
+                          >
                             {(cars && cars.length !== 0 )&& cars.map(e=> <div key={e.data.attributes.id} className="div_cars">
                                                                 
-                                                                <div className="div_img_cars">
-                                                                    <img src={e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
-                                                                </div>
-                                                                <div className="div_info_cars">
-                                                                    <div className="cars_mark_name">
-                                                                        <p className="mark_cars">{e.data.attributes.make} {e.data.attributes.model} </p>
-                                                                        <p className="title_cars">{e.data.attributes.year} {e.data.attributes.make} {e.data.attributes.model}</p>
-                                                                    </div>
-                                                                    <p className="cars_priceS">
-                                                                        ${e.data.attributes.price}
-                                                                    </p>
-                                                                </div>
-                                                                <div className="btn_slide_carP">
-                                                                    <button className="view_details_cars" onClick={() => window.location.href = `cars/${e.data.attributes.id}/show`}>View details</button>
-                                                                </div>
-                                                            </div>)
+                                <div className="div_img_cars">
+                                    <img src={e.data.attributes.images[0] && e.data.attributes.images[0].url} className="img_cars_slide" alt="" />
+                                </div>
+                                <div className="div_info_cars">
+                                    <div className="cars_mark_name">
+                                        <p className="mark_cars">{e.data.attributes.make} {e.data.attributes.model} </p>
+                                        <p className="title_cars">{e.data.attributes.year} {e.data.attributes.make} {e.data.attributes.model}</p>
+                                    </div>
+                                    <p className="cars_priceS">
+                                        ${e.data.attributes.price}
+                                    </p>
+                                </div>
+                                <div className="btn_slide_carP">
+                                    <button className="view_details_cars" onClick={() => window.location.href = `cars/${e.data.attributes.id}/show`}>View details</button>
+                                </div>
+                              </div>)
 
                             }
-                       
+                      
                         </Carousel>
                     </div>
                     <div className="view_more_slideC">

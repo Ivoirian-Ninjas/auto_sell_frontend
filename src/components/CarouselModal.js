@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default class CarouselModal extends Component {
     display_images = () => this.props.images.map(e =>
       <div className="showImage_bloc" key={e.url} >
-        <img className="showImage_img" src={e.url} alt='' />
+        <img className="showImage_imgM" src={e.url} alt='' />
       </div>
     )
     render() {

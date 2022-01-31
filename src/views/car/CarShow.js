@@ -251,7 +251,7 @@ export default class CarShow extends Component {
                             <h3 className="name_show">
                                 {car && `${car.make} ${car.model}`}  
                             </h3>
-                             <div className="div_heart">
+                            <div className="div_heart">
                                 {current_user() && !current_user().admin &&
                                 <HeartCheckbox style={{height: 10, width: 10}} checked={this.state.checked} 
                                 onClick={this.check} /> }
